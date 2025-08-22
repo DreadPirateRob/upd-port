@@ -16,7 +16,7 @@ const Timeline = ({ items }) => {
       {/* Timeline Items */}
       <StaggerContainer className="space-y-8" staggerDelay={0.2}>
         {items.map((item, index) => (
-          <StaggerItem key={index}>
+          <StaggerItem key={item.id}>
             <TimelineItem item={item} index={index} />
           </StaggerItem>
         ))}
@@ -26,12 +26,12 @@ const Timeline = ({ items }) => {
 };
 
 const TimelineItem = ({ item, index }) => {
-  const isEven = index % 2 === 0;
+  // const isEven = index % 2 === 0;
   
   return (
-    <div className={`relative flex items-center ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
+    <div className="relative flex items-center flex-row">
       {/* Timeline Dot */}
-      <div className={`absolute ${isEven ? 'left-6' : 'right-6 lg:left-6'} z-10`}>
+      <div className={`absolute left-6 z-10`}>
         <FadeIn direction="in" delay={0.1}>
           <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg">
             <div className="w-full h-full bg-primary/20 rounded-full animate-pulse" />
@@ -40,7 +40,7 @@ const TimelineItem = ({ item, index }) => {
       </div>
 
       {/* Content Card */}
-      <div className={`flex-1 ${isEven ? 'ml-16 lg:ml-16' : 'mr-16 lg:ml-16'} max-w-md lg:max-w-lg`}>
+      <div className={`flex-1 ml-16 lg:ml-16 max-w-full`}>
         <HoverEffect effect="lift">
           <Card className="border-2 transition-all duration-300 hover:border-primary/20 hover:shadow-lg">
             <CardHeader className="pb-3">
@@ -80,8 +80,8 @@ const TimelineItem = ({ item, index }) => {
       </div>
 
       {/* Connecting Line Animation */}
-      <FadeIn direction={isEven ? "right" : "left"} delay={0.3}>
-        <div className={`hidden lg:block absolute ${isEven ? 'left-12' : 'right-12 lg:left-12'} w-8 h-0.5 bg-gradient-to-r from-primary/50 to-transparent`} />
+      <FadeIn direction="right" delay={0.3}>
+        <div className="hidden lg:block absolute left-12 w-8 h-0.5 bg-gradient-to-r from-primary/50 to-transparent" />
       </FadeIn>
     </div>
   );
