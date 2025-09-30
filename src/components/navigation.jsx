@@ -23,7 +23,7 @@ export default function Navigation() {
             <Link href="/project/web-app">
               <Button variant="ghost">Projects</Button>
             </Link>
-            <Badge variant="secondary">Demo</Badge>
+            {/* <Badge variant="secondary">Demo</Badge> */}
             <ThemeToggle />
           </div>
         </div>

@@ -19,6 +19,7 @@ import {
   PageTransition,
 } from "@/components/animations/AnimationWrapper";
 import projects, { technologiesData } from "@/data/projects";
+import Image from "next/image";
 // import Image from "next/image";
 
 // Mock project data - in a real app, this would come from a database or CMS
@@ -50,65 +51,14 @@ const projectData = {
     //   { name: "shadcn/ui", description: "Beautifully designed components" },
     // ],
   },
-  "mobile-app": {
-    title: "Cross-Platform Mobile Application",
-    description:
-      "A React Native mobile application with cross-platform compatibility, featuring native performance and modern UI/UX design patterns.",
-    longDescription:
-      "This mobile application project showcases cross-platform development using React Native, delivering native performance across iOS and Android platforms. The app features modern UI patterns, state management, and integration with device-specific APIs.",
-    tags: ["React Native", "TypeScript", "Expo", "Mobile", "Cross-platform"],
-    category: "Mobile Development",
-    year: "2024",
-    client: "Startup Company",
-    features: [
-      "Cross-platform compatibility",
-      "Native performance",
-      "Push notifications",
-      "Offline functionality",
-      "App store deployment",
-    ],
-    technologies: [
-      {
-        name: "React Native",
-        description: "Framework for building native apps",
-      },
-      { name: "TypeScript", description: "Typed superset of JavaScript" },
-      {
-        name: "Expo",
-        description: "Platform for universal React applications",
-      },
-      { name: "Redux", description: "Predictable state container" },
-    ],
+  "portfolio-tracking-system": {
+    ...projects[1],
   },
-  "api-service": {
-    title: "RESTful API Service",
-    description:
-      "A scalable Node.js API service with Express.js, featuring authentication, database integration, and comprehensive documentation.",
-    longDescription:
-      "This backend project demonstrates modern API development practices using Node.js and Express.js. The service includes authentication, authorization, database modeling, and follows RESTful principles with comprehensive API documentation.",
-    tags: ["Node.js", "Express", "MongoDB", "REST API", "Authentication"],
-    category: "Backend Development",
-    year: "2023",
-    client: "Enterprise Client",
-    features: [
-      "RESTful API design",
-      "JWT authentication",
-      "Database integration",
-      "API documentation",
-      "Error handling and logging",
-    ],
-    technologies: [
-      {
-        name: "Node.js",
-        description: "JavaScript runtime for server-side development",
-      },
-      {
-        name: "Express.js",
-        description: "Web application framework for Node.js",
-      },
-      { name: "MongoDB", description: "NoSQL database" },
-      { name: "JWT", description: "JSON Web Token for authentication" },
-    ],
+  "redis-real-time-client": {
+    ...projects[2],
+  },
+  "trading-app-design": {
+    ...projects[3],
   },
 };
 
@@ -185,7 +135,16 @@ export default async function ProjectPage({ params }) {
                 </div>
               </div>
 
-              <div className="col-span-24 aspect-video mb-8 border border-border bg-size-[10px_10px] bg-fixed bg-[repeating-linear-gradient(315deg,var(--border)_0,var(--border)_1px,transparent_0,transparent_50%)]"></div>
+              <div className="col-span-24 aspect-video mb-8 border border-border bg-size-[10px_10px] bg-fixed bg-[repeating-linear-gradient(315deg,var(--border)_0,var(--border)_1px,transparent_0,transparent_50%)]">
+                <div className="relative h-full">
+                  <Image
+                    src={project.bigImage}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </section>
 
@@ -229,148 +188,160 @@ export default async function ProjectPage({ params }) {
           <Separator />
 
           {/* Project Overview */}
-          <section className="py-12 px-4">
-            <div className="max-w-4xl mx-auto">
-              <FadeIn direction="up">
-                <h2 className="text-2xl font-bold mb-6">Project Overview</h2>
-              </FadeIn>
-              <FadeIn direction="up" delay={0.2}>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  {project.blog.overview}
-                </p>
-              </FadeIn>
+          {project?.blog?.overview && (
+            <section className="py-12 px-4">
+              <div className="max-w-4xl mx-auto">
+                <FadeIn direction="up">
+                  <h2 className="text-2xl font-bold mb-6">Project Overview</h2>
+                </FadeIn>
+                <FadeIn direction="up" delay={0.2}>
+                  <div className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                    {project.blog.overview}
+                  </div>
+                </FadeIn>
 
-              {/* Key Features */}
-              <FadeIn direction="up" delay={0.3}>
-                <h3 className="text-xl font-semibold mb-4">Key Features</h3>
-              </FadeIn>
-              <StaggerContainer className="space-y-2 mb-8" staggerDelay={0.1}>
-                {project.features.map((feature, index) => (
-                  <StaggerItem key={index}>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                      <span className="text-muted-foreground">{feature}</span>
-                    </li>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
-          </section>
+                {/* Key Features */}
+                <FadeIn direction="up" delay={0.3}>
+                  <h3 className="text-xl font-semibold mb-4">Key Features</h3>
+                </FadeIn>
+                <StaggerContainer className="space-y-2 mb-8" staggerDelay={0.1}>
+                  {project.features.map((feature, index) => (
+                    <StaggerItem key={index}>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
+                        <span className="text-muted-foreground">{feature}</span>
+                      </li>
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
+              </div>
+            </section>
+          )}
 
           <Separator />
 
           {/* Project Problem */}
-          <section className="py-12 px-4">
-            <div className="max-w-4xl mx-auto">
-              <FadeIn direction="up">
-                <h2 className="text-2xl font-bold mb-6">The Problem</h2>
-              </FadeIn>
-              <FadeIn direction="up" delay={0.2}>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  {project.blog.problem.description}
-                </p>
-              </FadeIn>
-              <StaggerContainer className="space-y-2 mb-8" staggerDelay={0.1}>
-                {project.blog.problem.listItems.map((item, index) => (
-                  <StaggerItem key={index}>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
-          </section>
+          {project?.blog?.problem && (
+            <section className="py-12 px-4">
+              <div className="max-w-4xl mx-auto">
+                <FadeIn direction="up">
+                  <h2 className="text-2xl font-bold mb-6">The Problem</h2>
+                </FadeIn>
+                <FadeIn direction="up" delay={0.2}>
+                  <div className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                    {project.blog.problem.description}
+                  </div>
+                </FadeIn>
+                <StaggerContainer className="space-y-2 mb-8" staggerDelay={0.1}>
+                  {project.blog.problem.listItems.map((item, index) => (
+                    <StaggerItem key={index}>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
+                        <span className="text-muted-foreground">{item}</span>
+                      </li>
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
+              </div>
+            </section>
+          )}
 
           <Separator />
 
           {/* Project Architecture */}
-          <section className="py-12 px-4">
-            <div className="max-w-4xl mx-auto">
-              <FadeIn direction="up">
-                <h2 className="text-2xl font-bold mb-6">
-                  Architecture at a Glance
-                </h2>
-              </FadeIn>
-              <FadeIn direction="up" delay={0.2}>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  {project.blog.architecture.description}
-                </p>
-              </FadeIn>
-              <StaggerContainer className="space-y-2 mb-8" staggerDelay={0.1}>
-                {project.blog.architecture.listItems.map((item, index) => (
-                  <StaggerItem key={index}>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
-          </section>
+          {project?.blog?.architecture && (
+            <section className="py-12 px-4">
+              <div className="max-w-4xl mx-auto">
+                <FadeIn direction="up">
+                  <h2 className="text-2xl font-bold mb-6">
+                    Architecture at a Glance
+                  </h2>
+                </FadeIn>
+                <FadeIn direction="up" delay={0.2}>
+                  <div className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                    {project.blog.architecture.description}
+                  </div>
+                </FadeIn>
+                <StaggerContainer className="space-y-2 mb-8" staggerDelay={0.1}>
+                  {project.blog.architecture.listItems.map((item, index) => (
+                    <StaggerItem key={index}>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
+                        <span className="text-muted-foreground">{item}</span>
+                      </li>
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
+              </div>
+            </section>
+          )}
 
           <Separator />
 
           {/* Challenges & Solutions */}
-          <section className="py-12 px-4">
-            <div className="max-w-4xl mx-auto">
-              <FadeIn direction="up">
-                <h2 className="text-2xl font-bold mb-6">
-                  Challenges & Solutions
-                </h2>
-              </FadeIn>
-              {/* <FadeIn direction="up" delay={0.2}>
-               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+          {project?.blog?.solutions && (
+            <section className="py-12 px-4">
+              <div className="max-w-4xl mx-auto">
+                <FadeIn direction="up">
+                  <h2 className="text-2xl font-bold mb-6">
+                    Challenges & Solutions
+                  </h2>
+                </FadeIn>
+                {/* <FadeIn direction="up" delay={0.2}>
+               <div className="text-lg text-muted-foreground mb-8 leading-relaxed">
                  {project.blog.architecture.description}
-               </p>
+               </div>
              </FadeIn> */}
-              <StaggerContainer className="space-y-2 mb-8" staggerDelay={0.1}>
-                {project.blog.solutions.map((item, index) => (
-                  <StaggerItem key={index}>
-                    <div className="mb-8">
-                      {/* <FadeIn direction="up" delay={0.2}> */}
-                      <p className="text-lg text-primary mb-4 leading-relaxed">
-                        {index + 1} - {item.description}
-                      </p>
-                      {/* </FadeIn> */}
-                      <li className="flex items-start">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                          <strong className="mr-2">Problem:</strong>
-                          {item.problem}
-                        </span>
-                      </li>
-                      <li className="flex items-start">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                          <strong className="mr-2">Solution:</strong>
-                          {item.solution}
-                        </span>
-                      </li>
-                    </div>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
-          </section>
+                <StaggerContainer className="space-y-2 mb-8" staggerDelay={0.1}>
+                  {project.blog.solutions.map((item, index) => (
+                    <StaggerItem key={index}>
+                      <div className="mb-8">
+                        {/* <FadeIn direction="up" delay={0.2}> */}
+                        <p className="text-lg text-primary mb-4 leading-relaxed">
+                          {index + 1} - {item.description}
+                        </p>
+                        {/* </FadeIn> */}
+                        <li className="flex items-start">
+                          <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
+                          <span className="text-muted-foreground">
+                            <strong className="mr-2">Problem:</strong>
+                            {item.problem}
+                          </span>
+                        </li>
+                        {item.solution && (
+                          <li className="flex items-start">
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
+                            <span className="text-muted-foreground">
+                              <strong className="mr-2">Solution:</strong>
+                              {item.solution}
+                            </span>
+                          </li>
+                        )}
+                      </div>
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
+              </div>
+            </section>
+          )}
 
           <Separator />
 
           {/* Project Closing */}
-          <section className="py-12 px-4">
-            <div className="max-w-4xl mx-auto">
-              <FadeIn direction="up">
-                <h2 className="text-2xl font-bold mb-6">Closing Thoughts</h2>
-              </FadeIn>
-              <FadeIn direction="up" delay={0.2}>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  {project.blog.closing}
-                </p>
-              </FadeIn>
-            </div>
-          </section>
+          {project?.blog?.closing && (
+            <section className="py-12 px-4">
+              <div className="max-w-4xl mx-auto">
+                <FadeIn direction="up">
+                  <h2 className="text-2xl font-bold mb-6">Closing Thoughts</h2>
+                </FadeIn>
+                <FadeIn direction="up" delay={0.2}>
+                  <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                    {project.blog.closing}
+                  </p>
+                </FadeIn>
+              </div>
+            </section>
+          )}
 
           {/* Call to Action */}
           <section className="py-12 px-4 bg-muted/50">

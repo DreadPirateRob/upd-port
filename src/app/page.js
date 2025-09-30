@@ -24,6 +24,7 @@ import Footer from "@/components/footer";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { AnimatePresence, motion } from "motion/react";
 import projects from "@/data/projects";
+import Image from "next/image";
 
 const ListRender = ({ items }) => {
   return (
@@ -102,23 +103,23 @@ export default function Home() {
       description:
         "Specializing in creating robust APIs and ensuring seamless interaction between frontend and backend services.",
       tags: ["Express", "GraphQL", "OAuth"],
-      colSpan: "col-span-8",
+      colSpan: "col-span-12",
     },
-    {
-      slug: "blockchain-development",
-      title: "Blockchain Development",
-      description:
-        "Creating secure and efficient smart contracts for decentralized applications (dApps) with a focus on security and efficiency.",
-      tags: ["Solidty", "IPFS", "Ganache"],
-      colSpan: "col-span-8",
-    },
+    // {
+    //   slug: "blockchain-development",
+    //   title: "Blockchain Development",
+    //   description:
+    //     "Creating secure and efficient smart contracts for decentralized applications (dApps) with a focus on security and efficiency.",
+    //   tags: ["Solidty", "IPFS", "Ganache"],
+    //   colSpan: "col-span-8",
+    // },
     {
       slug: "ux-ui-design",
       title: "UX/UI Design",
       description:
         "Ensuring that the applications I design meet the needs of users and provide a seamless and engaging interaction.",
       tags: ["Figma", "Framer"],
-      colSpan: "col-span-8",
+      colSpan: "col-span-12",
     },
     {
       slug: "collaboration",
@@ -133,7 +134,7 @@ export default function Home() {
       title: "Backend Development",
       description:
         "I prioritize data security, authentication and authorization mechanisms to deliver secure and efficient server-side solutions while maintaining a clean codebase.",
-      tags: ["PostgreSQL", "PM2", "Docker", "OAuth", "JWT"],
+      tags: ["PostgreSQL", "PM2", "Docker", "JWT"],
       colSpan: "col-span-14",
     },
   ];
@@ -253,7 +254,7 @@ export default function Home() {
             <div className="max-w-4xl mx-auto z-1">
               <FadeIn direction="down" delay={0.2}>
                 <Badge variant="outline" className="text-sm mb-4">
-                  Available for hire
+                  Available for work
                 </Badge>
                 <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
                   Hi, I'm Adrian Garcia
@@ -269,12 +270,16 @@ export default function Home() {
               <FadeIn direction="up" delay={0.6}>
                 <div className="flex gap-4 justify-center">
                   <HoverEffect effect="scale">
-                    <Button size="lg">View Projects</Button>
+                    <Button size="lg" asChild>
+                      <Link href="#projects-section">View Projects</Link>
+                    </Button>
                   </HoverEffect>
                   <HoverEffect effect="scale">
-                    <Button variant="outline" size="lg">
-                      Contact Me
-                    </Button>
+                    <a href="mailto:adriangarcia9916@gmail.com">
+                      <Button variant="outline" size="lg">
+                        Contact Me
+                      </Button>
+                    </a>
                   </HoverEffect>
                 </div>
               </FadeIn>
@@ -357,7 +362,7 @@ export default function Home() {
 
           <Separator />
           {/* Projects Section */}
-          <section className="py-16 px-4">
+          <section className="py-16 px-4" id="projects-section">
             <div className="max-w-4xl mx-auto">
               <div className="max-w-xl text-left mb-16">
                 <FadeIn direction="right">
@@ -382,7 +387,14 @@ export default function Home() {
                         <Card className="h-full border-2 transition-all duration-300 hover:border-primary/20">
                           <CardContent>
                             <div className="grid grid-cols-24 gap-8">
-                              <div className="col-span-24 h-96 border border-border bg-size-[10px_10px] bg-fixed bg-[repeating-linear-gradient(315deg,var(--border)_0,var(--border)_1px,transparent_0,transparent_50%)]"></div>
+                              <div className="relative col-span-24 h-96 border border-border bg-size-[10px_10px] bg-fixed bg-[repeating-linear-gradient(315deg,var(--border)_0,var(--border)_1px,transparent_0,transparent_50%)]">
+                                <Image
+                                  src={project.bigImage}
+                                  alt={project.title}
+                                  fill
+                                  className="object-cover"
+                                />
+                              </div>
                               <div className="col-span-10 flex flex-col">
                                 <h2 className="text-2xl font-bold">
                                   {project.title}
