@@ -360,9 +360,11 @@ export default async function ProjectPage({ params }) {
               <FadeIn direction="up" delay={0.4}>
                 <div className="flex gap-4 justify-center">
                   <HoverEffect effect="scale">
-                    <Button size="lg">Get In Touch</Button>
+                    <a href="mailto:adriangarcia9916@gmail.com">
+                      <Button size="lg">Get In Touch</Button>
+                    </a>
                   </HoverEffect>
-                  <Link href="/">
+                  <Link href="/#projects-section">
                     <HoverEffect effect="scale">
                       <Button variant="outline" size="lg">
                         View More Projects

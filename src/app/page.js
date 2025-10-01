@@ -86,7 +86,7 @@ export default function Home() {
         "With a strong focus on frontend development I strive to craft seamless and intuitive interfaces that elevate the digital experience for users while maintaining a clean codebase.",
       // tags: ["MUI", "React", "Sass", "Tailwind", "Gastby"],
       tags: ["React", "Next.js", "Tailwind", "TypeScript", "Redux"],
-      colSpan: "col-span-14",
+      colSpan: "col-span-16 lg:col-span-14",
     },
     {
       slug: "testing-and-development",
@@ -95,7 +95,7 @@ export default function Home() {
         "In addition to my core skills, I possess a range of complementary abilities that contribute to my overall proficiency.",
       // tags: ["Github", "Jest", "Webpack"],
       tags: ["Jest", "Playwright", "Storybook"],
-      colSpan: "col-span-10",
+      colSpan: "col-span-16 lg:col-span-10",
     },
     {
       slug: "server-side-development",
@@ -103,7 +103,7 @@ export default function Home() {
       description:
         "Specializing in creating robust APIs and ensuring seamless interaction between frontend and backend services.",
       tags: ["Express", "GraphQL", "OAuth"],
-      colSpan: "col-span-12",
+      colSpan: "col-span-16 lg:col-span-12",
     },
     // {
     //   slug: "blockchain-development",
@@ -119,7 +119,7 @@ export default function Home() {
       description:
         "Ensuring that the applications I design meet the needs of users and provide a seamless and engaging interaction.",
       tags: ["Figma", "Framer"],
-      colSpan: "col-span-12",
+      colSpan: "col-span-16 lg:col-span-12",
     },
     {
       slug: "collaboration",
@@ -127,7 +127,7 @@ export default function Home() {
       description:
         "With a strong focus on collaboration, I strive to create a positive and productive work environment that fosters innovation.",
       tags: ["Github", "Jira", "Confluence"],
-      colSpan: "col-span-10",
+      colSpan: "col-span-16 lg:col-span-10",
     },
     {
       slug: "backend-development",
@@ -135,7 +135,7 @@ export default function Home() {
       description:
         "I prioritize data security, authentication and authorization mechanisms to deliver secure and efficient server-side solutions while maintaining a clean codebase.",
       tags: ["PostgreSQL", "PM2", "Docker", "JWT"],
-      colSpan: "col-span-14",
+      colSpan: "col-span-16 lg:col-span-14",
     },
   ];
 
@@ -386,7 +386,7 @@ export default function Home() {
                       <HoverEffect effect="lift">
                         <Card className="h-full border-2 transition-all duration-300 hover:border-primary/20">
                           <CardContent>
-                            <div className="grid grid-cols-24 gap-8">
+                            <div className="grid grid-cols-24 lg:gap-8">
                               <div className="relative col-span-24 h-96 border border-border bg-size-[10px_10px] bg-fixed bg-[repeating-linear-gradient(315deg,var(--border)_0,var(--border)_1px,transparent_0,transparent_50%)]">
                                 <Image
                                   src={project.bigImage}
@@ -395,14 +395,14 @@ export default function Home() {
                                   className="object-cover"
                                 />
                               </div>
-                              <div className="col-span-10 flex flex-col">
+                              <div className="col-span-24 mt-4 lg:col-span-10 flex flex-col">
                                 <h2 className="text-2xl font-bold">
                                   {project.title}
                                 </h2>
                                 <p className="text-sm text-muted-foreground">
                                   {project.description}
                                 </p>
-                                <div className="flex flex-grow items-end gap-2">
+                                <div className="flex flex-grow items-end gap-2 pb-4">
                                   <Link
                                     href={`/project/${project.slug}`}
                                     className="h-fit"
@@ -434,7 +434,7 @@ export default function Home() {
                                   </Link>
                                 </div>
                               </div>
-                              <div className="col-span-14">
+                              <div className="col-span-24 lg:col-span-14">
                                 <p className="text-sm text-muted-foreground mb-2">
                                   Technologies used:
                                 </p>
@@ -468,7 +468,7 @@ export default function Home() {
           <section>
             <div className="container mx-auto max-w-5xl px-4 py-24">
               <div className="mx-4 grid gap-4 sm:grid-cols-12">
-                <div className="relative col-span-12 space-y-6 px-4">
+                <div className="relative col-span-12 space-y-6">
                   <div className="max-w-2xl text-left mb-16">
                     <FadeIn direction="left">
                       <Badge variant="outline" className="text-lg mb-4">
