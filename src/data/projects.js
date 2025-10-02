@@ -366,7 +366,8 @@ export default [
                 ✅ Isolates per-client updates to prevent over-broadcasting
               </li>
             </ul>
-            <Card className="font-mono text-sm text-primary p-2 mt-4 w-[600px] gap-1 mb-8">
+            {/* <Card className="font-mono text-sm text-primary p-2 mt-4 w-[600px] gap-1 mb-8"> */}
+            <Card className="font-mono text-sm text-primary p-2 mt-4 gap-1 overflow-x-auto w-[calc(100vw-60px)] max-w-fit">
               <span>import express from 'express';</span>
               <span className="font-bold">
                 import {"{ instantiateRealtimeRedis }"} from '@redis-rt/server';{" "}
@@ -412,7 +413,7 @@ export default [
               <li>✅ Simple API: subscribe to a key and react to updates</li>
             </ul>
 
-            <Card className="font-mono text-sm text-primary p-2 mt-4 gap-1 w-[600px]">
+            <Card className="font-mono text-sm text-primary p-2 mt-4 gap-1 overflow-x-auto w-[calc(100vw-60px)] max-w-fit">
               <span className="font-bold">
                 import {`{ useRedisRealtimeClient }`} from '@redis-rt/client';
               </span>

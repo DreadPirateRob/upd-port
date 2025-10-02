@@ -15,12 +15,13 @@ export default function Navigation() {
               Portfolio
             </Link>
           </div>
-          
+
           <div className="flex items-center space-x-4">
             <Link href="/">
               <Button variant="ghost">Home</Button>
             </Link>
-            <Link href="/project/web-app">
+
+            <Link href="/#projects-section">
               <Button variant="ghost">Projects</Button>
             </Link>
             {/* <Badge variant="secondary">Demo</Badge> */}

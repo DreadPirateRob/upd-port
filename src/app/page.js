@@ -416,7 +416,7 @@ export default function Home() {
                                       </Button>
                                     </HoverEffect>
                                   </Link>
-                                  <Link
+                                  {/* <Link
                                     href={`/project/${project.slug}`}
                                     className="h-fit"
                                   >
@@ -431,7 +431,7 @@ export default function Home() {
                                         Learn More
                                       </Button>
                                     </HoverEffect>
-                                  </Link>
+                                  </Link> */}
                                 </div>
                               </div>
                               <div className="col-span-24 lg:col-span-14">
