@@ -257,12 +257,12 @@ export default function Home() {
                   Available for work
                 </Badge>
                 <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
-                  Hi, I'm Adrian Garcia
+                  Hi, I&apos;m Adrian Garcia
                 </h1>
               </FadeIn>
               <FadeIn direction="up" delay={0.4}>
                 <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  I'm a professional software developer with over 5+ years of
+                  I&apos;m a professional software developer with over 5+ years of
                   demonstrated experience, focusing on delivering integrated,
                   reliable, resilient and cost-effective solutions
                 </p>

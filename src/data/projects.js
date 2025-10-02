@@ -70,7 +70,6 @@ export default [
       "Highly concurrent",
       "Developer-friendly",
     ],
-    // Blog data
     blog: {
       overview: (
         <p>
@@ -141,7 +140,7 @@ export default [
       ],
       closing: (
         <p>
-          Whether it’s used to feed a trading bot, drive analytics, or power a
+          Whether it&apos;s used to feed a trading bot, drive analytics, or power a
           dashboard, this system was designed with one thing in mind: real-time,
           reliable data at scale. I focused on simplicity, fault tolerance, and
           performance — principles I apply to every full-stack system I build.
@@ -202,7 +201,7 @@ export default [
         description:
           "This full-stack system is powered by a robust and modern technology stack:",
         listItems: [
-          <div>
+          <div key="frontend">
             <Badge variant="outline" className="text-base font-bold">
               Frontend
             </Badge>
@@ -218,7 +217,7 @@ export default [
               <li>Up to date sync of balances via a polling strategy.</li>
             </ul>
           </div>,
-          <div>
+          <div key="backend">
             <Badge variant="outline" className="text-base font-bold">
               Backend
             </Badge>
@@ -300,10 +299,10 @@ export default [
     blog: {
       overview: (
         <p>
-          Building real-time applications is no longer a niche need—it’s an
+          Building real-time applications is no longer a niche need—it&apos;s an
           expectation. However, if you're using Redis as your in-memory data
           store and need real-time updates across client applications, you're
-          faced with a problem: Redis alone doesn’t support Firebase-style
+          faced with a problem: Redis alone doesn&apos;t support Firebase-style
           real-time subscriptions to keys out-of-the-box.
           <br />
           <div className="my-4" />
@@ -313,7 +312,7 @@ export default [
           infrastructure from scratch.
           <br />
           <div className="my-4" />
-          I’m building{" "}
+          I&apos;m building{" "}
           <Badge variant="outline" className="text-xs lowercase">
             @npm/redis-rt/server + @npm/redis-rt/client
           </Badge>{" "}
@@ -338,7 +337,7 @@ export default [
         description:
           "This project offers a batteries-included, two-part solution:",
         listItems: [
-          <div>
+          <div key="server">
             <Badge variant="outline" className="text-base font-bold lowercase">
               @npm/redis-rt/server
             </Badge>
@@ -372,17 +371,17 @@ export default [
               <span className="font-bold">
                 import {"{ instantiateRealtimeRedis }"} from '@redis-rt/server';{" "}
                 <span className="text-muted-foreground">
-                  // import the module
+                  {'// import the module'}
                 </span>
               </span>
               <br />
               <span>const app = express();</span>
               <span className="text-muted-foreground">
-                // Extra express configuration goes here
+                {'// Extra express configuration goes here'}
               </span>
               <br />
               <span className="text-muted-foreground">
-                // Attach Redis real-time sync module
+                {'// Attach Redis real-time sync module'}
               </span>
               <span className="font-bold">{`instantiateRealtimeRedis(app, {`}</span>
               <span className="ml-4 font-bold">
@@ -396,12 +395,12 @@ export default [
               <span>
                 app.listen(3000);{" "}
                 <span className="text-muted-foreground">
-                  // start the server
+                  {'// start the server'}
                 </span>
               </span>
             </Card>
           </div>,
-          <div>
+          <div key="client">
             <Badge variant="outline" className="text-base font-bold lowercase">
               @npm/redis-rt/client
             </Badge>
@@ -430,7 +429,7 @@ export default [
               <span className="font-bold">
                 const someValue = watch('someKey');
               </span>
-              <span>// Use the value in your component</span>
+              <span>{"// Use the value in your component"}</span>
             </Card>
           </div>,
         ],
@@ -483,23 +482,4 @@ export default [
       ),
     },
   },
-  // {
-  //   slug: "trading-app-design",
-  //   title: "Trading App Design",
-  //   skills: ["Frontend", "Backend"],
-  //   technologies: ["Figma", "Framer"],
-  //   bigImage: "/trading-app-design.png",
-  //   description:
-  //     "A trading app design for UI or bot trading.",
-  //   challenges:
-  //     "Some of the challenges included designing a trading app for UI or bot trading that is both functional and aesthetically pleasing for either a retail or institutional trader.",
-  //   features: [
-  //     "Modern UI/UX design",
-  //     "Responsive design",
-  //     "Cross-platform compatibility",
-  //     "Performance optimization",
-  //     "Accessibility",
-  //     "SEO",
-  //   ],
-  // },
 ];
