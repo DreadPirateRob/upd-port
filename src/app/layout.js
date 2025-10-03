@@ -14,8 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Portfolio - Web Developer",
-  description: "A modern portfolio website showcasing web development projects and skills",
+  title: "Adrian Garcia - Developer",
+  description:
+    "Professional software developer with over 5+ years of demonstrated experience, focusing on delivering integrated, reliable, resilient and cost-effective solutions",
 };
 
 export default function RootLayout({ children }) {
