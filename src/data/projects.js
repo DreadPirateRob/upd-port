@@ -100,9 +100,9 @@ export default [
     technologies: watchlistProjectTechnologies,
     bigImage: "/trading-platform.png",
     description:
-      "Trading platform for cryptocurrency, allowing users to trade cryptocurrencies across multiple exchanges.",
+      "The system aggregates real-time order book depth, trade execution data, and OHLCV metrics across multiple exchanges, delivering sub-second latency updates.",
     challenges:
-      "This project reinforced the importance of performance budgets in real-time applications. Early iterations suffered from excessive re-renders when processing high-frequency ticker updates. Profiling revealed that naive state updates were triggering full component tree re-renders. Implementing multiple strategies for controlled updates improved render performance by 10x.",
+      "I gained expertise in WebSocket connection management, order book reconstruction algorithms, and the importance of client-side performance optimization when handling high-frequency market data. The experience reinforced that in fintech applications, consistency and reliability trump feature richness—traders need data they can trust above all else.",
   },
   {
     slug: "cross-network-portfolio-tracker",
@@ -112,9 +112,9 @@ export default [
     technologies: watchlistProjectTechnologies,
     bigImage: "/portfolio-tracker.png",
     description:
-      "Trading platform for cryptocurrency, allowing users to trade cryptocurrencies across multiple exchanges.",
+      "A unified portfolio management platform that aggregates digital assets across CEX and DEX wallets, and multiple blockchain networks into a single real-time view",
     challenges:
-      "This project reinforced the importance of performance budgets in real-time applications. Early iterations suffered from excessive re-renders when processing high-frequency ticker updates. Profiling revealed that naive state updates were triggering full component tree re-renders. Implementing multiple strategies for controlled updates improved render performance by 10x.",
+      "This project required deep understanding of blockchain heterogeneity—each chain has unique RPC interfaces, token standards, and indexing challenges. I built a robust abstraction layer that treats 10+ networks uniformly while respecting their differences.",
   },
   // {
   //   slug: "market-data-plant",
