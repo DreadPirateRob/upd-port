@@ -26,30 +26,6 @@ import Image from "next/image";
 const projectData = {
   "market-data-plant": {
     ...projects[0],
-    // title: "High-Frequency System for Real-Time Crypto Data",
-    // description: "A fully automated market data plant for UI or bot trading.",
-    // longDescription:
-    //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit tincidunt ante, ac aliquam augue pulvinar vel. Praesent non cursus urna, ac viverra dui. Phasellus sit amet malesuada lectus. Nulla laoreet sollicitudin mi, semper sodales erat sagittis in. Proin venenatis sit amet tortor et interdum. Praesent ante est, egestas vel eleifend nec, mattis a risus. Nullam purus odio, mattis ac ante suscipit, rutrum condimentum ipsum. Ut auctor maximus consectetur. Duis ante lorem, molestie in augue a, rutrum malesuada nibh. Morbi scelerisque nisi quis lorem feugiat, vel dapibus nulla egestas.",
-    // tags: ["React", "Next.js", "Tailwind CSS", "JavaScript", "Vercel"],
-    // category: "Web Development",
-    // year: "2025",
-    // client: "Personal Project",
-    // features: [
-    //   "Server-side rendering with Next.js",
-    //   "Responsive design with Tailwind CSS",
-    //   "Component-based architecture",
-    //   "Performance optimized",
-    //   "SEO friendly",
-    // ],
-    // technologies: [
-    //   { name: "Next.js", description: "React framework for production" },
-    //   {
-    //     name: "React",
-    //     description: "JavaScript library for building user interfaces",
-    //   },
-    //   { name: "Tailwind CSS", description: "Utility-first CSS framework" },
-    //   { name: "shadcn/ui", description: "Beautifully designed components" },
-    // ],
   },
   "portfolio-tracking-system": {
     ...projects[1],

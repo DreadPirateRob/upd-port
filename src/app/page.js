@@ -262,8 +262,8 @@ export default function Home() {
               </FadeIn>
               <FadeIn direction="up" delay={0.4}>
                 <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  I&apos;m a professional software developer with over 5+ years of
-                  demonstrated experience, focusing on delivering integrated,
+                  I&apos;m a professional software developer with over 5+ years
+                  of demonstrated experience, focusing on delivering integrated,
                   reliable, resilient and cost-effective solutions
                 </p>
               </FadeIn>
@@ -387,7 +387,7 @@ export default function Home() {
                         <Card className="h-full border-2 transition-all duration-300 hover:border-primary/20">
                           <CardContent>
                             <div className="grid grid-cols-24 lg:gap-8">
-                              <div className="relative col-span-24 h-96 border border-border bg-size-[10px_10px] bg-fixed bg-[repeating-linear-gradient(315deg,var(--border)_0,var(--border)_1px,transparent_0,transparent_50%)]">
+                              <div className="relative col-span-24 h-96 border border-border bg-background">
                                 <Image
                                   src={project.bigImage}
                                   alt={project.title}
@@ -403,19 +403,26 @@ export default function Home() {
                                   {project.description}
                                 </p>
                                 <div className="flex flex-grow items-end gap-2 pb-4">
-                                  <Link
-                                    href={`/project/${project.slug}`}
-                                    className="h-fit"
-                                  >
-                                    <HoverEffect
-                                      effect="scale"
-                                      className="mt-8"
+                                  {project?.slug && !project.disabled && (
+                                    <Link
+                                      href={`/projects/${project.slug}`}
+                                      className="h-fit"
                                     >
-                                      <Button className="w-fit">
-                                        View Project
-                                      </Button>
-                                    </HoverEffect>
-                                  </Link>
+                                      <HoverEffect
+                                        effect="scale"
+                                        className="mt-8"
+                                      >
+                                        <Button className="w-fit">
+                                          View Project
+                                        </Button>
+                                      </HoverEffect>
+                                    </Link>
+                                  )}
+                                  {project.disabled && (
+                                    <Button disabled className="w-fit">
+                                      Coming Soon
+                                    </Button>
+                                  )}
                                   {/* <Link
                                     href={`/project/${project.slug}`}
                                     className="h-fit"
