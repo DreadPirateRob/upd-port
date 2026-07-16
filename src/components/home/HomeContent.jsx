@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,12 +21,9 @@ import {
 import Footer from "@/components/footer";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { AnimatePresence, motion } from "motion/react";
-import { tools } from "@/data/tools";
-import ToolModal from "@/components/home/ToolModal";
 import Image from "next/image";
 
 export default function HomeContent({ projects }) {
-  const [selectedTool, setSelectedTool] = useState(null);
 
   const skills = [
     {
@@ -411,52 +407,9 @@ export default function HomeContent({ projects }) {
             </div>
           </section>
 
-          <Separator />
-
-          {/* Setup Section */}
-          <section className="py-16 px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="max-w-xl text-left mb-16">
-                <FadeIn direction="left">
-                  <Badge variant="outline" className="text-lg mb-4">
-                    Setup
-                  </Badge>
-                </FadeIn>
-                <FadeIn direction="left" delay={0.2}>
-                  <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-                    Every tool earns its place; <br /> tuned for flow, built for depth
-                  </h2>
-                </FadeIn>
-              </div>
-              <StaggerContainer
-                className="grid grid-cols-1 md:grid-cols-24 gap-6"
-                staggerDelay={0.15}
-              >
-                {tools.map((tool) => (
-                  <StaggerItem key={tool.name} className={tool.colSpan}>
-                    <HoverEffect effect="lift">
-                      <Card
-                        className="h-full border-2 transition-all duration-300 hover:border-primary/20 cursor-pointer"
-                        onClick={() => setSelectedTool(tool)}
-                      >
-                        <CardHeader>
-                          <p className="text-xs font-medium text-muted-foreground mb-1">
-                            {tool.category}
-                          </p>
-                          <CardTitle className="text-base">{tool.name}</CardTitle>
-                          <CardDescription>{tool.description}</CardDescription>
-                        </CardHeader>
-                      </Card>
-                    </HoverEffect>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
-          </section>
         </div>
       </div>
       <Footer />
-      <ToolModal tool={selectedTool} onClose={() => setSelectedTool(null)} />
     </div>
   );
 }
