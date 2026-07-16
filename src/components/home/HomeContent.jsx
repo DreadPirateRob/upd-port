@@ -93,22 +93,26 @@ export default function HomeContent({ projects }) {
   const events = [
     {
       year: "Jan 2026 - Present",
+      company: "CoinRoutes",
       title: "OEMS & AI Tooling — Full Stack Engineer",
       description: "Continuing at CoinRoutes, now focused on expanding the platform's exchange connectivity and custom liquidity provider support. Responsible for building out the integrations layer that powers execution across venues, while driving architecture and infrastructure improvements in direct response to evolving business and product requirements. Alongside core product work, building internal developer tooling designed to enhance team workflows and accelerate delivery in an era where AI-assisted development is becoming central to how modern engineering teams operate. Emphasis on scalability, reliability, and long-term maintainability across the full stack.",
     },
     {
       year: "Feb 2025 - Jan 2026",
+      company: "CoinRoutes",
       title: "Trading Platform — Front-End Engineering Lead",
       description: "Led front-end architecture and development for a high-performance trading platform, managing a team of five engineers. Steered the team's technical direction while continuing as a hands-on IC — spearheading performance optimization, maintaining design system integrity, and driving collaboration across design, product, and backend engineering to deliver scalable, real-time interfaces for professional traders and institutions.",
     },
     {
       year: "Apr 2023 - Feb 2025",
+      company: "CoinRoutes",
       title: "OEMS — Product Lead & UX Architect",
       description:
         "As a cross-functional leader at CoinRoutes, I operated at the intersection of product, design, and engineering, leading initiatives across the full product lifecycle of our OEMS (Order and Execution Management System) for crypto trading. I drove product strategy from ideation to deployment, collaborated closely with institutional clients, and translated complex trading workflows into performant, intuitive interfaces — directing UX/UI initiatives that improved trader efficiency across multi-venue execution environments, building reusable UI systems that cut feature delivery time by 40%, and serving as the primary bridge between engineering and executive stakeholders to keep technical execution aligned with product vision.",
     },
     {
       year: "Jan 2022 - Apr 2023",
+      company: "CoinRoutes",
       title: "Trading Platform — Front-End Engineer",
       description:
         "Contributed to the design and development of CoinRoutes' enterprise-grade crypto trading platform, handling real-time data visualization, state management, and cross-browser performance optimization for professional trading clients. Led major UI refactors for responsiveness and modularity, integrated WebSockets and streaming APIs for live execution and market data, contributed to a shared component library used across internal and client-facing tools, and worked closely with backend engineers to optimize data flow for low-latency environments.",
@@ -377,9 +381,16 @@ export default function HomeContent({ projects }) {
                         key={i.year}
                         className="before:bg-neutral flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:left-[-35px] sm:before:z-[1] sm:before:h-4 sm:before:w-4 sm:before:rounded-full"
                       >
-                        <Badge className="mb-1" variant="outline">
-                          {i.year}
-                        </Badge>
+                        <div className="flex items-baseline gap-2 mb-1">
+                          <Badge variant="outline">
+                            {i.year}
+                          </Badge>
+                          {i.company && (
+                            <span className="text-sm italic text-muted-foreground/60">
+                              — {i.company}
+                            </span>
+                          )}
+                        </div>
 
                         <p className="font-display text-xl font-semibold tracking-wide">
                           {i.title}
