@@ -195,7 +195,7 @@ export default function HomeContent({ projects }) {
           <Separator />
 
           {/* Skills Section */}
-          <section className="py-16 px-4">
+          <section id="skills-section" className="py-16 px-4 scroll-mt-24">
             <div className="max-w-4xl mx-auto">
               <div className="max-w-xl text-left mb-16">
                 <FadeIn direction="left">
@@ -249,7 +249,7 @@ export default function HomeContent({ projects }) {
           <Separator />
 
           {/* About Section */}
-          <section className="py-16 px-4 bg-muted/50">
+          <section id="about-section" className="py-16 px-4 bg-muted/50 scroll-mt-24">
             <div className="max-w-4xl mx-auto text-right">
               <FadeIn direction="right">
                 <Badge variant="outline" className="text-lg mb-6">
@@ -333,7 +333,7 @@ export default function HomeContent({ projects }) {
           <Separator />
 
           {/* Projects — Curated List */}
-          <section className="py-16 px-4" id="projects-section">
+          <section className="py-16 px-4 scroll-mt-24" id="projects-section">
             <div className="max-w-5xl mx-auto">
               <div className="flex items-end justify-between gap-6 mb-10">
                 <div className="max-w-xl text-left">

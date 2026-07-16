@@ -23,8 +23,12 @@ export default function Navigation() {
           </div>
 
           <div className="flex items-center space-x-4">
-            <Link href="/">
-              <Button variant="ghost">Home</Button>
+            <Link href="/#skills-section">
+              <Button variant="ghost">Skills</Button>
+            </Link>
+
+            <Link href="/#about-section">
+              <Button variant="ghost">Experience</Button>
             </Link>
 
             <Link href="/#projects-section">
