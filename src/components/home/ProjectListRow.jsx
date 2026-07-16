@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export default function ProjectListRow({ project, index }) {
   const chips = [project.areas?.[0], ...project.technologies.slice(0, 2)]
@@ -10,13 +12,19 @@ export default function ProjectListRow({ project, index }) {
     .slice(0, 3);
 
   const cta = project.disabled ? (
-    <div className="h-10 min-w-10 rounded-full border border-border px-4 flex items-center justify-center text-[10px] uppercase tracking-wider text-muted-foreground/60">
+    <Badge variant="outline" className="text-muted-foreground/60">
       Soon
-    </div>
+    </Badge>
   ) : (
-    <div className="h-10 w-10 rounded-full border border-border flex items-center justify-center text-muted-foreground/70 group-hover:text-primary group-hover:border-primary/40 transition-colors">
+    <span
+      aria-hidden="true"
+      className={cn(
+        buttonVariants({ variant: "outline", size: "icon" }),
+        "text-muted-foreground/70 group-hover:text-primary group-hover:border-primary/40"
+      )}
+    >
       <ArrowUpRight className="h-4 w-4" />
-    </div>
+    </span>
   );
 
   const content = (
@@ -34,7 +42,7 @@ export default function ProjectListRow({ project, index }) {
         </p>
         <div className="flex flex-wrap gap-2">
           {chips.map((chip) => (
-            <Badge key={chip} variant="outline" className="rounded-full px-4 py-1 text-xs uppercase tracking-wider">
+            <Badge key={chip} variant="outline">
               {chip}
             </Badge>
           ))}
