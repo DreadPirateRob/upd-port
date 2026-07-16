@@ -22,6 +22,7 @@ import Footer from "@/components/footer";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
+import ProjectBlogCard from "@/components/home/ProjectBlogCard";
 
 export default function HomeContent({ projects }) {
 
@@ -354,6 +355,36 @@ export default function HomeContent({ projects }) {
             </div>
           </section>
 
+
+          <Separator />
+
+          {/* Case Studies — Blog Grid */}
+          <section className="py-16 px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="max-w-xl text-left mb-16">
+                <FadeIn direction="left">
+                  <Badge variant="outline" className="text-lg mb-4">
+                    Case Studies
+                  </Badge>
+                </FadeIn>
+                <FadeIn direction="left" delay={0.2}>
+                  <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
+                    In depth, <br /> from the inside out
+                  </h2>
+                </FadeIn>
+              </div>
+              <StaggerContainer
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                staggerDelay={0.15}
+              >
+                {projects.map((project) => (
+                  <StaggerItem key={project.slug}>
+                    <ProjectBlogCard project={project} />
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
+          </section>
           <Separator />
 
           <section>
