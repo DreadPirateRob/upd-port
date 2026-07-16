@@ -262,6 +262,59 @@ export default function HomeContent({ projects }) {
           </section>
 
           <Separator />
+
+          <section>
+            <div className="container mx-auto max-w-5xl px-4 py-24">
+              <div className="mx-4 grid gap-4 sm:grid-cols-12">
+                <div className="relative col-span-12 space-y-6">
+                  <div className="max-w-2xl text-left mb-16">
+                    <FadeIn direction="left">
+                      <Badge variant="outline" className="text-lg mb-4">
+                        Experience
+                      </Badge>
+                    </FadeIn>
+                    <FadeIn direction="left" delay={0.2}>
+                      <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
+                        Expanding knowledge <br /> through years of dedication
+                      </h2>
+                    </FadeIn>
+                  </div>
+                  <StaggerContainer
+                    className="before:bg-neutral-content relative col-span-12 space-y-12 px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:-left-3 sm:before:w-0.5"
+                    staggerDelay={0.2}
+                  >
+                    {events.map((i) => (
+                      <StaggerItem
+                        key={i.year}
+                        className="before:bg-neutral flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:left-[-35px] sm:before:z-[1] sm:before:h-4 sm:before:w-4 sm:before:rounded-full"
+                      >
+                        <div className="flex items-baseline gap-2 mb-1">
+                          <Badge variant="outline">
+                            {i.year}
+                          </Badge>
+                          {i.company && (
+                            <span className="text-sm italic text-muted-foreground/60">
+                              — {i.company}
+                            </span>
+                          )}
+                        </div>
+
+                        <p className="font-display text-xl font-semibold tracking-wide">
+                          {i.title}
+                        </p>
+
+                        <div className="font-display mt-3 text-base tracking-tight text-pretty">
+                          {i.description}
+                        </div>
+                      </StaggerItem>
+                    ))}
+                  </StaggerContainer>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <Separator />
           {/* Projects Section */}
           <section className="py-16 px-4" id="projects-section">
             <div className="max-w-4xl mx-auto">
@@ -383,58 +436,6 @@ export default function HomeContent({ projects }) {
                   </StaggerItem>
                 ))}
               </StaggerContainer>
-            </div>
-          </section>
-          <Separator />
-
-          <section>
-            <div className="container mx-auto max-w-5xl px-4 py-24">
-              <div className="mx-4 grid gap-4 sm:grid-cols-12">
-                <div className="relative col-span-12 space-y-6">
-                  <div className="max-w-2xl text-left mb-16">
-                    <FadeIn direction="left">
-                      <Badge variant="outline" className="text-lg mb-4">
-                        Experience
-                      </Badge>
-                    </FadeIn>
-                    <FadeIn direction="left" delay={0.2}>
-                      <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-                        Expanding knowledge <br /> through years of dedication
-                      </h2>
-                    </FadeIn>
-                  </div>
-                  <StaggerContainer
-                    className="before:bg-neutral-content relative col-span-12 space-y-12 px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:-left-3 sm:before:w-0.5"
-                    staggerDelay={0.2}
-                  >
-                    {events.map((i) => (
-                      <StaggerItem
-                        key={i.year}
-                        className="before:bg-neutral flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:left-[-35px] sm:before:z-[1] sm:before:h-4 sm:before:w-4 sm:before:rounded-full"
-                      >
-                        <div className="flex items-baseline gap-2 mb-1">
-                          <Badge variant="outline">
-                            {i.year}
-                          </Badge>
-                          {i.company && (
-                            <span className="text-sm italic text-muted-foreground/60">
-                              — {i.company}
-                            </span>
-                          )}
-                        </div>
-
-                        <p className="font-display text-xl font-semibold tracking-wide">
-                          {i.title}
-                        </p>
-
-                        <div className="font-display mt-3 text-base tracking-tight text-pretty">
-                          {i.description}
-                        </div>
-                      </StaggerItem>
-                    ))}
-                  </StaggerContainer>
-                </div>
-              </div>
             </div>
           </section>
 
