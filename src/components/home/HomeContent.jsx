@@ -93,13 +93,13 @@ export default function HomeContent({ projects }) {
   const events = [
     {
       year: "Jan 2026 - Present",
-      title: "Exchange Integrations & Architecture — Full Stack Engineer",
+      title: "OEMS & AI Tooling — Full Stack Engineer",
       description: "Continuing at CoinRoutes, now focused on expanding the platform's exchange connectivity and custom liquidity provider support. Responsible for building out the integrations layer that powers execution across venues, while driving architecture and infrastructure improvements in direct response to evolving business and product requirements. Alongside core product work, building internal developer tooling designed to enhance team workflows and accelerate delivery in an era where AI-assisted development is becoming central to how modern engineering teams operate. Emphasis on scalability, reliability, and long-term maintainability across the full stack.",
     },
     {
       year: "Feb 2025 - Jan 2026",
       title: "Trading Platform — Front-End Engineering Lead",
-      description: `In my current role, I lead the front-end architecture and development efforts for a high-performance trading platform, managing a team of five engineers. While steering the team’s strategic direction and enforcing development standards, I continue to contribute as a hands-on individual contributor (IC). I spearhead initiatives around performance optimization, maintain design system integrity, and ensure seamless collaboration between design, product, and backend engineering. My focus is on building scalable, real-time interfaces with robust UX for professional traders and institutions operating in fast-moving markets.`,
+      description: "Led front-end architecture and development for a high-performance trading platform, managing a team of five engineers. Steered the team's technical direction while continuing as a hands-on IC — spearheading performance optimization, maintaining design system integrity, and driving collaboration across design, product, and backend engineering to deliver scalable, real-time interfaces for professional traders and institutions.",
     },
     {
       year: "Apr 2023 - Feb 2025",
