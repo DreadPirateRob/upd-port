@@ -17,6 +17,11 @@ export const metadata = {
   title: "Adrian Garcia - Developer",
   description:
     "Professional software developer with over 5+ years of demonstrated experience, focusing on delivering integrated, reliable, resilient and cost-effective solutions",
+  icons: {
+    icon: "/hacker-cat.png",
+    shortcut: "/hacker-cat.png",
+    apple: "/hacker-cat.png",
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -18,10 +18,10 @@ export function useInViewAnimation(options = {}) {
 export const animationVariants = {
   // Fade animations
   fadeIn: {
-    hidden: { 
-      opacity: 0 
+    hidden: {
+      opacity: 0
     },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: {
         duration: 0.6,
@@ -31,12 +31,12 @@ export const animationVariants = {
   },
 
   fadeInUp: {
-    hidden: { 
-      opacity: 0, 
-      y: 60 
+    hidden: {
+      opacity: 0,
+      y: 60
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
@@ -46,12 +46,12 @@ export const animationVariants = {
   },
 
   fadeInDown: {
-    hidden: { 
-      opacity: 0, 
-      y: -60 
+    hidden: {
+      opacity: 0,
+      y: -60
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
@@ -61,12 +61,12 @@ export const animationVariants = {
   },
 
   fadeInLeft: {
-    hidden: { 
-      opacity: 0, 
-      x: -60 
+    hidden: {
+      opacity: 0,
+      x: -60
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: {
         duration: 0.6,
@@ -76,12 +76,12 @@ export const animationVariants = {
   },
 
   fadeInRight: {
-    hidden: { 
-      opacity: 0, 
-      x: 60 
+    hidden: {
+      opacity: 0,
+      x: 60
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: {
         duration: 0.6,
@@ -92,12 +92,12 @@ export const animationVariants = {
 
   // Scale animations
   scaleIn: {
-    hidden: { 
-      opacity: 0, 
-      scale: 0.8 
+    hidden: {
+      opacity: 0,
+      scale: 0.8
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
       transition: {
         duration: 0.5,
@@ -107,14 +107,14 @@ export const animationVariants = {
   },
 
   scaleInUp: {
-    hidden: { 
-      opacity: 0, 
-      scale: 0.8, 
-      y: 40 
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+      y: 40
     },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
+    visible: {
+      opacity: 1,
+      scale: 1,
       y: 0,
       transition: {
         duration: 0.6,
@@ -152,12 +152,12 @@ export const animationVariants = {
   },
 
   staggerItem: {
-    hidden: { 
-      opacity: 0, 
-      y: 20 
+    hidden: {
+      opacity: 0,
+      y: 20
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.5,
@@ -168,20 +168,20 @@ export const animationVariants = {
 
   // Page transitions
   pageTransition: {
-    hidden: { 
-      opacity: 0, 
-      x: -200 
+    hidden: {
+      opacity: 0,
+      x: -200
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: {
         duration: 0.4,
         ease: "easeOut"
       }
     },
-    exit: { 
-      opacity: 0, 
+    exit: {
+      opacity: 0,
       x: 200,
       transition: {
         duration: 0.4,
@@ -211,12 +211,12 @@ export const animationVariants = {
 
   // Text animations
   textReveal: {
-    hidden: { 
-      opacity: 0, 
-      y: 20 
+    hidden: {
+      opacity: 0,
+      y: 20
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
@@ -242,7 +242,7 @@ export function useStaggerAnimation(delay = 0.1) {
 // Hook for scroll-triggered animations
 export function useScrollAnimation(variant = "fadeInUp") {
   const { ref, isInView } = useInViewAnimation();
-  
+
   return {
     ref,
     animate: isInView ? "visible" : "hidden",

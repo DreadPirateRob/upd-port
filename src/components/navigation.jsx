@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import ThemeToggle from "@/components/theme-toggle";
 
 export default function Navigation() {
@@ -11,8 +11,14 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold text-primary">
-              Portfolio
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/hacker-cat.png"
+                alt="Adrian Garcia"
+                width={36}
+                height={36}
+                className="rounded-full object-cover"
+              />
             </Link>
           </div>
 
