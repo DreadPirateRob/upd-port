@@ -24,7 +24,7 @@ import Footer from "@/components/footer";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
-import ProjectBlogCard from "@/components/home/ProjectBlogCard";
+import ProjectListRow from "@/components/home/ProjectListRow";
 
 export default function HomeContent({ projects }) {
   const [showAllExperience, setShowAllExperience] = useState(false);
@@ -428,31 +428,32 @@ export default function HomeContent({ projects }) {
 
           <Separator />
 
-          {/* Projects — Blog Grid */}
+          {/* Projects — Curated List */}
           <section className="py-16 px-4" id="projects-section">
-            <div className="max-w-4xl mx-auto">
-              <div className="max-w-xl text-left mb-16">
-                <FadeIn direction="left">
-                  <Badge variant="outline" className="text-lg mb-4">
-                    Projects
-                  </Badge>
-                </FadeIn>
-                <FadeIn direction="left" delay={0.2}>
-                  <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-                    Crafted with strategy, <br /> engineered with precision
-                  </h2>
-                </FadeIn>
+            <div className="max-w-5xl mx-auto">
+              <div className="flex items-end justify-between gap-6 mb-10">
+                <div className="max-w-xl text-left">
+                  <FadeIn direction="left">
+                    <Badge variant="outline" className="text-lg mb-4">
+                      Projects
+                    </Badge>
+                  </FadeIn>
+                  <FadeIn direction="left" delay={0.2}>
+                    <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-0">
+                      Crafted with strategy, <br /> engineered with precision
+                    </h2>
+                  </FadeIn>
+                </div>
+                <p className="hidden sm:block text-sm italic text-muted-foreground/60 whitespace-nowrap">
+                  {String(projects.length).padStart(2, "0")} entries
+                </p>
               </div>
-              <StaggerContainer
-                className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                staggerDelay={0.15}
-              >
-                {projects.map((project) => (
-                  <StaggerItem key={project.slug}>
-                    <ProjectBlogCard project={project} />
-                  </StaggerItem>
+
+              <div className="border-t border-border">
+                {projects.map((project, index) => (
+                  <ProjectListRow key={project.slug} project={project} index={index} />
                 ))}
-              </StaggerContainer>
+              </div>
             </div>
           </section>
 
