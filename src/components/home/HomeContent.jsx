@@ -53,7 +53,7 @@ export default function HomeContent({ projects }) {
       title: "Server-Side Development",
       description:
         "Specializing in creating robust APIs and ensuring seamless interaction between front-end and backend services.",
-      tags: ["Express", "GraphQL", "OAuth"],
+      tags: ["Express", "GraphQL", "OAuth", "JWT"],
       colSpan: "col-span-16 lg:col-span-12",
     },
     // {
@@ -85,7 +85,7 @@ export default function HomeContent({ projects }) {
       title: "Backend Development",
       description:
         "I prioritize data security, authentication and authorization mechanisms to deliver secure and efficient server-side solutions while maintaining a clean codebase.",
-      tags: ["PostgreSQL", "PM2", "Docker", "JWT"],
+      tags: ["PostgreSQL", "PM2", "Docker", "NATS", "ClickHouse", "JetStream"],
       colSpan: "col-span-16 lg:col-span-14",
     },
   ];
