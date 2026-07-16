@@ -53,7 +53,7 @@ export default function HomeContent({ projects }) {
       title: "Server-Side Development",
       description:
         "Specializing in creating robust APIs and ensuring seamless interaction between front-end and backend services.",
-      tags: ["Express", "GraphQL", "OAuth", "JWT"],
+      tags: ["Express", "GraphQL", "Authorization"],
       colSpan: "col-span-16 lg:col-span-12",
     },
     // {
@@ -69,7 +69,7 @@ export default function HomeContent({ projects }) {
       title: "UX/UI Design",
       description:
         "Ensuring that the applications I design meet the needs of users and provide a seamless and engaging interaction.",
-      tags: ["Figma", "Framer"],
+      tags: ["Figma", "Framer Motion", "Radix UI"],
       colSpan: "col-span-16 lg:col-span-12",
     },
     {
