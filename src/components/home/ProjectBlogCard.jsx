@@ -23,11 +23,9 @@ export default function ProjectBlogCard({ project }) {
       {/* Body */}
       <div className="p-4">
         <div className="mb-3">
-          {project.areas?.[0] && (
-            <Badge variant="outline" className="text-xs uppercase tracking-wider">
-              {project.areas[0]}
-            </Badge>
-          )}
+          <Badge variant="outline" className="text-xs uppercase tracking-wider">
+            {project.areas?.[0] ?? project.technologies?.[0] ?? "Project"}
+          </Badge>
         </div>
 
         <h3 className="font-bold text-base leading-snug mb-4">
