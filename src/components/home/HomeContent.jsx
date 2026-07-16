@@ -332,18 +332,18 @@ export default function HomeContent({ projects }) {
           </section>
 
           <Separator />
-          {/* Projects Section */}
-          <section className="py-16 px-4" id="projects-section">
+          {/* Project Overview Section */}
+          <section className="py-16 px-4">
             <div className="max-w-4xl mx-auto">
               <div className="max-w-xl text-left mb-16">
                 <FadeIn direction="right">
                   <Badge variant="outline" className="text-lg mb-4">
-                    Projects
+                    Overview
                   </Badge>
                 </FadeIn>
                 <FadeIn direction="left" delay={0.2}>
                   <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-                    Crafted with strategy, <br /> engineered with precision
+                    Context, stack, <br /> and tradeoffs
                   </h2>
                 </FadeIn>
               </div>
@@ -428,18 +428,18 @@ export default function HomeContent({ projects }) {
 
           <Separator />
 
-          {/* Case Studies — Blog Grid */}
-          <section className="py-16 px-4">
+          {/* Projects — Blog Grid */}
+          <section className="py-16 px-4" id="projects-section">
             <div className="max-w-4xl mx-auto">
               <div className="max-w-xl text-left mb-16">
                 <FadeIn direction="left">
                   <Badge variant="outline" className="text-lg mb-4">
-                    Case Studies
+                    Projects
                   </Badge>
                 </FadeIn>
                 <FadeIn direction="left" delay={0.2}>
                   <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-                    In depth, <br /> from the inside out
+                    Crafted with strategy, <br /> engineered with precision
                   </h2>
                 </FadeIn>
               </div>
