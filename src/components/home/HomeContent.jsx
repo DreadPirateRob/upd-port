@@ -119,24 +119,28 @@ export default function HomeContent({ projects }) {
     },
     {
       year: "April - Jul 2021",
+      company: "Udemy",
       title: "Blockchain & DeFi — Solidity Certification",
       description:
         "Completed a formal Solidity development program to deepen my understanding of Ethereum-based smart contracts and DeFi protocols. Gained practical experience in building and securing decentralized applications (dApps), with hands-on work in Solidity, Truffle, and Web3.js. This training gave me the technical versatility to bridge front-end engineering with on-chain logic and contributed to my ability to build secure, full-stack decentralized systems.",
     },
     {
       year: "May 2020 - Mar 2021",
+      company: "Miami Dev Shop",
       title: "Web Applications — Front-End Intern",
       description:
         "Joined a fast-paced development team during my academic tenure, contributing to web application features while gaining firsthand experience with agile processes, version control, and design-to-dev handoff workflows. Translated mockups into responsive, accessible interfaces, participated in sprint planning and retrospectives, and collaborated with senior developers on production-grade codebases.",
     },
     {
       year: "Jan - Apr 2020",
+      company: "BrainStation",
       title: "Full Stack Web Development Bootcamp",
       description:
         "Completed an intensive coding bootcamp focused on modern JavaScript development (React, Node.js, Express, MongoDB). Built and deployed multiple full-stack applications in team environments, gaining hands-on experience with REST APIs, component-based design, server-side logic, and best practices in Git workflows, testing, and deployment pipelines.",
     },
     {
       year: "Aug 2017 - Jul 2019",
+      company: "Miami Dade College",
       title: "BA: Computer Science",
       description:
         "Developed a foundational understanding of computer science principles, including algorithms, data structures, and low-level system design. This academic background continues to inform my architectural and problem-solving decisions as a developer.",
