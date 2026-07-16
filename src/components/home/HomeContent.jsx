@@ -1,5 +1,7 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,6 +27,7 @@ import Image from "next/image";
 import ProjectBlogCard from "@/components/home/ProjectBlogCard";
 
 export default function HomeContent({ projects }) {
+  const [showAllExperience, setShowAllExperience] = useState(false);
 
   const skills = [
     {
@@ -143,6 +146,7 @@ export default function HomeContent({ projects }) {
         "Developed a foundational understanding of computer science principles, including algorithms, data structures, and low-level system design. This academic background continues to inform my architectural and problem-solving decisions as a developer.",
     },
   ];
+  const visibleEvents = showAllExperience ? events : events.slice(0, 4);
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -283,7 +287,7 @@ export default function HomeContent({ projects }) {
                     className="before:bg-neutral-content relative col-span-12 space-y-12 px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:-left-3 sm:before:w-0.5"
                     staggerDelay={0.2}
                   >
-                    {events.map((i) => (
+                    {visibleEvents.map((i) => (
                       <StaggerItem
                         key={i.year}
                         className="before:bg-neutral flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:left-[-35px] sm:before:z-[1] sm:before:h-4 sm:before:w-4 sm:before:rounded-full"
@@ -309,6 +313,22 @@ export default function HomeContent({ projects }) {
                       </StaggerItem>
                     ))}
                   </StaggerContainer>
+                  {events.length > 4 && (
+                    <div className="mt-8 pl-4 sm:pl-0">
+                      <Button
+                        variant="ghost"
+                        className="w-fit gap-2 text-muted-foreground hover:text-primary"
+                        onClick={() => setShowAllExperience((prev) => !prev)}
+                      >
+                        {showAllExperience ? "Show fewer entries" : "Expand to see more"}
+                        {showAllExperience ? (
+                          <ChevronUp className="h-4 w-4" />
+                        ) : (
+                          <ChevronDown className="h-4 w-4" />
+                        )}
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
