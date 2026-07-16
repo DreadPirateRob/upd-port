@@ -162,9 +162,7 @@ export default function HomeContent({ projects }) {
               </FadeIn>
               <FadeIn direction="up" delay={0.4}>
                 <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  I&apos;m a professional software developer with over 5+ years
-                  of demonstrated experience, focusing on delivering integrated,
-                  reliable, resilient and cost-effective solutions
+                  Full-stack engineer and trading systems architect building high-performance interfaces for institutional crypto markets. Engineering lead at CoinRoutes, delivering OEMS design, multi-venue execution systems, and developer tooling built for AI-augmented workflows. Focus on real-time data pipelines, exchange connectivity, low-latency front-end architecture, and AI-assisted engineering.
                 </p>
               </FadeIn>
               <FadeIn direction="up" delay={0.6}>
@@ -252,9 +250,7 @@ export default function HomeContent({ projects }) {
               </FadeIn>
               <FadeIn direction="right" delay={0.2}>
                 <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-                  I&apos;m a professional software developer with over 5+ years
-                  of demonstrated experience, focusing on delivering integrated,
-                  reliable, resilient and cost-effective solutions
+                  Full-stack engineer and trading systems architect, building institutional-grade crypto platforms from OEMS design to developer tooling.
                 </h2>
               </FadeIn>
             </div>
