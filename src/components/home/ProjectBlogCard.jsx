@@ -21,16 +21,20 @@ export default function ProjectBlogCard({ project }) {
       </div>
 
       {/* Body */}
-      <div className="p-4">
+      <div className="p-4 flex flex-col h-full">
         <div className="mb-3">
           <Badge variant="outline" className="text-xs uppercase tracking-wider">
             {project.areas?.[0] ?? project.technologies?.[0] ?? "Project"}
           </Badge>
         </div>
 
-        <h3 className="font-bold text-base leading-snug mb-4">
+        <h3 className="font-bold text-base leading-snug mb-3">
           {project.title}
         </h3>
+
+        <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-1">
+          {project.description}
+        </p>
 
         <span className="text-xs text-muted-foreground group-hover:text-primary transition-colors">
           {isDisabled ? "COMING SOON" : "READ POST →"}
