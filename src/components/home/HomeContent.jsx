@@ -23,7 +23,6 @@ import {
 import Footer from "@/components/footer";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
 import ProjectListRow from "@/components/home/ProjectListRow";
 
 export default function HomeContent({ projects }) {
@@ -330,101 +329,6 @@ export default function HomeContent({ projects }) {
               </div>
             </div>
           </section>
-
-          <Separator />
-          {/* Project Overview Section */}
-          <section className="py-16 px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="max-w-xl text-left mb-16">
-                <FadeIn direction="right">
-                  <Badge variant="outline" className="text-lg mb-4">
-                    Overview
-                  </Badge>
-                </FadeIn>
-                <FadeIn direction="left" delay={0.2}>
-                  <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-                    Context, stack, <br /> and tradeoffs
-                  </h2>
-                </FadeIn>
-              </div>
-              <StaggerContainer
-                className="grid grid-cols-1 gap-6"
-                staggerDelay={0.2}
-              >
-                {projects.map((project) => {
-                  return (
-                    <StaggerItem key={project.slug} className="col-span-1">
-                      <HoverEffect effect="lift">
-                        <Card className="h-full border-2 transition-all duration-300 hover:border-primary/20">
-                          <CardContent>
-                            <div className="grid grid-cols-24 lg:gap-8">
-                              <div className="relative col-span-24 h-96 border border-border bg-background">
-                                <Image
-                                  src={project.bigImage}
-                                  alt={project.title}
-                                  fill
-                                  className="object-cover"
-                                />
-                              </div>
-                              <div className="col-span-24 mt-4 lg:col-span-10 flex flex-col">
-                                <h2 className="text-2xl font-bold">
-                                  {project.title}
-                                </h2>
-                                <p className="text-sm text-muted-foreground">
-                                  {project.description}
-                                </p>
-                                <div className="flex flex-grow items-end gap-2 pb-4">
-                                  {project?.slug && !project.disabled && (
-                                    <Link
-                                      href={`/projects/${project.slug}`}
-                                      className="h-fit"
-                                    >
-                                      <HoverEffect
-                                        effect="scale"
-                                        className="mt-8"
-                                      >
-                                        <Button className="w-fit">
-                                          View Project
-                                        </Button>
-                                      </HoverEffect>
-                                    </Link>
-                                  )}
-                                  {project.disabled && (
-                                    <Button disabled className="w-fit">
-                                      Coming Soon
-                                    </Button>
-                                  )}
-                                </div>
-                              </div>
-                              <div className="col-span-24 lg:col-span-14">
-                                <p className="text-sm text-muted-foreground mb-2">
-                                  Technologies used:
-                                </p>
-                                <div className="flex flex-wrap gap-2 mb-8">
-                                  {project.technologies.map((tag) => (
-                                    <Badge key={tag} variant="secondary">
-                                      {tag}
-                                    </Badge>
-                                  ))}
-                                </div>
-                                <p className="text-sm text-muted-foreground mb-2">
-                                  Challenges:
-                                </p>
-                                <p className="text-sm text-primary">
-                                  {project.challenges}
-                                </p>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </HoverEffect>
-                    </StaggerItem>
-                  );
-                })}
-              </StaggerContainer>
-            </div>
-          </section>
-
 
           <Separator />
 
