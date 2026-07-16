@@ -162,7 +162,7 @@ export default function HomeContent({ projects }) {
               </FadeIn>
               <FadeIn direction="up" delay={0.4}>
                 <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  Full-stack engineer and trading systems architect building high-performance interfaces for institutional crypto markets. Engineering lead at CoinRoutes, delivering OEMS design, multi-venue execution systems, and developer tooling built for AI-augmented workflows. Focus on real-time data pipelines, exchange connectivity, low-latency front-end architecture, and AI-assisted engineering.
+                  Full-stack engineer and trading systems architect building high-performance interfaces for institutional crypto markets. Engineering lead at CoinRoutes, delivering OEMS design, multi-venue execution systems, and developer tooling built for AI-augmented workflows. Engineering with a focus on real-time data pipelines, exchange connectivity, low-latency front-end architecture, and AI-assisted engineering.
                 </p>
               </FadeIn>
               <FadeIn direction="up" delay={0.6}>
