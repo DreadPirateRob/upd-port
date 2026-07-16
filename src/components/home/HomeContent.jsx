@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -314,19 +314,15 @@ export default function HomeContent({ projects }) {
                       </StaggerItem>
                     ))}
                   </StaggerContainer>
-                  {events.length > 4 && (
+                  {!showAllExperience && events.length > 4 && (
                     <div className="mt-8 pl-4 sm:pl-0">
                       <Button
                         variant="ghost"
                         className="w-fit gap-2 text-muted-foreground hover:text-primary"
-                        onClick={() => setShowAllExperience((prev) => !prev)}
+                        onClick={() => setShowAllExperience(true)}
                       >
-                        {showAllExperience ? "Show fewer entries" : "Expand to see more"}
-                        {showAllExperience ? (
-                          <ChevronUp className="h-4 w-4" />
-                        ) : (
-                          <ChevronDown className="h-4 w-4" />
-                        )}
+                        Expand to see more
+                        <ChevronDown className="h-4 w-4" />
                       </Button>
                     </div>
                   )}
