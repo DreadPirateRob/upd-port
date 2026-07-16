@@ -284,6 +284,7 @@ export default function HomeContent({ projects }) {
                     </FadeIn>
                   </div>
                   <StaggerContainer
+                    key={showAllExperience ? "experience-all" : "experience-preview"}
                     className="before:bg-neutral-content relative col-span-12 space-y-12 px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:-left-3 sm:before:w-0.5"
                     staggerDelay={0.2}
                   >
