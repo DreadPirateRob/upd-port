@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const INTERVAL_MS = 5000;
 
@@ -120,12 +121,13 @@ export default function CaseStudyAccordion({ projects }) {
                   <div className="mt-auto flex items-end justify-between gap-4 pt-6">
                     <div className="flex flex-wrap gap-2 max-w-[70%]">
                       {chips.map((chip) => (
-                        <span
+                        <Badge
                           key={chip}
-                          className="inline-flex items-center rounded-full border border-white/15 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/75"
+                          variant="outline"
+                          className="border-white/15 text-white/75 bg-black/10"
                         >
                           {chip}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
 
