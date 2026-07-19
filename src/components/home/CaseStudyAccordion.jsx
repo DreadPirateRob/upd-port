@@ -4,17 +4,15 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 const INTERVAL_MS = 3500;
 
 export default function CaseStudyAccordion({ projects }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  // Increments each time hover ends — causes progress bar to restart from 0
   const [resumeCount, setResumeCount] = useState(0);
 
-  // Auto-cycle when not hovered
   useEffect(() => {
     if (isHovered) return;
     const timer = setInterval(() => {
@@ -23,7 +21,6 @@ export default function CaseStudyAccordion({ projects }) {
     return () => clearInterval(timer);
   }, [isHovered, projects.length]);
 
-  // Reset progress bar whenever hover ends
   useEffect(() => {
     if (!isHovered) setResumeCount((c) => c + 1);
   }, [isHovered]);
@@ -33,84 +30,138 @@ export default function CaseStudyAccordion({ projects }) {
   }, []);
 
   return (
-    // flex-col on mobile (vertical accordion), flex-row on sm+ (horizontal)
     <div
-      className="flex flex-col sm:flex-row gap-2 h-[560px] sm:h-[480px]"
+      className="flex flex-col sm:flex-row gap-2 h-[720px] sm:h-[520px]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {projects.map((project, index) => {
         const isActive = index === activeIndex;
+        const number = String(index + 1).padStart(2, "0");
+        const primaryLabel = project.areas?.[0] ?? project.technologies?.[0] ?? "Project";
+        const chips = [primaryLabel, ...project.technologies.filter((t) => t !== primaryLabel)]
+          .filter(Boolean)
+          .slice(0, 3);
 
         return (
           <motion.div
             key={project.slug}
             animate={{ flexGrow: isActive ? 4 : 1 }}
             transition={{ type: "spring", stiffness: 220, damping: 32 }}
-            className="relative flex-1 min-w-0 min-h-0 overflow-hidden rounded-lg cursor-pointer"
+            className="relative flex-1 min-w-0 min-h-0 overflow-hidden rounded-xl border border-white/10 bg-[#171717] cursor-pointer"
             onClick={() => handleSelect(index)}
           >
-            {/* Background image */}
+            {/* Background image atmosphere */}
             <Image
               src={project.bigImage}
               alt={project.title}
               fill
-              className="object-cover"
+              className={`object-cover transition-all duration-500 ${
+                isActive ? "scale-105 opacity-20" : "scale-100 opacity-30"
+              }`}
             />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.05),transparent_35%)]" />
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
+            {/* Collapsed rail */}
+            <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between pointer-events-none">
+              <div>
+                <div className="flex items-center gap-2 text-white/65">
+                  <ArrowDown className="h-4 w-4 shrink-0" />
+                  <span className={`font-mono tracking-tight ${isActive ? "text-5xl sm:text-6xl" : "text-2xl sm:text-3xl"}`}>
+                    {number}
+                  </span>
+                </div>
+                <div className="mt-3 h-px w-10 bg-white/10" />
+              </div>
 
-            {/* Index number */}
-            <p className="absolute top-4 left-4 text-sm font-mono text-white/60">
-              {String(index + 1).padStart(2, "0")}
-            </p>
+              {!isActive && (
+                <p className="text-sm text-white/60 lowercase line-clamp-1">
+                  {primaryLabel.toLowerCase()}
+                </p>
+              )}
+            </div>
 
-            {/* Expanded content */}
             <AnimatePresence>
               {isActive && (
                 <motion.div
                   key="content"
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 6 }}
+                  exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.22, delay: 0.18 }}
-                  className="absolute bottom-0 left-0 right-0 p-5"
+                  className="absolute inset-0 p-5 sm:p-7 flex flex-col"
                 >
-                  <p className="text-sm text-white/70 mb-3 line-clamp-2 leading-relaxed">
-                    {project.description}
-                  </p>
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-start gap-3">
+                      <ArrowUpRight className="h-5 w-5 text-white/75 mt-1" />
+                      <span className="font-mono text-5xl sm:text-6xl leading-none text-white/70">
+                        {number}
+                      </span>
+                    </div>
 
-                  <div className="flex items-end justify-between gap-3">
-                    <p className="text-white font-semibold text-sm leading-snug">
+                    <div className="text-right shrink-0 pt-1">
+                      <p className="text-xs uppercase tracking-[0.18em] text-white/65">
+                        {primaryLabel}
+                      </p>
+                      <p className="text-xs text-white/35 mt-1">
+                        {index + 1}/{projects.length}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 max-w-sm sm:max-w-md">
+                    <h3 className="text-3xl sm:text-5xl font-light tracking-tight leading-[0.95] text-white mb-4">
                       {project.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-md line-clamp-3">
+                      {project.description}
                     </p>
+                  </div>
+
+                  <div className="mt-6 sm:mt-8 relative aspect-[4/3] sm:aspect-[4/3] w-full max-w-[300px] sm:max-w-[360px] rounded-lg overflow-hidden border border-white/10 bg-black/20 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+                    <Image
+                      src={project.bigImage}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+                    <div className="flex flex-wrap gap-2 max-w-[70%]">
+                      {chips.map((chip) => (
+                        <span
+                          key={chip}
+                          className="inline-flex items-center rounded-full border border-white/15 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/75"
+                        >
+                          {chip}
+                        </span>
+                      ))}
+                    </div>
 
                     {project.disabled ? (
-                      <p className="text-xs text-white/40 font-mono uppercase tracking-wider shrink-0">
+                      <span className="text-xs uppercase tracking-[0.18em] text-white/40 shrink-0">
                         Coming soon
-                      </p>
+                      </span>
                     ) : (
                       <Link
                         href={`/projects/${project.slug}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="shrink-0 h-8 w-8 rounded-full border border-white/30 flex items-center justify-center text-white/70 hover:text-white hover:border-white/60 transition-colors"
+                        className="shrink-0 h-10 w-10 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 flex items-center justify-center text-white/80 hover:text-white transition-colors"
                       >
-                        <ArrowUpRight className="h-3.5 w-3.5" />
+                        <ArrowUpRight className="h-4 w-4" />
                       </Link>
                     )}
                   </div>
-
-                  {project.disabled && null}
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* Progress bar — only on active card */}
             {isActive && (
               <div
                 key={`${activeIndex}-${resumeCount}`}
-                className="absolute bottom-0 left-0 w-full h-[3px] bg-white/50 origin-left"
+                className="absolute bottom-0 left-0 w-full h-[3px] bg-white/60 origin-left"
                 style={{
                   animation: `progress-fill ${INTERVAL_MS}ms ease-out forwards`,
                   animationPlayState: isHovered ? "paused" : "running",
