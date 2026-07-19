@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/navigation";
+import PageLoadOverlay from "@/components/ui/page-load-overlay";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <ThemeProvider>
+          <PageLoadOverlay />
           <Navigation />
           <main>{children}</main>
         </ThemeProvider>
