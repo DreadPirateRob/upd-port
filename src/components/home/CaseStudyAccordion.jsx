@@ -1,16 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
+const INTERVAL_MS = 3500;
+
 export default function CaseStudyAccordion({ projects }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Auto-cycle when not hovered
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % projects.length);
+    }, INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [isHovered, projects.length]);
+
+  const handleSelect = useCallback((index) => {
+    setActiveIndex(index);
+  }, []);
 
   return (
-    <div className="flex h-[480px] gap-2">
+    // flex-col on mobile (vertical accordion), flex-row on sm+ (horizontal)
+    <div
+      className="flex flex-col sm:flex-row gap-2 h-[560px] sm:h-[480px]"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {projects.map((project, index) => {
         const isActive = index === activeIndex;
 
@@ -19,8 +40,8 @@ export default function CaseStudyAccordion({ projects }) {
             key={project.slug}
             animate={{ flexGrow: isActive ? 4 : 1 }}
             transition={{ type: "spring", stiffness: 220, damping: 32 }}
-            className="relative flex-1 min-w-0 overflow-hidden rounded-lg cursor-pointer"
-            onClick={() => setActiveIndex(index)}
+            className="relative flex-1 min-w-0 min-h-0 overflow-hidden rounded-lg cursor-pointer"
+            onClick={() => handleSelect(index)}
           >
             {/* Background image */}
             <Image
@@ -30,7 +51,7 @@ export default function CaseStudyAccordion({ projects }) {
               className="object-cover"
             />
 
-            {/* Gradient overlay */}
+            {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
 
             {/* Index number */}
@@ -38,7 +59,7 @@ export default function CaseStudyAccordion({ projects }) {
               {String(index + 1).padStart(2, "0")}
             </p>
 
-            {/* Expanded content — fades in after card opens */}
+            {/* Expanded content */}
             <AnimatePresence>
               {isActive && (
                 <motion.div
@@ -72,6 +93,8 @@ export default function CaseStudyAccordion({ projects }) {
                       </Link>
                     )}
                   </div>
+
+                  {project.disabled && null}
                 </motion.div>
               )}
             </AnimatePresence>
