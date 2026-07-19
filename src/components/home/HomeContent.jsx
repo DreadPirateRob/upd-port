@@ -24,6 +24,7 @@ import Footer from "@/components/footer";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { AnimatePresence, motion } from "motion/react";
 import ProjectListRow from "@/components/home/ProjectListRow";
+import CaseStudyAccordion from "@/components/home/CaseStudyAccordion";
 
 export default function HomeContent({ projects }) {
   const [showAllExperience, setShowAllExperience] = useState(false);
@@ -363,6 +364,13 @@ export default function HomeContent({ projects }) {
 
         </div>
       </div>
+
+      <section className="px-4 pb-16 pt-4">
+        <div className="max-w-5xl mx-auto">
+          <CaseStudyAccordion projects={projects} />
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
