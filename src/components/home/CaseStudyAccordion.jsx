@@ -112,7 +112,7 @@ export default function CaseStudyAccordion({ projects }) {
                 key={`${activeIndex}-${resumeCount}`}
                 className="absolute bottom-0 left-0 w-full h-[3px] bg-white/50 origin-left"
                 style={{
-                  animation: `progress-fill ${INTERVAL_MS}ms linear forwards`,
+                  animation: `progress-fill ${INTERVAL_MS}ms ease-out forwards`,
                   animationPlayState: isHovered ? "paused" : "running",
                 }}
               />
