@@ -21,7 +21,7 @@ import {
   AnimatedCounter,
 } from "@/components/animations/AnimationWrapper";
 import Footer from "@/components/footer";
-import ContourGridBackground from "@/components/ui/contour-grid-bg";
+import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { AnimatePresence, motion } from "motion/react";
 import ProjectListRow from "@/components/home/ProjectListRow";
 import CaseStudyAccordion from "@/components/home/CaseStudyAccordion";
@@ -155,8 +155,11 @@ export default function HomeContent({ projects }) {
         <div className="col-start-4 row-span-full row-start-1 max-sm:hidden border-x border-x-border bg-size-[10px_10px] bg-fixed bg-[repeating-linear-gradient(315deg,var(--border)_0,var(--border)_1px,transparent_0,transparent_50%)]"></div>
         <div className="col-start-3 row-start-1 max-sm:col-span-full max-sm:col-start-1">
           {/* Hero Section */}
-          <section className="h-[90vh] flex items-center justify-center py-20 px-4 text-center relative isolate overflow-hidden">
-            <ContourGridBackground className="z-0" />
+          <section className="h-[90vh] flex items-center justify-center py-20 px-4 text-center relative">
+            <CanvasRevealEffect
+              animationSpeed={5.1}
+              containerClassName="bg-primary-foreground opacity-10 absolute left z-0"
+            />
             <div className="max-w-4xl mx-auto z-1">
               <FadeIn direction="down" delay={0.2}>
                 <Badge variant="outline" className="text-sm mb-4">
