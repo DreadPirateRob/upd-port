@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 
-const INTERVAL_MS = 3500;
+const INTERVAL_MS = 5000;
 
 export default function CaseStudyAccordion({ projects }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -61,26 +61,23 @@ export default function CaseStudyAccordion({ projects }) {
               }`}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.05),transparent_35%)]" />
-
-            {/* Collapsed rail */}
-            <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between pointer-events-none">
-              <div>
-                <div className="flex items-center gap-2 text-white/65">
-                  <ArrowDown className="h-4 w-4 shrink-0" />
-                  <span className={`font-mono tracking-tight ${isActive ? "text-5xl sm:text-6xl" : "text-2xl sm:text-3xl"}`}>
-                    {number}
-                  </span>
+            {!isActive && (
+              <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between pointer-events-none">
+                <div>
+                  <div className="flex items-center gap-2 text-white/65">
+                    <ArrowDown className="h-4 w-4 shrink-0" />
+                    <span className="font-mono tracking-tight text-2xl sm:text-3xl">
+                      {number}
+                    </span>
+                  </div>
+                  <div className="mt-3 h-px w-10 bg-white/10" />
                 </div>
-                <div className="mt-3 h-px w-10 bg-white/10" />
-              </div>
 
-              {!isActive && (
                 <p className="text-sm text-white/60 lowercase line-clamp-1">
                   {primaryLabel.toLowerCase()}
                 </p>
-              )}
-            </div>
+              </div>
+            )}
 
             <AnimatePresence>
               {isActive && (
@@ -119,14 +116,6 @@ export default function CaseStudyAccordion({ projects }) {
                     </p>
                   </div>
 
-                  <div className="mt-6 sm:mt-8 relative aspect-[4/3] sm:aspect-[4/3] w-full max-w-[300px] sm:max-w-[360px] rounded-lg overflow-hidden border border-white/10 bg-black/20 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
-                    <Image
-                      src={project.bigImage}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
 
                   <div className="mt-auto flex items-end justify-between gap-4 pt-6">
                     <div className="flex flex-wrap gap-2 max-w-[70%]">
