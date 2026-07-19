@@ -11,6 +11,8 @@ const INTERVAL_MS = 3500;
 export default function CaseStudyAccordion({ projects }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  // Increments each time hover ends — causes progress bar to restart from 0
+  const [resumeCount, setResumeCount] = useState(0);
 
   // Auto-cycle when not hovered
   useEffect(() => {
@@ -20,6 +22,11 @@ export default function CaseStudyAccordion({ projects }) {
     }, INTERVAL_MS);
     return () => clearInterval(timer);
   }, [isHovered, projects.length]);
+
+  // Reset progress bar whenever hover ends
+  useEffect(() => {
+    if (!isHovered) setResumeCount((c) => c + 1);
+  }, [isHovered]);
 
   const handleSelect = useCallback((index) => {
     setActiveIndex(index);
@@ -98,6 +105,18 @@ export default function CaseStudyAccordion({ projects }) {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* Progress bar — only on active card */}
+            {isActive && (
+              <div
+                key={`${activeIndex}-${resumeCount}`}
+                className="absolute bottom-0 left-0 w-full h-[3px] bg-white/50 origin-left"
+                style={{
+                  animation: `progress-fill ${INTERVAL_MS}ms linear forwards`,
+                  animationPlayState: isHovered ? "paused" : "running",
+                }}
+              />
+            )}
           </motion.div>
         );
       })}
