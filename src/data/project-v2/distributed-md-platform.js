@@ -116,9 +116,16 @@ const distributedMdPlatform = {
     {
       eyebrow: "Takeaways",
       title: "The project sharpened my thinking on distributed reliability",
+      variant: "split-conclusion",
       body: [
-        "This work deepened my understanding of distributed-systems trade-offs: data freshness improves when you move closer to exchanges, but consistency and recovery become harder the moment state is spread across regions. It also forced stronger operational thinking around WebSocket lifecycle management, including reconnection storms, exchange maintenance windows, rate limits, and defensive backoff behavior.",
-        "It clarified where abstractions help and where they stop. CCXT handled a meaningful portion of normalization, but resilient production behavior still required exchange-specific logic for checksum validation, snapshot compression, and edge-case protocol differences. The project also reinforced that algorithmic efficiency matters in JavaScript when the hot path is processing hundreds or thousands of updates per second across many symbols.",
+        "This work deepened my understanding of distributed-systems trade-offs: data freshness improves when you move closer to exchanges, but consistency and recovery become harder the moment state is spread across regions. It forced much stronger operational thinking around WebSocket lifecycle management, including reconnection storms, exchange maintenance windows, rate limits, and defensive backoff behavior.",
+        "It also clarified where abstractions help and where they stop. CCXT handled a meaningful portion of normalization, but resilient production behavior still required exchange-specific logic for checksum validation, snapshot compression, and protocol edge cases. More than anything, the project reinforced that algorithmic efficiency still matters in JavaScript when the hot path is processing thousands of updates per second.",
+      ],
+      bullets: [
+        "Freshness gains at the edge come with consistency and recovery complexity that has to be designed explicitly.",
+        "Exchange abstractions reduce surface area, but production reliability still depends on venue-specific logic and recovery paths.",
+        "WebSocket lifecycle management is an operational system in its own right, not just a transport detail.",
+        "Hot-path performance choices matter quickly when order book updates scale into the hundreds or thousands per second.",
       ],
     },
   ],

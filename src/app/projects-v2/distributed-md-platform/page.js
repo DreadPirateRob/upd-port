@@ -59,6 +59,7 @@ export default function DistributedMdPlatformV2Page() {
               bullets={section.bullets}
               figure={section.figure}
               figurePosition={index % 2 === 1 ? "left" : "right"}
+              variant={section.variant}
               className="px-0 py-14 sm:py-16"
             />
           ))}
