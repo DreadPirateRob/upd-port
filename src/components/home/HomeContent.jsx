@@ -350,23 +350,20 @@ export default function HomeContent({ projects }) {
                   {String(projects.length).padStart(2, "0")} entries
                 </p>
               </div>
+              <div className="space-y-10">
+                <CaseStudyAccordion projects={projects} />
 
-              <div className="border-t border-border">
-                {projects.map((project, index) => (
-                  <ProjectListRow key={project.slug} project={project} index={index} />
-                ))}
+                <div className="border-t border-border pt-10">
+                  {projects.map((project, index) => (
+                    <ProjectListRow key={project.slug} project={project} index={index} />
+                  ))}
+                </div>
               </div>
             </div>
           </section>
 
         </div>
       </div>
-
-      <section className="px-4 pb-16 pt-4">
-        <div className="max-w-5xl mx-auto">
-          <CaseStudyAccordion projects={projects} />
-        </div>
-      </section>
 
       <Footer />
     </div>

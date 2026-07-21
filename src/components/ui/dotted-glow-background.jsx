@@ -33,8 +33,8 @@ export default function DottedGlowBackground({
   const gridSize = `${resolvedGap}px ${resolvedGap}px`;
   const glowRadius = Math.max(resolvedRadius + 0.35, 1.1);
   const baseDotColor = `rgba(244, 244, 245, ${0.12 * resolvedOpacity})`;
-  const glowDotColor = `rgba(186, 230, 253, ${0.34 * resolvedOpacity})`;
-  const edgeGlowColor = `rgba(103, 232, 249, ${0.18 * resolvedOpacity})`;
+  const glowDotColor = `rgba(244, 244, 245, ${0.26 * resolvedOpacity})`;
+  const edgeGlowColor = `rgba(212, 212, 216, ${0.14 * resolvedOpacity})`;
   const basePattern = `radial-gradient(circle at center, ${baseDotColor} 0 ${resolvedRadius}px, transparent ${resolvedRadius + 0.7}px)`;
   const glowPattern = `radial-gradient(circle at center, ${glowDotColor} 0 ${glowRadius}px, transparent ${glowRadius + 1.1}px)`;
   const slowDuration = getDuration(minSpeed, speedScale, 28);
@@ -67,7 +67,7 @@ export default function DottedGlowBackground({
         }}
       />
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.06),transparent_22%),radial-gradient(circle_at_72%_36%,rgba(125,211,252,0.08),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.03)_0%,transparent_30%,rgba(2,6,23,0.28)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.05),transparent_22%),radial-gradient(circle_at_72%_36%,rgba(255,255,255,0.06),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.02)_0%,transparent_30%,rgba(0,0,0,0.22)_100%)]" />
 
       <motion.div
         className="absolute inset-y-[-28%] left-[-20%] w-[52%] blur-2xl"
