@@ -1,5 +1,5 @@
 import ProjectCTA from "@/components/project/ProjectCTA";
-import { V2ComparisonPanel, V2Hero, V2Section } from "@/components/project-v2";
+import { V2ComparisonPanel, V2Hero, V2Section, V2StackedRangePanel } from "@/components/project-v2";
 import V2GeoPanel from "@/components/project-v2/V2GeoPanel";
 import project from "@/data/project-v2/distributed-md-platform";
 
@@ -49,6 +49,12 @@ export default function DistributedMdPlatformV2Page() {
             </div>
           </div>
         </section>
+
+        {project.latencyPanel ? (
+          <section className="px-6 py-4 sm:px-8 lg:px-12">
+            <V2StackedRangePanel {...project.latencyPanel} />
+          </section>
+        ) : null}
 
         {project.comparisonPanel ? (
           <section className="px-6 py-4 sm:px-8 lg:px-12">

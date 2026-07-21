@@ -78,6 +78,40 @@ const distributedMdPlatform = {
       },
     ],
   },
+  latencyPanel: {
+    eyebrow: "Latency ranges",
+    title: "How topology changes reaction time",
+    intro:
+      "These bars treat latency as an observed range instead of a single average: a solid base marks the fastest repeated path, and the striped extension shows how much variability remained once network distance and exchange conditions were included.",
+    legend: [
+      { label: "Lower bound", accent: "solid" },
+      { label: "Observed variability", accent: "striped" },
+    ],
+    rows: [
+      {
+        label: "US-East monolith → Binance (Tokyo)",
+        note: "Cross-region single-region deployment",
+        base: 180,
+        range: 40,
+        display: "180–220ms",
+        unit: "ms",
+      },
+      {
+        label: "Tokyo edge node → Binance",
+        note: "Regional edge deployment",
+        base: 2,
+        range: 6,
+        display: "2–8ms",
+        unit: "ms",
+      },
+    ],
+    takeaway:
+      "The operational difference is not just the minimum latency; it is the width of the useful reaction window. When order books are updating at 100–1000 messages per second, tens or hundreds of milliseconds of extra travel time leave less room for sequencing, validation, and recovery before the next burst arrives.",
+    stats: [
+      { value: "60–80%", label: "Lower client data latency versus single-region routing" },
+      { value: "100–1000/s", label: "Hot feed update rates where latency compounds" },
+    ],
+  },
   geoPanel: {
     eyebrow: "Regional clustering",
     title: "Where connectivity had to live",

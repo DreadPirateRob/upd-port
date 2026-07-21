@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import Globe from "@/components/ui/globe";
+import WorldMap from "@/components/ui/world-map";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -76,8 +77,8 @@ function getMarkerPlacement(placement, x) {
   };
 }
 
-function getMarkerKey(marker) {
-  return marker?.id ?? marker?.label;
+function getMarkerKey(marker, index = 0) {
+  return marker?.id ?? `${marker?.label ?? "marker"}-${index}`;
 }
 
 function GeoMarker({ label, meta, placement, xPercent, yPercent, visible = true, visibility = 1 }) {
@@ -131,20 +132,32 @@ function GlobeFallbackLegend({ markers }) {
   );
 }
 
-function GlobeVisual({ globe }) {
-  const markers = useMemo(
-    () =>
-      globe?.markers
-        ?.filter(
-          (marker) =>
-            marker?.label &&
-            typeof marker?.lat === "number" &&
-            !Number.isNaN(marker.lat) &&
-            typeof marker?.lng === "number" &&
-            !Number.isNaN(marker.lng),
-        )
-        .map((marker) => ({ ...marker, id: getMarkerKey(marker) })) ?? [],
-    [globe?.markers],
+const GEO_VISUAL_PRESETS = [
+  { id: "globe", label: "Globe", mode: "globe", globeConfig: {} },
+  { id: "atlantic", label: "Atlantic", mode: "globe", globeConfig: { autoRotate: false, phi: 0.92, theta: 0.18 } },
+  { id: "pacific", label: "Pacific", mode: "globe", globeConfig: { autoRotate: false, phi: -1.42, theta: 0.18 } },
+  { id: "map", label: "Map", mode: "map" },
+];
+
+function getGeoMarkers(markers = []) {
+  return markers
+    .filter(
+      (marker) =>
+        marker?.label &&
+        typeof marker?.lat === "number" &&
+        !Number.isNaN(marker.lat) &&
+        typeof marker?.lng === "number" &&
+        !Number.isNaN(marker.lng),
+    )
+    .map((marker, index) => ({ ...marker, id: getMarkerKey(marker, index) }));
+}
+
+function GeoVisual({ globe }) {
+  const markers = useMemo(() => getGeoMarkers(globe?.markers), [globe?.markers]);
+  const [activePresetId, setActivePresetId] = useState(GEO_VISUAL_PRESETS[0].id);
+  const activePreset = useMemo(
+    () => GEO_VISUAL_PRESETS.find((preset) => preset.id === activePresetId) ?? GEO_VISUAL_PRESETS[0],
+    [activePresetId],
   );
   const markersById = useMemo(() => new Map(markers.map((marker) => [marker.id, marker])), [markers]);
   const [projectedMarkers, setProjectedMarkers] = useState([]);
@@ -162,13 +175,22 @@ function GlobeVisual({ globe }) {
             const id = position.id ?? position.label;
             const marker = markersById.get(id);
 
+            if (!marker) {
+              return null;
+            }
+
             return { ...marker, ...position, id };
-          }),
+          })
+          .filter(Boolean),
       );
     },
     [markersById],
   );
   const hasProjectedMarkers = projectedMarkers.length > 0;
+
+  useEffect(() => {
+    setProjectedMarkers([]);
+  }, [activePreset.id, markers]);
 
   useEffect(() => {
     if (hasProjectedMarkers || !markers.length) {
@@ -183,12 +205,56 @@ function GlobeVisual({ globe }) {
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [hasProjectedMarkers, markers.length]);
+  }, [hasProjectedMarkers, markers.length, activePreset.id]);
 
   return (
     <div className="space-y-5">
-      <div className="relative mx-auto aspect-square w-full max-w-[32rem]">
-        <Globe className="h-full w-full" markers={markers} config={GLOBE_CONFIG} onRenderMarkerPositions={handleRenderMarkerPositions} />
+      <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Geo visualization presets">
+        {GEO_VISUAL_PRESETS.map((preset) => {
+          const isActive = preset.id === activePreset.id;
+
+          return (
+            <button
+              key={preset.id}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => setActivePresetId(preset.id)}
+              className={cn(
+                "rounded-full border px-3.5 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] transition-colors",
+                isActive
+                  ? "border-cyan-300/35 bg-cyan-400/12 text-zinc-50 shadow-[0_0_22px_rgba(34,211,238,0.16)]"
+                  : "border-white/10 bg-white/[0.03] text-zinc-400 hover:border-white/15 hover:text-zinc-200",
+              )}
+            >
+              {preset.label}
+            </button>
+          );
+        })}
+      </div>
+
+      <div
+        className={cn(
+          "relative mx-auto w-full",
+          activePreset.mode === "map" ? "aspect-[1.28/1] max-w-[35rem]" : "aspect-square max-w-[32rem]",
+        )}
+      >
+        {activePreset.mode === "map" ? (
+          <WorldMap
+            className="h-full w-full"
+            markers={markers}
+            projection={activePreset.projection}
+            onRenderMarkerPositions={handleRenderMarkerPositions}
+          />
+        ) : (
+          <Globe
+            className="h-full w-full"
+            markers={markers}
+            config={{ ...GLOBE_CONFIG, ...activePreset.globeConfig }}
+            onRenderMarkerPositions={handleRenderMarkerPositions}
+          />
+        )}
+
         {hasProjectedMarkers ? (
           <div className="pointer-events-none absolute inset-0">
             {markers.map((marker) => {
@@ -279,7 +345,7 @@ export default function V2GeoPanel({
               ) : null}
             </div>
 
-            <GlobeVisual globe={globe} />
+            <GeoVisual globe={globe} />
           </div>
         </div>
       </div>

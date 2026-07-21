@@ -4,3 +4,4 @@ export { default as V2StatGrid } from "./V2StatGrid";
 export { default as V2Figure } from "./V2Figure";
 export { default as V2ComparisonPanel } from "./V2ComparisonPanel";
 export { default as V2GeoPanel } from "./V2GeoPanel";
+export { default as V2StackedRangePanel } from "./V2StackedRangePanel";
