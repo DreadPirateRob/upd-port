@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import DottedGlowBackground from "@/components/ui/dotted-glow-background";
 import { cn } from "@/lib/utils";
 
 import V2StatGrid from "./V2StatGrid";
@@ -15,8 +16,17 @@ export default function V2Hero({
     <section className={cn("px-4 py-14 sm:px-6 sm:py-18 lg:py-24", className)}>
       <div className="mx-auto max-w-6xl">
         <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-950/85 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
-          <div className="grid gap-12 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(18rem,0.8fr)] lg:px-10 lg:py-12 xl:px-12 xl:py-14">
-            <div className="space-y-6">
+          <div className="relative overflow-hidden grid gap-12 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(18rem,0.8fr)] lg:px-10 lg:py-12 xl:px-12 xl:py-14">
+            <DottedGlowBackground
+              className="pointer-events-none absolute inset-0"
+              opacity={0.72}
+              gap={14}
+              radius={1.2}
+              speedMin={0.25}
+              speedMax={0.85}
+              speedScale={0.8}
+            />
+            <div className="relative z-10 space-y-6">
               {eyebrow ? (
                 <Badge
                   variant="outline"
@@ -38,13 +48,13 @@ export default function V2Hero({
             </div>
 
             {intro ? (
-              <div className="flex items-end lg:pl-6">
+              <div className="relative z-10 flex items-end lg:pl-6">
                 <p className="max-w-xl text-sm leading-7 text-zinc-400 sm:text-base sm:leading-8">
                   {intro}
                 </p>
               </div>
             ) : (
-              <div />
+              <div className="relative z-10" />
             )}
           </div>
 
