@@ -204,10 +204,10 @@ const distributedMdPlatform = {
         "The update path used binary search with separate sorted bid and ask structures, improving hot-path book mutations from linear scans to O(log n) behavior.",
       ],
       figure: {
-        src: "/diagrams/distributed-md-platform/order-book-sync.svg",
-        alt: "Order book synchronization diagram showing exchange sources, sequence handling, validation, recovery, and storage flow",
+        src: "/md-platform/flow.png",
+        alt: "Order book synchronization flow for snapshots, deltas, validation, and recovery",
         caption:
-          "Repo-authored D2 diagram replacing the screenshot: synchronization, drift detection, recovery, and storage are now described from source.",
+          "Order book reliability depended on disciplined recovery paths, not just fast update throughput.",
       },
     },
     {

@@ -63,7 +63,7 @@ export default function DistributedMdPlatformV2Page() {
         ) : null}
 
         {project.geoPanel ? (
-          <section className="px-6 py-8 sm:px-8 lg:px-12">
+          <section className="py-8">
             <V2GeoPanel {...project.geoPanel} />
           </section>
         ) : null}

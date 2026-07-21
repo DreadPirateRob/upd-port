@@ -4,11 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "prebuild": "node scripts/render-diagrams.mjs",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint",
-    "diagrams:render": "node scripts/render-diagrams.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.7.0",
@@ -38,7 +36,6 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@terrastruct/d2": "^0.1.33",
     "@types/three": "^0.179.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
