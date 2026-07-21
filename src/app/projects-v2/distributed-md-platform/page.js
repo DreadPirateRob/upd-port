@@ -1,5 +1,6 @@
 import ProjectCTA from "@/components/project/ProjectCTA";
-import { V2Hero, V2Section } from "@/components/project-v2";
+import { V2ComparisonPanel, V2Hero, V2Section } from "@/components/project-v2";
+import V2GeoPanel from "@/components/project-v2/V2GeoPanel";
 import project from "@/data/project-v2/distributed-md-platform";
 
 export const metadata = {
@@ -48,6 +49,18 @@ export default function DistributedMdPlatformV2Page() {
             </div>
           </div>
         </section>
+
+        {project.comparisonPanel ? (
+          <section className="px-6 py-4 sm:px-8 lg:px-12">
+            <V2ComparisonPanel {...project.comparisonPanel} />
+          </section>
+        ) : null}
+
+        {project.geoPanel ? (
+          <section className="px-6 py-8 sm:px-8 lg:px-12">
+            <V2GeoPanel {...project.geoPanel} />
+          </section>
+        ) : null}
 
         <div className="px-6 sm:px-8 lg:px-12">
           {project.sections.map((section, index) => (

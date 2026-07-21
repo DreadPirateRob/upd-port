@@ -33,6 +33,82 @@ const distributedMdPlatform = {
       note: "Price levels possible on liquid pairs before selective client streaming",
     },
   ],
+  comparisonPanel: {
+    eyebrow: "Latency profile",
+    title: "How much of the problem was topology?",
+    prompt: "How did the deployment model change the numbers?",
+    rows: [
+      {
+        label: "US-East monolith → Binance (Tokyo)",
+        note: "Single-region deployment",
+        value: "180–220ms",
+        fill: 100,
+        accent: "solid",
+      },
+      {
+        label: "Tokyo edge node → Binance",
+        note: "Regional edge deployment",
+        value: "2–8ms",
+        fill: 6,
+        accent: "striped",
+      },
+      {
+        label: "Client latency reduction",
+        note: "From intelligent routing",
+        value: "60–80%",
+        fill: 70,
+        accent: "striped",
+      },
+    ],
+    takeaway:
+      "These numbers changed the operating envelope of the whole system, not just the chart aesthetics. When exchange connections stay close to venue infrastructure, clients receive fresher prices, reconnection windows shrink materially, and normalization work begins before latency has already consumed the useful life of the update. That matters even more when the busiest order books are producing 100–1000 updates per second, because every extra cross-region roundtrip compounds through sequencing, validation, and recovery.",
+    stats: [
+      {
+        value: "1",
+        suffix: "API",
+        label: "Unified interface for normalized exchange data",
+      },
+      {
+        value: "100+",
+        label: "Exchange interfaces normalized through CCXT",
+      },
+      {
+        value: "100–1000/s",
+        label: "Order book update volume on the hottest feeds",
+      },
+    ],
+  },
+  geoPanel: {
+    eyebrow: "Regional clustering",
+    title: "Where connectivity had to live",
+    intro:
+      "The platform grouped exchange connectivity by geography so each edge node could stay close to venue infrastructure, normalize traffic locally, and avoid burning latency before the data reached downstream clients.",
+    bars: [
+      { label: "APAC", detail: "Tokyo / Singapore", value: 5 },
+      { label: "Europe", detail: "Frankfurt", value: 3 },
+      { label: "United States", detail: "Virginia", value: 3 },
+      { label: "South America", detail: "São Paulo", value: 2 },
+    ],
+    note:
+      "These bar values are venue counts from the regional exchange groups in the project source material, showing where traffic was kept nearest to exchange infrastructure.",
+    globe: {
+      caption:
+        "Markers highlight the regional exchange clusters the platform served from nearby edge locations to reduce feed latency and keep normalization close to the venues.",
+      markers: [
+        { label: "Tokyo", lat: 35.6762, lng: 139.6503, placement: "right", meta: "Binance / Bybit / OKX" },
+        { label: "Singapore", lat: 1.3521, lng: 103.8198, placement: "right", meta: "Bitget / HTX" },
+        {
+          label: "Frankfurt",
+          lat: 50.1109,
+          lng: 8.6821,
+          placement: "center",
+          meta: "Kraken / Bitstamp / Deribit",
+        },
+        { label: "Virginia", lat: 37.4316, lng: -78.6569, placement: "left", meta: "Coinbase / Gemini / Kraken US" },
+        { label: "São Paulo", lat: -23.5558, lng: -46.6396, placement: "center", meta: "Mercado Bitcoin / regional exchanges" },
+      ],
+    },
+  },
   sections: [
     {
       eyebrow: "The gap",
