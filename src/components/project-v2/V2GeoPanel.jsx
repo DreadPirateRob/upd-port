@@ -134,8 +134,6 @@ function GlobeFallbackLegend({ markers }) {
 
 const GEO_VISUAL_PRESETS = [
   { id: "globe", label: "Globe", mode: "globe", globeConfig: {} },
-  { id: "atlantic", label: "Atlantic", mode: "globe", globeConfig: { autoRotate: false, phi: 0.92, theta: 0.18 } },
-  { id: "pacific", label: "Pacific", mode: "globe", globeConfig: { autoRotate: false, phi: -1.42, theta: 0.18 } },
   { id: "map", label: "Map", mode: "map" },
 ];
 
