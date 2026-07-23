@@ -15,7 +15,7 @@ export default function GridButton({ children, className, ...props }) {
   return (
     <button
       className={cn(
-        "flex items-center justify-center gap-1.5 border border-border bg-background p-1 rounded transition-all duration-75 active:translate-y-0.5 active:scale-[0.98] hover:bg-muted text-xs font-semibold uppercase tracking-widest pr-3",
+        "inline-flex items-center justify-center gap-1.5 border border-border bg-background p-1 rounded transition-all duration-75 active:translate-y-0.5 active:scale-[0.98] hover:bg-muted text-xs font-semibold uppercase tracking-widest pr-3",
         className,
       )}
       {...props}
