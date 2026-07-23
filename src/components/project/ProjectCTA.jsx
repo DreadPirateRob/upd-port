@@ -26,7 +26,7 @@ export default function ProjectCTA() {
             </HoverEffect>
             <Link href="/#projects-section">
               <HoverEffect effect="scale">
-                <Button variant="outline" size="lg">View More Projects</Button>
+                <ClickPowerUp variant="secondary">View More Projects</ClickPowerUp>
               </HoverEffect>
             </Link>
           </div>

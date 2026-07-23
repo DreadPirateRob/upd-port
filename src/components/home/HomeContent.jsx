@@ -178,7 +178,7 @@ export default function HomeContent({ projects }) {
                   </Link>
                   <HoverEffect effect="scale">
                     <a href="mailto:adriangarcia9916@gmail.com">
-                      <Button variant="outline" size="lg">Contact Me</Button>
+                      <ClickPowerUp variant="secondary">Contact Me</ClickPowerUp>
                     </a>
                   </HoverEffect>
                 </div>
