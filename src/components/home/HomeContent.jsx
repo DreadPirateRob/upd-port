@@ -24,6 +24,8 @@ import Footer from "@/components/footer";
 import HeroColumnsBg from "@/components/ui/hero-columns-bg";
 import { AnimatePresence, motion } from "motion/react";
 import ProjectListRow from "@/components/home/ProjectListRow";
+import GridButton from "@/components/evil-buttons/grid-button";
+import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import CaseStudyAccordion from "@/components/home/CaseStudyAccordion";
 
 export default function HomeContent({ projects }) {
@@ -159,9 +161,7 @@ export default function HomeContent({ projects }) {
             <HeroColumnsBg />
             <div className="max-w-4xl mx-auto z-1">
               <FadeIn direction="down" delay={0.2}>
-                <Badge variant="outline" className="text-sm mb-4">
-                  Available for work
-                </Badge>
+                <GridButton className="mb-4">Available for work</GridButton>
                 <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
                   Hi, I&apos;m Adrian Garcia
                 </h1>
@@ -172,17 +172,13 @@ export default function HomeContent({ projects }) {
                 </p>
               </FadeIn>
               <FadeIn direction="up" delay={0.6}>
-                <div className="flex gap-4 justify-center">
-                  <HoverEffect effect="scale">
-                    <Button size="lg" asChild>
-                      <Link href="#projects-section">View Projects</Link>
-                    </Button>
-                  </HoverEffect>
+                <div className="flex gap-4 justify-center flex-wrap">
+                  <Link href="#projects-section">
+                    <ClickPowerUp>View Projects</ClickPowerUp>
+                  </Link>
                   <HoverEffect effect="scale">
                     <a href="mailto:adriangarcia9916@gmail.com">
-                      <Button variant="outline" size="lg">
-                        Contact Me
-                      </Button>
+                      <Button variant="outline" size="lg">Contact Me</Button>
                     </a>
                   </HoverEffect>
                 </div>
@@ -197,9 +193,7 @@ export default function HomeContent({ projects }) {
             <div className="max-w-4xl mx-auto">
               <div className="max-w-xl text-left mb-16">
                 <FadeIn direction="left">
-                  <Badge variant="outline" className="text-lg mb-4">
-                    Skills
-                  </Badge>
+                  <GridButton className="mb-4">Skills</GridButton>
                 </FadeIn>
                 <FadeIn direction="left" delay={0.2}>
                   <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
@@ -250,9 +244,7 @@ export default function HomeContent({ projects }) {
           <section id="about-section" className="py-16 px-4 bg-muted/50 scroll-mt-24">
             <div className="max-w-4xl mx-auto text-right">
               <FadeIn direction="right">
-                <Badge variant="outline" className="text-lg mb-6">
-                  About Me
-                </Badge>
+                <GridButton className="mb-6">About Me</GridButton>
               </FadeIn>
               <FadeIn direction="right" delay={0.2}>
                 <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
@@ -270,9 +262,7 @@ export default function HomeContent({ projects }) {
                 <div className="relative col-span-12 space-y-6">
                   <div className="max-w-2xl text-left mb-16">
                     <FadeIn direction="left">
-                      <Badge variant="outline" className="text-lg mb-4">
-                        Experience
-                      </Badge>
+                      <GridButton className="mb-4">Experience</GridButton>
                     </FadeIn>
                     <FadeIn direction="left" delay={0.2}>
                       <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
@@ -336,9 +326,7 @@ export default function HomeContent({ projects }) {
               <div className="flex items-end justify-between gap-6 mb-10">
                 <div className="max-w-xl text-left">
                   <FadeIn direction="left">
-                    <Badge variant="outline" className="text-lg mb-4">
-                      Projects
-                    </Badge>
+                    <GridButton className="mb-4">Projects</GridButton>
                   </FadeIn>
                   <FadeIn direction="left" delay={0.2}>
                     <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-0">

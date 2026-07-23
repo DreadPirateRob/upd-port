@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FadeIn, HoverEffect } from "@/components/animations/AnimationWrapper";
+import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 
 export default function ProjectCTA() {
   return (
@@ -20,7 +21,7 @@ export default function ProjectCTA() {
           <div className="flex gap-4 justify-center">
             <HoverEffect effect="scale">
               <a href="mailto:adriangarcia9916@gmail.com">
-                <Button size="lg">Get In Touch</Button>
+                <ClickPowerUp>Get In Touch</ClickPowerUp>
               </a>
             </HoverEffect>
             <Link href="/#projects-section">
