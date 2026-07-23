@@ -7,20 +7,21 @@ import { useState } from "react";
 const VARIANTS = {
   primary: {
     bracket: {
-      rest:  { borderColor: "rgb(38 38 38)" },
-      hover: { borderColor: "rgb(38 38 38)" },
+      rest:  { borderColor: "rgba(255,255,255,0.4)" },
+      hover: { borderColor: "rgba(255,255,255,0.4)" },
       tap:   { borderColor: "#2CD4BD" },
     },
     arm: {
-      rest:  { scaleX: 0, originX: 0, backgroundColor: "#171717" },
-      hover: { scaleX: 1, originX: 0, backgroundColor: "#171717" },
+      rest:  { scaleX: 0, originX: 0, backgroundColor: "#2a2a2a" },
+      hover: { scaleX: 1, originX: 0, backgroundColor: "#2a2a2a" },
       tap:   { scaleX: 1, originX: 0, backgroundColor: "#2CD4BD" },
     },
     text: {
-      rest:  { color: "var(--color-foreground)" },
+      rest:  { color: "#ffffff" },
       hover: { color: "#ffffff" },
       tap:   { color: "#0a2926" },
     },
+    buttonClass: "bg-black [--pattern:rgba(255,255,255,0.07)]",
   },
   secondary: {
     bracket: {
@@ -38,8 +39,16 @@ const VARIANTS = {
       hover: { color: "#ffffff" },
       tap:   { color: "#ffffff" },
     },
+    buttonClass: "bg-background [--pattern:var(--color-neutral-200)] dark:[--pattern:var(--color-neutral-900)]",
   },
 };
+
+const CORNERS = [
+  { id: "top-right",    cls: "absolute top-0 right-0 size-2 border-t border-r z-20" },
+  { id: "top-left",     cls: "absolute top-0 left-0 size-2 border-t border-l z-20" },
+  { id: "bottom-left",  cls: "absolute bottom-0 left-0 size-2 border-b border-l z-20" },
+  { id: "bottom-right", cls: "absolute right-0 bottom-0 size-2 border-r border-b z-20" },
+];
 
 export const ClickPowerUp = ({
   children,
@@ -58,25 +67,18 @@ export const ClickPowerUp = ({
 
   const state = isTapped ? "tap" : "rest";
 
-  const corners = [
-    { corner: "top-right",    cls: "absolute top-0 right-0 size-2 border-t border-r z-20" },
-    { corner: "top-left",     cls: "absolute top-0 left-0 size-2 border-t border-l z-20" },
-    { corner: "bottom-left",  cls: "absolute bottom-0 left-0 size-2 border-b border-l z-20" },
-    { corner: "bottom-right", cls: "absolute right-0 bottom-0 size-2 border-r border-b z-20" },
-  ];
-
   return (
     <motion.div
       initial="rest"
       animate={state}
       whileHover={isTapped ? "tap" : "hover"}
       onTap={handleTap}
-      className="relative inline-block cursor-pointer [--pattern:var(--color-neutral-200)] dark:[--pattern:var(--color-neutral-900)]"
+      className="relative inline-block cursor-pointer"
     >
-      {corners.map(({ corner, cls }) => (
+      {CORNERS.map(({ id, cls }) => (
         <motion.div
-          key={corner}
-          custom={corner}
+          key={id}
+          custom={id}
           variants={{
             rest:  () => ({ x: 0, y: 0, ...v.bracket.rest }),
             hover: (c) => ({
@@ -97,7 +99,8 @@ export const ClickPowerUp = ({
 
       <button
         className={cn(
-          "relative overflow-hidden bg-background px-10 py-3 font-medium uppercase",
+          "relative overflow-hidden px-10 py-3 font-medium uppercase",
+          v.buttonClass,
           className,
         )}
       >
@@ -106,22 +109,14 @@ export const ClickPowerUp = ({
 
         {/* Arm panel */}
         <motion.span
-          variants={{
-            rest:  v.arm.rest,
-            hover: v.arm.hover,
-            tap:   v.arm.tap,
-          }}
+          variants={{ rest: v.arm.rest, hover: v.arm.hover, tap: v.arm.tap }}
           transition={{ type: "spring", stiffness: 220, damping: 22 }}
           className="absolute inset-0 z-10 origin-left"
         />
 
         {/* Text */}
         <motion.span
-          variants={{
-            rest:  v.text.rest,
-            hover: v.text.hover,
-            tap:   v.text.tap,
-          }}
+          variants={{ rest: v.text.rest, hover: v.text.hover, tap: v.text.tap }}
           transition={{ type: "spring", stiffness: 220, damping: 22 }}
           className="relative z-20"
         >
