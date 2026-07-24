@@ -109,7 +109,7 @@ export default function CaseStudyAccordion({ projects }) {
                   </div>
 
                   <div className="mt-6 max-w-sm sm:max-w-md">
-                    <h3 className="text-3xl sm:text-5xl font-light tracking-tight leading-[0.95] text-white mb-4">
+                    <h3 className="font-pixel text-3xl sm:text-5xl font-light tracking-tight leading-[0.95] text-white mb-4">
                       {project.title}
                     </h3>
                     <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-md line-clamp-3">

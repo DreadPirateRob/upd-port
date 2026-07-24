@@ -118,7 +118,7 @@ export const ClickPowerUp = ({
         <motion.span
           variants={{ rest: v.text.rest, hover: v.text.hover, tap: v.text.tap }}
           transition={{ type: "spring", stiffness: 220, damping: 22 }}
-          className="relative z-20"
+          className="relative z-20 font-pixel"
         >
           {children}
         </motion.span>

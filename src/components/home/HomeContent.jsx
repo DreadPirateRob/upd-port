@@ -291,7 +291,7 @@ export default function HomeContent({ projects }) {
                           )}
                         </div>
 
-                        <p className="font-display text-xl font-semibold tracking-wide">
+                        <p className="font-pixel font-display text-xl font-semibold tracking-wide">
                           {i.title}
                         </p>
 
