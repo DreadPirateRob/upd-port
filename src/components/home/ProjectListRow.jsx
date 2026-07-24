@@ -34,7 +34,7 @@ export default function ProjectListRow({ project, index }) {
       </p>
 
       <div>
-        <h3 className="text-3xl sm:text-4xl font-light tracking-tight mb-3 group-hover:text-primary transition-colors">
+        <h3 className="font-pixel text-3xl sm:text-4xl font-light tracking-tight mb-3 group-hover:text-primary transition-colors">
           {project.title}
         </h3>
         <p className="text-sm text-muted-foreground mb-4 max-w-2xl text-pretty">

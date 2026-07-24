@@ -268,7 +268,7 @@ export default function V2GeoPanel({
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-zinc-400">
                   Clusters
                 </p>
-                <p className="mt-3 text-4xl font-semibold tracking-tight text-zinc-50">
+                <p className="font-pixel mt-3 text-4xl font-semibold tracking-tight text-zinc-50">
                   {safeBars.length}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-zinc-400">
@@ -280,7 +280,7 @@ export default function V2GeoPanel({
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-zinc-400">
                   Named venues
                 </p>
-                <p className="mt-3 text-4xl font-semibold tracking-tight text-zinc-50">
+                <p className="font-pixel mt-3 text-4xl font-semibold tracking-tight text-zinc-50">
                   {totalVenues}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-zinc-400">
@@ -292,7 +292,7 @@ export default function V2GeoPanel({
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-zinc-400">
                   Largest cluster
                 </p>
-                <p className="mt-3 text-4xl font-semibold tracking-tight text-zinc-50">
+                <p className="font-pixel mt-3 text-4xl font-semibold tracking-tight text-zinc-50">
                   {largestCluster}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-zinc-400">
