@@ -25,6 +25,7 @@ import SkillCard from "@/components/home/SkillCard";
 
 export default function HomeContent({ projects }) {
   const [showAllExperience, setShowAllExperience] = useState(false);
+  const [hoveredSkill, setHoveredSkill] = useState(null);
 
   const skills = [
     {
@@ -202,7 +203,11 @@ export default function HomeContent({ projects }) {
               >
                 {skills.map((skill) => (
                   <StaggerItem key={skill.slug} className={skill.colSpan}>
-                    <SkillCard skill={skill} />
+                    <SkillCard
+                      skill={skill}
+                      dimmed={hoveredSkill !== null && hoveredSkill !== skill.slug}
+                      onHover={setHoveredSkill}
+                    />
                   </StaggerItem>
                 ))}
               </StaggerContainer>

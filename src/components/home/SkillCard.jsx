@@ -13,7 +13,7 @@ const CORNERS = [
   { id: "bottom-right", cls: "absolute right-0 bottom-0 size-3 border-r border-b z-20" },
 ];
 
-export default function SkillCard({ skill }) {
+export default function SkillCard({ skill, dimmed = false, onHover }) {
   const [hoverCount, setHoverCount] = useState(0);
 
   return (
@@ -21,8 +21,15 @@ export default function SkillCard({ skill }) {
       initial="rest"
       animate="rest"
       whileHover="hover"
-      onMouseEnter={() => setHoverCount((c) => c + 1)}
-      className="relative h-full [--pattern:rgba(255,255,255,0.07)]"
+      onMouseEnter={() => {
+        setHoverCount((c) => c + 1);
+        onHover?.(skill.slug);
+      }}
+      onMouseLeave={() => onHover?.(null)}
+      className={cn(
+        "relative h-full [--pattern:rgba(255,255,255,0.07)] transition-opacity duration-300",
+        dimmed ? "opacity-40" : "opacity-100",
+      )}
     >
       {CORNERS.map(({ id, cls }) => (
         <motion.div
