@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Adrian Garcia - Developer",
   description:
-    "Full-stack engineer specializing in high-performance trading systems, OEMS architecture, and AI-assisted developer tooling for institutional crypto markets.",
+    "Distributed systems engineer and architect focused on building high-performance interfaces, real-time data pipelines and low-latency infrastructure for digital financial operations.",
   icons: {
     icon: "/hacker-cat.png",
     shortcut: "/hacker-cat.png",

@@ -167,7 +167,7 @@ export default function HomeContent({ projects }) {
               </div>
               <FadeIn direction="up" delay={0.4}>
                 <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  Full-stack engineer and trading systems architect building high-performance interfaces for institutional crypto markets with a focus on real-time data pipelines, low-latency architecture.
+                  Distributed systems engineer and architect focused on building high-performance interfaces, real-time data pipelines and low-latency infrastructure for digital financial operations.
                 </p>
               </FadeIn>
               <FadeIn direction="up" delay={0.6}>
@@ -230,7 +230,7 @@ export default function HomeContent({ projects }) {
               <FadeIn direction="right" delay={0.2}>
                 <ScrambleHeading
                   className="text-4xl sm:text-5xl font-bold tracking-tight mb-6"
-                  text={"Full-stack engineer and trading systems architect, building institutional-grade crypto platforms from OEMS design to developer tooling."}
+                  text={"Distributed systems engineer and architect focused on building high-performance interfaces, real-time data pipelines and low-latency infrastructure for digital financial operations."}
                   config={HEADING_SCRAMBLE}
                 />
               </FadeIn>
