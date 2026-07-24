@@ -74,10 +74,6 @@ export default function CaseStudyAccordion({ projects }) {
                   </div>
                   <div className="mt-3 h-px w-10 bg-white/10" />
                 </div>
-
-                <p className="text-sm text-white/60 lowercase line-clamp-1">
-                  {primaryLabel.toLowerCase()}
-                </p>
               </div>
             )}
 

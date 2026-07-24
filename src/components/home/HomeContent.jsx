@@ -167,7 +167,7 @@ export default function HomeContent({ projects }) {
               </div>
               <FadeIn direction="up" delay={0.4}>
                 <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  Full-stack engineer and trading systems architect building high-performance interfaces for institutional crypto markets. Engineering with a focus on real-time data pipelines, exchange connectivity, low-latency front-end architecture, and AI-assisted engineering.
+                  Full-stack engineer and trading systems architect building high-performance interfaces for institutional crypto markets with a focus on real-time data pipelines, low-latency architecture.
                 </p>
               </FadeIn>
               <FadeIn direction="up" delay={0.6}>
