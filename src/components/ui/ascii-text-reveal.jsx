@@ -1,15 +1,23 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
 const GLITCH_CHARS = "[]{}|_-·░▒▓<>/\\!@#$%^&*()~`";
-const TICK_MS = 35;
-const STAGGER_MS = 30;
-const SETTLE_SCRAMBLES = 6;
+const TICK_MS = 40;
+const STAGGER_MS = 35;
+const SCRAMBLE_ROUNDS = 5;
 
 function getRandomChar() {
   return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+}
+
+function buildInitialState(text) {
+  return text.split("").map((ch) => ({
+    target: ch,
+    display: ch === " " ? " " : getRandomChar(),
+    done: ch === " ",
+  }));
 }
 
 export default function AsciiTextReveal({
@@ -18,11 +26,15 @@ export default function AsciiTextReveal({
   delay = 0,
   onComplete,
 }) {
-  const chars = useMemo(() => text.split(""), [text]);
-  const [revealed, setRevealed] = useState(() => chars.map(() => ({ char: " ", done: false })));
+  const initial = useMemo(() => buildInitialState(text), [text]);
+  const [chars, setChars] = useState(initial);
   const [started, setStarted] = useState(false);
 
-  // Delay before starting
+  const stableOnComplete = useCallback(() => {
+    onComplete?.();
+  }, [onComplete]);
+
+  // Delay before scramble begins
   useEffect(() => {
     const timer = setTimeout(() => setStarted(true), delay);
     return () => clearTimeout(timer);
@@ -32,68 +44,68 @@ export default function AsciiTextReveal({
     if (!started) return undefined;
 
     const timers = [];
+    const totalChars = initial.length;
 
-    chars.forEach((target, i) => {
-      if (target === " ") {
-        // Spaces resolve immediately
-        setRevealed((prev) => {
-          const next = [...prev];
-          next[i] = { char: " ", done: true };
-          return next;
-        });
-        return;
-      }
+    initial.forEach((entry, i) => {
+      // Spaces are already settled
+      if (entry.target === " ") return;
 
       const charDelay = i * STAGGER_MS;
 
-      // Scramble phase: cycle through random glitch chars
-      for (let s = 0; s < SETTLE_SCRAMBLES; s++) {
+      // Scramble rounds — cycle through random glitch chars
+      for (let r = 0; r < SCRAMBLE_ROUNDS; r++) {
         const timer = setTimeout(() => {
-          setRevealed((prev) => {
+          setChars((prev) => {
             const next = [...prev];
-            next[i] = { char: getRandomChar(), done: false };
+            next[i] = { ...next[i], display: getRandomChar(), done: false };
             return next;
           });
-        }, charDelay + s * TICK_MS);
+        }, charDelay + r * TICK_MS);
         timers.push(timer);
       }
 
-      // Settle: show real character
+      // Final settle — show real character
       const settleTimer = setTimeout(() => {
-        setRevealed((prev) => {
+        setChars((prev) => {
           const next = [...prev];
-          next[i] = { char: target, done: true };
+          next[i] = { ...next[i], display: entry.target, done: true };
           return next;
         });
-      }, charDelay + SETTLE_SCRAMBLES * TICK_MS);
+      }, charDelay + SCRAMBLE_ROUNDS * TICK_MS);
       timers.push(settleTimer);
     });
 
-    // Fire onComplete after the last character settles
-    const totalDuration = (chars.length - 1) * STAGGER_MS + SETTLE_SCRAMBLES * TICK_MS + 50;
-    const completeTimer = setTimeout(() => {
-      onComplete?.();
-    }, totalDuration);
+    // Fire onComplete after everything settles
+    const totalDuration =
+      (totalChars - 1) * STAGGER_MS + SCRAMBLE_ROUNDS * TICK_MS + 80;
+    const completeTimer = setTimeout(stableOnComplete, totalDuration);
     timers.push(completeTimer);
 
     return () => {
       timers.forEach(clearTimeout);
     };
-  }, [started, chars, onComplete]);
+  }, [started, initial, stableOnComplete]);
 
   return (
     <span className={cn(className)} aria-label={text}>
-      {revealed.map((entry, i) => (
-        <span
-          key={i}
-          className={cn(
-            "inline-block transition-colors duration-150",
-            entry.done ? "text-foreground" : "text-muted-foreground/60",
-          )}
-        >
-          {entry.char}
-        </span>
-      ))}
+      {chars.map((entry, i) =>
+        entry.target === " " ? (
+          // Preserve real word spacing
+          <span key={i}>&nbsp;</span>
+        ) : (
+          <span
+            key={i}
+            className={cn(
+              "inline-block transition-colors duration-150",
+              entry.done
+                ? "text-foreground"
+                : "text-muted-foreground/50",
+            )}
+          >
+            {entry.display}
+          </span>
+        ),
+      )}
     </span>
   );
 }
