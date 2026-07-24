@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { ScrambleText } from "@/components/ui/scramble-text";
 
 const INTERVAL_MS = 5000;
 
@@ -110,7 +111,7 @@ export default function CaseStudyAccordion({ projects }) {
 
                   <div className="mt-6 max-w-sm sm:max-w-md">
                     <h3 className="font-pixel text-3xl sm:text-5xl font-light tracking-tight leading-[0.95] text-white mb-4">
-                      {project.title}
+                      <ScrambleText text={project.title} trigger={index + 1} />
                     </h3>
                     <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-md line-clamp-3">
                       {project.description}

@@ -1,12 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ScrambleText } from "@/components/ui/scramble-text";
 
 export default function ProjectListRow({ project, index }) {
+  const [hoverCount, setHoverCount] = useState(0);
+
   const chips = [project.areas?.[0], ...project.technologies.slice(0, 2)]
     .filter(Boolean)
     .slice(0, 3);
@@ -35,7 +39,7 @@ export default function ProjectListRow({ project, index }) {
 
       <div>
         <h3 className="font-pixel text-3xl sm:text-4xl font-light tracking-tight mb-3 group-hover:text-primary transition-colors">
-          {project.title}
+          <ScrambleText text={project.title} trigger={hoverCount} />
         </h3>
         <p className="text-sm text-muted-foreground mb-4 max-w-2xl text-pretty">
           {project.description}
@@ -54,11 +58,22 @@ export default function ProjectListRow({ project, index }) {
   );
 
   if (project.disabled) {
-    return <div className="group block opacity-70">{content}</div>;
+    return (
+      <div
+        className="group block opacity-70"
+        onMouseEnter={() => setHoverCount((c) => c + 1)}
+      >
+        {content}
+      </div>
+    );
   }
 
   return (
-    <Link href={`/projects/${project.slug}`} className="group block">
+    <Link
+      href={`/projects/${project.slug}`}
+      className="group block"
+      onMouseEnter={() => setHoverCount((c) => c + 1)}
+    >
       {content}
     </Link>
   );
