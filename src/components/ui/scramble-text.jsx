@@ -2,6 +2,7 @@
 
 import { Fragment, useState, useEffect, useRef, useCallback } from "react";
 import { useInView } from "motion/react";
+import { cn } from "@/lib/utils";
 
 const GLITCH_CHARS = "[]{}|_-·░▒▓<>/\\!@#$%^&*";
 
@@ -20,7 +21,17 @@ function getRandomChar() {
   return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
 }
 
-export function ScrambleText({ text, trigger, config }) {
+function renderLines(str) {
+  const lines = str.split("\n");
+  return lines.map((line, i) => (
+    <Fragment key={i}>
+      {line}
+      {i < lines.length - 1 ? <br /> : null}
+    </Fragment>
+  ));
+}
+
+export function ScrambleText({ text, trigger, config, layout = "inline", contentClassName }) {
   const cfg = { ...DEFAULTS, ...config };
   const [display, setDisplay] = useState(text);
   const timersRef = useRef([]);
@@ -139,24 +150,40 @@ export function ScrambleText({ text, trigger, config }) {
     cfg.ambientFlickerRounds,
   ]);
 
-  return (
-    <>
-      {display.split("\n").map((line, i, arr) => (
-        <Fragment key={i}>
-          {line}
-          {i < arr.length - 1 ? <br /> : null}
-        </Fragment>
-      ))}
-    </>
-  );
+  if (layout === "reserve") {
+    return (
+      <span className="relative block">
+        <span aria-hidden="true" className={cn("invisible", contentClassName)}>
+          {renderLines(text)}
+        </span>
+        <span className={cn("absolute inset-0", contentClassName)}>
+          {renderLines(display)}
+        </span>
+      </span>
+    );
+  }
+
+  return <>{renderLines(display)}</>;
 }
 
-export function ScrambleHeading({ text, as: Tag = "h2", className, config }) {
+export function ScrambleHeading({
+  text,
+  as: Tag = "h2",
+  className,
+  contentClassName,
+  config,
+}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
   return (
     <Tag ref={ref} className={className}>
-      <ScrambleText text={text} trigger={inView ? 1 : 0} config={config} />
+      <ScrambleText
+        text={text}
+        trigger={inView ? 1 : 0}
+        config={config}
+        layout="reserve"
+        contentClassName={contentClassName}
+      />
     </Tag>
   );
 }

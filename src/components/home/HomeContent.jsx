@@ -276,9 +276,12 @@ export default function HomeContent({ projects }) {
                           )}
                         </div>
 
-                        <p className="font-pixel font-display text-xl font-semibold tracking-wide">
-                          {i.title}
-                        </p>
+                        <ScrambleHeading
+                          as="p"
+                          className="font-pixel font-display text-xl font-semibold tracking-wide"
+                          text={i.title}
+                          config={HEADING_SCRAMBLE}
+                        />
 
                         <div className="font-display mt-3 text-base tracking-tight text-pretty">
                           {i.description}
