@@ -331,11 +331,13 @@ export default function HomeContent({ projects }) {
               <div className="space-y-10">
                 <CaseStudyAccordion projects={projects} />
 
-                <div className="border-t border-border pt-10">
+                <StaggerContainer className="border-t border-border pt-10" staggerDelay={0.2}>
                   {projects.map((project, index) => (
-                    <ProjectListRow key={project.slug} project={project} index={index} />
+                    <StaggerItem key={project.slug}>
+                      <ProjectListRow project={project} index={index} />
+                    </StaggerItem>
                   ))}
-                </div>
+                </StaggerContainer>
               </div>
             </div>
           </section>
