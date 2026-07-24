@@ -230,7 +230,7 @@ export default function HomeContent({ projects }) {
               <FadeIn direction="right" delay={0.2}>
                 <ScrambleHeading
                   className="text-4xl sm:text-5xl font-bold tracking-tight mb-6"
-                  text={"Distributed systems engineer and architect focused on building high-performance interfaces, real-time data pipelines and low-latency infrastructure for digital financial operations."}
+                  text={"Distributed systems engineer building high-performance, low-latency financial infrastructure."}
                   config={HEADING_SCRAMBLE}
                 />
               </FadeIn>
