@@ -97,8 +97,8 @@ export default function TextmodeBg({ className }) {
       aria-hidden="true"
     >
       {/* Fade overlays so text stays readable */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background/90 z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,transparent_20%,rgba(0,0,0,0.6)_70%)] z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background/95 z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,transparent_15%,rgba(0,0,0,0.7)_65%)] z-10" />
     </div>
   );
 }

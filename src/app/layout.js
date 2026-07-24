@@ -3,7 +3,6 @@ import { GeistPixelCircle } from "geist/font/pixel";
 import "./globals.css";
 import Navigation from "@/components/navigation";
 import PageLoadOverlay from "@/components/ui/page-load-overlay";
-import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,29 +27,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${GeistPixelCircle.variable}`}>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const theme = localStorage.getItem('theme') || 'light';
-                if (theme === 'dark') {
-                  document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
-      </head>
+    <html lang="en" className={`dark ${geistSans.variable} ${geistMono.variable} ${GeistPixelCircle.variable}`}>
       <body className="antialiased overflow-x-hidden">
-        <ThemeProvider>
-          <PageLoadOverlay />
-          <Navigation />
-          <main>{children}</main>
-        </ThemeProvider>
+        <PageLoadOverlay />
+        <Navigation />
+        <main>{children}</main>
       </body>
     </html>
   );
