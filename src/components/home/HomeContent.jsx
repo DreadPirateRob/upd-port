@@ -32,62 +32,89 @@ export default function HomeContent({ projects }) {
 
   const skills = [
     {
-      slug: "frontend-development",
-      title: "Front-End Development",
+      slug: "high-performance-interfaces",
+      title: "High-Performance Interfaces",
       description:
-        "With a strong focus on front-end development I strive to craft seamless and intuitive interfaces that elevate the digital experience for users while maintaining a clean codebase.",
-      // tags: ["MUI", "React", "Sass", "Tailwind", "Gastby"],
-      tags: ["React", "Next.js", "Tailwind", "TypeScript", "Redux"],
+        "Building responsive, data-intensive interfaces for real-time financial applications, with a focus on performance, usability and maintainable architecture.",
+      tags: ["React", "Next.js", "TypeScript", "Redux", "Tailwind CSS", "AG Grid"],
       colSpan: "col-span-16 lg:col-span-14",
     },
     {
-      slug: "testing-and-development",
-      title: "Testing and Development",
+      slug: "real-time-applications",
+      title: "Real-Time Applications",
       description:
-        "In addition to my core skills, I possess a range of complementary abilities that contribute to my overall proficiency.",
-      // tags: ["Github", "Jest", "Webpack"],
-      tags: ["Jest", "Playwright", "Storybook"],
+        "Creating end-to-end applications that stream, process and present continuously changing data with minimal delay.",
+      tags: ["WebSockets", "Server-Sent Events", "Web Workers", "NATS", "JetStream", "Redis"],
       colSpan: "col-span-16 lg:col-span-10",
     },
     {
-      slug: "server-side-development",
-      title: "Server-Side Development",
+      slug: "distributed-systems",
+      title: "Distributed Systems",
       description:
-        "Specializing in creating robust APIs and ensuring seamless interaction between front-end and backend services.",
-      tags: ["Express", "GraphQL", "Authorization"],
-      colSpan: "col-span-16 lg:col-span-12",
-    },
-    // {
-    //   slug: "blockchain-development",
-    //   title: "Blockchain Development",
-    //   description:
-    //     "Creating secure and efficient smart contracts for decentralized applications (dApps) with a focus on security and efficiency.",
-    //   tags: ["Solidty", "IPFS", "Ganache"],
-    //   colSpan: "col-span-8",
-    // },
-    {
-      slug: "ux-ui-design",
-      title: "UX/UI Design",
-      description:
-        "Ensuring that the applications I design meet the needs of users and provide a seamless and engaging interaction.",
-      tags: ["Figma", "Framer Motion", "Radix UI"],
+        "Designing scalable and fault-tolerant services with clear communication patterns, consistency guarantees and failure boundaries.",
+      tags: [
+        "Rust",
+        "Node.js",
+        "gRPC",
+        "Protobuf",
+        "Event-Driven Architecture",
+        "Distributed Messaging",
+      ],
       colSpan: "col-span-16 lg:col-span-12",
     },
     {
-      slug: "collaboration",
-      title: "Collaboration",
+      slug: "trading-infrastructure",
+      title: "Trading Infrastructure",
       description:
-        "With a strong focus on collaboration, I strive to create a positive and productive work environment that fosters innovation.",
-      tags: ["Github", "Jira", "Confluence"],
-      colSpan: "col-span-16 lg:col-span-10",
+        "Building systems that support market-data distribution, order management, execution, risk controls and real-time portfolio monitoring.",
+      tags: [
+        "Market Data",
+        "OMS/EMS",
+        "Smart Order Routing",
+        "FIX",
+        "Risk Controls",
+        "Reconciliation",
+      ],
+      colSpan: "col-span-16 lg:col-span-12",
     },
     {
-      slug: "backend-development",
-      title: "Backend Development",
+      slug: "data-pipelines-and-storage",
+      title: "Data Pipelines and Storage",
       description:
-        "I prioritize data security, authentication and authorization mechanisms to deliver secure and efficient server-side solutions while maintaining a clean codebase.",
-      tags: ["PostgreSQL", "PM2", "Docker", "NATS", "ClickHouse", "JetStream"],
+        "Developing high-throughput pipelines for ingesting, normalizing, distributing and storing financial and operational data.",
+      tags: ["Kafka", "NATS", "ClickHouse", "PostgreSQL", "Redis", "Stream Processing"],
       colSpan: "col-span-16 lg:col-span-14",
+    },
+    {
+      slug: "backend-and-api-engineering",
+      title: "Backend and API Engineering",
+      description:
+        "Developing secure and performant APIs that connect interfaces, internal services and external financial infrastructure.",
+      tags: ["REST", "GraphQL", "gRPC", "Express", "Authentication", "Authorization"],
+      colSpan: "col-span-16 lg:col-span-10",
+    },
+    {
+      slug: "reliability-and-observability",
+      title: "Reliability and Observability",
+      description:
+        "Ensuring distributed applications remain measurable, recoverable and reliable during failures and periods of elevated activity.",
+      tags: [
+        "OpenTelemetry",
+        "Prometheus",
+        "Grafana",
+        "Distributed Tracing",
+        "SLOs",
+        "Alerting",
+      ],
+      colSpan: "col-span-16 lg:col-span-12",
+    },
+    {
+      slug: "infrastructure-and-delivery",
+      title: "Infrastructure and Delivery",
+      description:
+        "Deploying and operating applications through reproducible environments, automated pipelines and production-grade infrastructure.",
+      tags: ["Docker", "Kubernetes", "Terraform", "GitHub Actions", "AWS", "systemd"],
+      colSpan: "col-span-16 lg:col-span-12",
     },
   ];
 
