@@ -9,7 +9,7 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ScrambleText } from "@/components/ui/scramble-text";
 
-const INTERVAL_MS = 5000;
+const INTERVAL_MS = 10000;
 
 export default function CaseStudyAccordion({ projects }) {
   const [activeIndex, setActiveIndex] = useState(0);
