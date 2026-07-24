@@ -21,7 +21,7 @@ import {
   AnimatedCounter,
 } from "@/components/animations/AnimationWrapper";
 import Footer from "@/components/footer";
-import HeroColumnsBg from "@/components/ui/hero-columns-bg";
+import TextmodeBg from "@/components/ui/textmode-bg";
 import { AnimatePresence, motion } from "motion/react";
 import ProjectListRow from "@/components/home/ProjectListRow";
 import GridButton from "@/components/evil-buttons/grid-button";
@@ -158,7 +158,7 @@ export default function HomeContent({ projects }) {
         <div className="col-start-3 row-start-1 max-sm:col-span-full max-sm:col-start-1">
           {/* Hero Section */}
           <section className="h-[90vh] flex items-center justify-center py-20 px-4 text-center relative">
-            <HeroColumnsBg />
+            <TextmodeBg />
             <div className="max-w-4xl mx-auto z-1">
               <FadeIn direction="down" delay={0.2}>
                 <GridButton className="mb-4">Available for work</GridButton>
