@@ -22,6 +22,9 @@ import GridButton from "@/components/evil-buttons/grid-button";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import CaseStudyAccordion from "@/components/home/CaseStudyAccordion";
 import SkillCard from "@/components/home/SkillCard";
+import { ScrambleHeading } from "@/components/ui/scramble-text";
+
+const HEADING_SCRAMBLE = { staggerMs: 11, tickMs: 22, scrambleRounds: 3 };
 
 export default function HomeContent({ projects }) {
   const [showAllExperience, setShowAllExperience] = useState(false);
@@ -192,9 +195,11 @@ export default function HomeContent({ projects }) {
                   <GridButton className="mb-4">Skills</GridButton>
                 </FadeIn>
                 <FadeIn direction="left" delay={0.2}>
-                  <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-                    Languages, <br /> Libraries and Frameworks
-                  </h2>
+                  <ScrambleHeading
+                    className="text-4xl sm:text-5xl font-bold tracking-tight mb-6"
+                    text={"Languages, \nLibraries and Frameworks"}
+                    config={HEADING_SCRAMBLE}
+                  />
                 </FadeIn>
               </div>
               <StaggerContainer
@@ -223,9 +228,11 @@ export default function HomeContent({ projects }) {
                 <GridButton className="mb-6">About Me</GridButton>
               </FadeIn>
               <FadeIn direction="right" delay={0.2}>
-                <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-                  Full-stack engineer and trading systems architect, building institutional-grade crypto platforms from OEMS design to developer tooling.
-                </h2>
+                <ScrambleHeading
+                  className="text-4xl sm:text-5xl font-bold tracking-tight mb-6"
+                  text={"Full-stack engineer and trading systems architect, building institutional-grade crypto platforms from OEMS design to developer tooling."}
+                  config={HEADING_SCRAMBLE}
+                />
               </FadeIn>
             </div>
           </section>
@@ -241,9 +248,11 @@ export default function HomeContent({ projects }) {
                       <GridButton className="mb-4">Experience</GridButton>
                     </FadeIn>
                     <FadeIn direction="left" delay={0.2}>
-                      <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-                        Expanding knowledge <br /> through years of dedication
-                      </h2>
+                      <ScrambleHeading
+                        className="text-4xl sm:text-5xl font-bold tracking-tight mb-6"
+                        text={"Expanding knowledge \nthrough years of dedication"}
+                        config={HEADING_SCRAMBLE}
+                      />
                     </FadeIn>
                   </div>
                   <StaggerContainer
@@ -305,9 +314,11 @@ export default function HomeContent({ projects }) {
                     <GridButton className="mb-4">Projects</GridButton>
                   </FadeIn>
                   <FadeIn direction="left" delay={0.2}>
-                    <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-0">
-                      Crafted with strategy, <br /> engineered with precision
-                    </h2>
+                    <ScrambleHeading
+                      className="text-4xl sm:text-5xl font-bold tracking-tight mb-0"
+                      text={"Crafted with strategy, \nengineered with precision"}
+                      config={HEADING_SCRAMBLE}
+                    />
                   </FadeIn>
                 </div>
                 <p className="hidden sm:block text-sm italic text-muted-foreground/60 whitespace-nowrap">

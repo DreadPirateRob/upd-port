@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { Fragment, useState, useEffect, useRef, useCallback } from "react";
+import { useInView } from "motion/react";
 
 const GLITCH_CHARS = "[]{}|_-·░▒▓<>/\\!@#$%^&*";
 
@@ -46,7 +47,7 @@ export function ScrambleText({ text, trigger, config }) {
     const timers = [];
 
     chars.forEach((target, i) => {
-      if (target === " ") return;
+      if (target === " " || target === "\n") return;
       const charDelay = i * cfg.staggerMs;
 
       for (let r = 0; r < cfg.scrambleRounds; r++) {
@@ -85,7 +86,7 @@ export function ScrambleText({ text, trigger, config }) {
 
     const chars = text.split("");
     const nonSpaceIndices = chars
-      .map((ch, i) => (ch !== " " ? i : -1))
+      .map((ch, i) => (ch !== " " && ch !== "\n" ? i : -1))
       .filter((i) => i >= 0);
 
     if (!nonSpaceIndices.length) return undefined;
@@ -138,7 +139,26 @@ export function ScrambleText({ text, trigger, config }) {
     cfg.ambientFlickerRounds,
   ]);
 
-  return <>{display}</>;
+  return (
+    <>
+      {display.split("\n").map((line, i, arr) => (
+        <Fragment key={i}>
+          {line}
+          {i < arr.length - 1 ? <br /> : null}
+        </Fragment>
+      ))}
+    </>
+  );
+}
+
+export function ScrambleHeading({ text, as: Tag = "h2", className, config }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  return (
+    <Tag ref={ref} className={className}>
+      <ScrambleText text={text} trigger={inView ? 1 : 0} config={config} />
+    </Tag>
+  );
 }
 
 export default ScrambleText;
