@@ -22,6 +22,7 @@ import {
 } from "@/components/animations/AnimationWrapper";
 import Footer from "@/components/footer";
 import TextmodeBg from "@/components/ui/textmode-bg";
+import AsciiTextReveal from "@/components/ui/ascii-text-reveal";
 import { AnimatePresence, motion } from "motion/react";
 import ProjectListRow from "@/components/home/ProjectListRow";
 import GridButton from "@/components/evil-buttons/grid-button";
@@ -160,12 +161,12 @@ export default function HomeContent({ projects }) {
           <section className="h-[90vh] flex items-center justify-center py-20 px-4 text-center relative">
             <TextmodeBg />
             <div className="max-w-4xl mx-auto z-1">
-              <FadeIn direction="down" delay={0.2}>
+              <div>
                 <GridButton className="mb-4">Available for work</GridButton>
                 <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
-                  Hi, I&apos;m Adrian Garcia
+                  <AsciiTextReveal text="Hi, I'm Adrian Garcia" delay={300} />
                 </h1>
-              </FadeIn>
+              </div>
               <FadeIn direction="up" delay={0.4}>
                 <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
                   Full-stack engineer and trading systems architect building high-performance interfaces for institutional crypto markets. Engineering with a focus on real-time data pipelines, exchange connectivity, low-latency front-end architecture, and AI-assisted engineering.
