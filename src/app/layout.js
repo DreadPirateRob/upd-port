@@ -28,7 +28,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${GeistPixelCircle.variable}`}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -45,9 +45,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${GeistPixelCircle.variable} antialiased overflow-x-hidden`}
-      >
+      <body className="antialiased overflow-x-hidden">
         <ThemeProvider>
           <PageLoadOverlay />
           <Navigation />
