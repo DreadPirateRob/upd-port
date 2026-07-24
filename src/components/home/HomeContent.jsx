@@ -3,13 +3,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -28,6 +21,7 @@ import ProjectListRow from "@/components/home/ProjectListRow";
 import GridButton from "@/components/evil-buttons/grid-button";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import CaseStudyAccordion from "@/components/home/CaseStudyAccordion";
+import SkillCard from "@/components/home/SkillCard";
 
 export default function HomeContent({ projects }) {
   const [showAllExperience, setShowAllExperience] = useState(false);
@@ -206,35 +200,11 @@ export default function HomeContent({ projects }) {
                 className="grid grid-cols-1 md:grid-cols-24 gap-6"
                 staggerDelay={0.2}
               >
-                {skills.map((skill, index) => {
-                  return (
-                    <StaggerItem
-                      key={skill.slug}
-                      // className={skill.isEven ? "col-span-8" : "col-span-16"}
-                      className={skill.colSpan}
-                    >
-                      <HoverEffect effect="lift">
-                        <Card className="h-full border-2 transition-all duration-300 hover:border-primary/20">
-                          <CardHeader>
-                            <CardTitle>{skill.title}</CardTitle>
-                            <CardDescription>
-                              {skill.description}
-                            </CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="flex flex-wrap gap-2">
-                              {skill.tags.map((tag) => (
-                                <Badge key={tag} variant="secondary">
-                                  {tag}
-                                </Badge>
-                              ))}
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </HoverEffect>
-                    </StaggerItem>
-                  );
-                })}
+                {skills.map((skill) => (
+                  <StaggerItem key={skill.slug} className={skill.colSpan}>
+                    <SkillCard skill={skill} />
+                  </StaggerItem>
+                ))}
               </StaggerContainer>
             </div>
           </section>
