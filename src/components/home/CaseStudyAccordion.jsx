@@ -3,7 +3,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
-import Image from "next/image";
+import ProjectTextmode from "@/components/ui/project-textmode";
+import { getCaseStudyVisual } from "@/components/home/case-study-visuals";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ScrambleText } from "@/components/ui/scramble-text";
@@ -53,14 +54,10 @@ export default function CaseStudyAccordion({ projects }) {
             className="relative flex-1 min-w-0 min-h-0 overflow-hidden rounded-xl border border-white/10 bg-[#171717] cursor-pointer"
             onClick={() => handleSelect(index)}
           >
-            {/* Background image atmosphere */}
-            <Image
-              src={project.bigImage}
-              alt={project.title}
-              fill
-              className={`object-cover transition-all duration-500 ${
-                isActive ? "scale-105 opacity-20" : "scale-100 opacity-30"
-              }`}
+            {/* Abstract per-project animation (replaces cover image) */}
+            <ProjectTextmode
+              variant={getCaseStudyVisual(project.slug, index)}
+              active={isActive}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70" />
             {!isActive && (
