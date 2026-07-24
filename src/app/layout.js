@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { GeistPixelCircle } from "geist/font/pixel";
 import "./globals.css";
 import Navigation from "@/components/navigation";
 import PageLoadOverlay from "@/components/ui/page-load-overlay";
@@ -45,7 +46,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} ${GeistPixelCircle.variable} antialiased overflow-x-hidden`}
       >
         <ThemeProvider>
           <PageLoadOverlay />
