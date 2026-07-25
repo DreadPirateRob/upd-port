@@ -8,6 +8,7 @@ import { FadeIn } from "@/components/animations/AnimationWrapper";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import { ScrambleHeading } from "@/components/ui/scramble-text";
 import ProjectTextmode from "@/components/ui/project-textmode";
+import { textmodeHoverVisual } from "@/components/ui/textmode-hover-visual";
 
 const EMAIL = "adriangarcia9916@gmail.com";
 
@@ -58,18 +59,6 @@ const SOCIAL_ACTIONS = [
   },
 ];
 
-const FOOTER_TEXTMODE_VISUAL = {
-  chars: ["·", ":", "/", "+", "×"],
-  field(x, y, time) {
-    const diagonal = Math.sin(x * 0.62 - y * 0.48 - time * 5);
-    const interference = Math.sin((x + y) * 0.24 + time * 3) * 0.35;
-    return Math.max(0, Math.min(1, (diagonal + interference + 1.35) / 2.7));
-  },
-  color(value) {
-    const tone = Math.floor(12 + value * 52);
-    return [tone, tone, tone];
-  },
-};
 
 function FooterSocialAction({ action }) {
   const [active, setActive] = useState(false);
@@ -86,23 +75,20 @@ function FooterSocialAction({ action }) {
       onMouseLeave={() => setActive(false)}
       onFocus={() => setActive(true)}
       onBlur={() => setActive(false)}
-      className={`group relative isolate flex min-h-36 flex-col justify-between overflow-hidden bg-black px-5 py-5 transition-colors sm:px-6 sm:py-6 ${
-        action.href
-          ? "cursor-pointer hover:bg-neutral-950"
-          : "cursor-default text-white/45"
-      }`}
+      className={`group relative isolate flex min-h-36 flex-col justify-between overflow-hidden bg-black px-5 py-5 transition-colors sm:px-6 sm:py-6 ${action.href
+        ? "cursor-pointer hover:bg-neutral-950"
+        : "cursor-default text-white/45"
+        }`}
     >
       <ProjectTextmode
-        variant={FOOTER_TEXTMODE_VISUAL}
+        variant={textmodeHoverVisual}
         active={active}
-        className={`z-0 transition-opacity duration-300 ${
-          active ? "opacity-80" : "opacity-0"
-        }`}
+        className={`z-0 transition-opacity duration-300 ${active ? "opacity-80" : "opacity-0"
+          }`}
       />
       <span
-        className={`pointer-events-none absolute inset-0 z-[1] bg-black/35 transition-opacity duration-300 ${
-          active ? "opacity-100" : "opacity-0"
-        }`}
+        className={`pointer-events-none absolute inset-0 z-[1] bg-black/35 transition-opacity duration-300 ${active ? "opacity-100" : "opacity-0"
+          }`}
       />
 
       <span className="relative z-10 flex items-start justify-between gap-3">
@@ -191,62 +177,62 @@ export default function Footer() {
 
           <div className="relative z-10 mx-6 border-t border-white/10 sm:mx-8 lg:mx-12" />
 
-          <div className="relative z-10 grid gap-10 px-6 py-10 sm:grid-cols-2 sm:px-8 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr] lg:px-12 lg:py-12">
-            <div>
-              <p className="font-pixel text-lg text-white">Adrian Garcia</p>
-              <p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground">
-                Distributed systems engineer and architect focused on high-performance interfaces, real-time data pipelines and low-latency financial infrastructure.
-              </p>
-            </div>
-
-            <div>
-              <p className="font-pixel text-xs uppercase tracking-[0.18em] text-white/80">
-                Navigate
-              </p>
-              <nav className="mt-4 flex flex-col items-start gap-2.5" aria-label="Footer navigation">
-                {NAVIGATION.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-white"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-
-            <div>
-              <p className="font-pixel text-xs uppercase tracking-[0.18em] text-white/80">
-                Focus
-              </p>
-              <ul className="mt-4 space-y-2.5">
-                {FOCUS_AREAS.map((area) => (
-                  <li key={area} className="text-sm text-muted-foreground">
-                    {area}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="font-pixel text-xs uppercase tracking-[0.18em] text-white/80">
-                Contact
-              </p>
-              <div className="mt-4 space-y-4">
-                <div className="flex items-center gap-2 text-sm text-white/80">
-                  <span className="size-1.5 bg-emerald-300/80 shadow-[0_0_12px_rgba(110,231,183,0.55)]" />
-                  Available for work
-                </div>
-                <a
-                  href={`mailto:${EMAIL}`}
-                  className="block break-all text-sm text-muted-foreground transition-colors hover:text-white"
-                >
-                  {EMAIL}
-                </a>
-              </div>
-            </div>
-          </div>
+          {/* <div className="relative z-10 grid gap-10 px-6 py-10 sm:grid-cols-2 sm:px-8 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr] lg:px-12 lg:py-12"> */}
+          {/*   <div> */}
+          {/*     <p className="font-pixel text-lg text-white">Adrian Garcia</p> */}
+          {/*     <p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground"> */}
+          {/*       Distributed systems engineer and architect focused on high-performance interfaces, real-time data pipelines and low-latency financial infrastructure. */}
+          {/*     </p> */}
+          {/*   </div> */}
+          {/**/}
+          {/*   <div> */}
+          {/*     <p className="font-pixel text-xs uppercase tracking-[0.18em] text-white/80"> */}
+          {/*       Navigate */}
+          {/*     </p> */}
+          {/*     <nav className="mt-4 flex flex-col items-start gap-2.5" aria-label="Footer navigation"> */}
+          {/*       {NAVIGATION.map((item) => ( */}
+          {/*         <Link */}
+          {/*           key={item.href} */}
+          {/*           href={item.href} */}
+          {/*           className="text-sm text-muted-foreground transition-colors hover:text-white" */}
+          {/*         > */}
+          {/*           {item.label} */}
+          {/*         </Link> */}
+          {/*       ))} */}
+          {/*     </nav> */}
+          {/*   </div> */}
+          {/**/}
+          {/*   <div> */}
+          {/*     <p className="font-pixel text-xs uppercase tracking-[0.18em] text-white/80"> */}
+          {/*       Focus */}
+          {/*     </p> */}
+          {/*     <ul className="mt-4 space-y-2.5"> */}
+          {/*       {FOCUS_AREAS.map((area) => ( */}
+          {/*         <li key={area} className="text-sm text-muted-foreground"> */}
+          {/*           {area} */}
+          {/*         </li> */}
+          {/*       ))} */}
+          {/*     </ul> */}
+          {/*   </div> */}
+          {/**/}
+          {/*   <div> */}
+          {/*     <p className="font-pixel text-xs uppercase tracking-[0.18em] text-white/80"> */}
+          {/*       Contact */}
+          {/*     </p> */}
+          {/*     <div className="mt-4 space-y-4"> */}
+          {/*       <div className="flex items-center gap-2 text-sm text-white/80"> */}
+          {/*         <span className="size-1.5 bg-emerald-300/80 shadow-[0_0_12px_rgba(110,231,183,0.55)]" /> */}
+          {/*         Available for work */}
+          {/*       </div> */}
+          {/*       <a */}
+          {/*         href={`mailto:${EMAIL}`} */}
+          {/*         className="block break-all text-sm text-muted-foreground transition-colors hover:text-white" */}
+          {/*       > */}
+          {/*         {EMAIL} */}
+          {/*       </a> */}
+          {/*     </div> */}
+          {/*   </div> */}
+          {/* </div> */}
 
           {/* <div className="relative z-10 mx-6 flex flex-col gap-3 border-t border-white/10 py-5 text-xs text-muted-foreground sm:mx-8 sm:flex-row sm:items-center sm:justify-between lg:mx-12"> */}
           {/*   <p>© {new Date().getFullYear()} Adrian Garcia</p> */}
