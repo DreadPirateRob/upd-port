@@ -68,7 +68,7 @@ export default function DistributedMdPlatformV3Page() {
                     </p>
                   </div>
 
-                  <dl className="grid gap-px bg-border sm:grid-cols-2 lg:col-span-4 xl:grid-cols-4">
+                  <dl className="grid gap-px bg-border sm:grid-cols-2 lg:col-span-4 lg:grid-cols-4">
                     {projectDetails.metrics.slice(0, 4).map((metric) => (
                       <div
                         key={metric.label}
