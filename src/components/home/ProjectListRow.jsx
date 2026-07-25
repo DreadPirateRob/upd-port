@@ -4,8 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import { ScrambleText } from "@/components/ui/scramble-text";
 
 export default function ProjectListRow({ project, index }) {
@@ -20,14 +19,14 @@ export default function ProjectListRow({ project, index }) {
       Soon
     </Badge>
   ) : (
-    <span
-      aria-hidden="true"
-      className={cn(
-        buttonVariants({ variant: "outline", size: "icon" }),
-        "text-muted-foreground/70 group-hover:text-primary group-hover:border-primary/40"
-      )}
-    >
-      <ArrowUpRight className="h-4 w-4" />
+    <span aria-hidden="true">
+      <ClickPowerUp
+        as="span"
+        variant="secondary"
+        className="size-10 p-0"
+      >
+        <ArrowUpRight className="size-4" />
+      </ClickPowerUp>
     </span>
   );
 

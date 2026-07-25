@@ -76,12 +76,16 @@ export default function CaseStudyAccordion({ projects }) {
                   rest: () => ({
                     x: 0,
                     y: 0,
+                    width: 12,
+                    height: 12,
                     borderColor: "rgba(255,255,255,0.4)",
                   }),
                   hover: (corner) => ({
-                    x: corner.includes("right") ? 4 : -4,
-                    y: corner.includes("bottom") ? 4 : -4,
-                    borderColor: "rgba(255,255,255,0.7)",
+                    x: corner.includes("right") ? 6 : -6,
+                    y: corner.includes("bottom") ? 6 : -6,
+                    width: 18,
+                    height: 18,
+                    borderColor: "rgba(255,255,255,0.75)",
                   }),
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
