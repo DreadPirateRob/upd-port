@@ -1,104 +1,101 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useInView } from "motion/react";
 import { cn } from "@/lib/utils";
 
-// Renders an abstract textmode.js animation into an absolutely-positioned layer.
-// `active` gates the full render — when false the panel just clears to black, so
-// several instances (one per accordion panel) can stay mounted without churning
-// WebGL contexts on every auto-cycle.
+const CELL_SIZE = 16;
+const FRAME_INTERVAL = 1000 / 15;
+
 export default function ProjectTextmode({ variant, active = true, className }) {
-  const containerRef = useRef(null);
-  const activeRef = useRef(active);
-  activeRef.current = active;
+  const canvasRef = useRef(null);
+  const isVisible = useInView(canvasRef);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return undefined;
+    const canvas = canvasRef.current;
+    if (!canvas) return undefined;
 
-    let destroyed = false;
-    let tm;
-    let ro;
+    const context = canvas.getContext("2d", { alpha: false });
+    if (!context) return undefined;
 
-    (async () => {
-      const { textmode } = await import("textmode.js");
-      if (destroyed || !container) return;
+    let frameId;
+    let lastFrame = 0;
 
-      const rect = container.getBoundingClientRect();
-      tm = textmode.create({
-        width: Math.max(1, Math.round(rect.width)),
-        height: Math.max(1, Math.round(rect.height)),
-        fontSize: 16,
-        frameRate: 30,
-      });
-
-      if (destroyed) {
-        tm.destroy?.();
-        return;
+    function resize() {
+      const width = Math.max(1, Math.round(canvas.clientWidth));
+      const height = Math.max(1, Math.round(canvas.clientHeight));
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
       }
+    }
 
-      const canvas = tm.canvas;
-      if (canvas && canvas.parentNode !== container) {
-        canvas.style.cssText =
-          "position:absolute;inset:0;width:100%;height:100%;pointer-events:none;";
-        container.appendChild(canvas);
-      }
+    function draw(time = 0) {
+      const width = canvas.width;
+      const height = canvas.height;
+      context.fillStyle = "#000";
+      context.fillRect(0, 0, width, height);
 
+      if (!active) return;
+
+      const cols = Math.ceil(width / CELL_SIZE);
+      const rows = Math.ceil(height / CELL_SIZE);
+      const t = time * 0.0009;
       const { chars, field, color } = variant;
 
-      tm.draw(() => {
-        tm.background(0, 0, 0, 255);
-        if (!activeRef.current) return;
+      context.font = "12px ui-monospace, SFMono-Regular, Menlo, monospace";
+      context.textAlign = "center";
+      context.textBaseline = "middle";
 
-        const cols = tm.grid.cols;
-        const rows = tm.grid.rows;
-        const t = tm.frameCount * 0.03;
-
-        for (let y = 0; y < rows; y++) {
-          for (let x = 0; x < cols; x++) {
-            const n = field(x, y, t, cols, rows);
-            const idx = Math.min(
-              chars.length - 1,
-              Math.max(0, Math.floor(n * chars.length)),
-            );
-            const [r, g, b] = color(n);
-
-            tm.push();
-            tm.translate(x - cols / 2, y - rows / 2, 0);
-            tm.char(chars[idx]);
-            tm.charColor(r, g, b);
-            tm.point();
-            tm.pop();
-          }
-        }
-      });
-
-      ro = new ResizeObserver(() => {
-        const r = container.getBoundingClientRect();
-        if (r.width > 0 && r.height > 0) {
-          tm.resizeCanvas?.(Math.round(r.width), Math.round(r.height));
-        }
-      });
-      ro.observe(container);
-    })();
-
-    return () => {
-      destroyed = true;
-      ro?.disconnect();
-      if (tm) {
-        try {
-          tm.destroy?.() ?? tm.remove?.();
-        } catch (_) {
-          /* noop */
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const n = field(x, y, t, cols, rows);
+          const index = Math.min(
+            chars.length - 1,
+            Math.max(0, Math.floor(n * chars.length)),
+          );
+          const [r, g, b] = color(n);
+          context.fillStyle = `rgb(${r} ${g} ${b})`;
+          context.fillText(
+            chars[index],
+            (x + 0.5) * CELL_SIZE,
+            (y + 0.5) * CELL_SIZE,
+          );
         }
       }
+    }
+
+    function animate(time) {
+      if (time - lastFrame >= FRAME_INTERVAL) {
+        lastFrame = time;
+        draw(time);
+      }
+      frameId = requestAnimationFrame(animate);
+    }
+
+    resize();
+    draw();
+
+    const observer = new ResizeObserver(() => {
+      resize();
+      if (!active || !isVisible) draw();
+    });
+    observer.observe(canvas);
+
+    if (active && isVisible) {
+      frameId = requestAnimationFrame(animate);
+    }
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frameId);
     };
-  }, [variant]);
+  }, [active, isVisible, variant]);
 
   return (
-    <div
-      ref={containerRef}
-      className={cn("absolute inset-0 overflow-hidden", className)}
+    <canvas
+      ref={canvasRef}
+      className={cn("absolute inset-0 size-full", className)}
       aria-hidden="true"
     />
   );

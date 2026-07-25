@@ -1,96 +1,56 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "motion/react";
 import { cn } from "@/lib/utils";
 
 const CHARS = [".", ":", "+", "x"];
+const CELL_COUNT = 16;
+const INITIAL_GLYPHS = Array.from(
+  { length: CELL_COUNT },
+  (_, index) => CHARS[(index * 3 + Math.floor(index / 4)) % CHARS.length],
+);
 
 export default function MiniTextmodeIcon({ className }) {
   const containerRef = useRef(null);
+  const isVisible = useInView(containerRef, { margin: "80px 0px" });
+  const [glyphs, setGlyphs] = useState(INITIAL_GLYPHS);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return undefined;
+    if (!isVisible) return undefined;
 
-    let destroyed = false;
-    let tm;
-
-    (async () => {
-      const { textmode } = await import("textmode.js");
-      if (destroyed || !container) return;
-
-      tm = textmode.create({
-        width: 28,
-        height: 28,
-        fontSize: 6,
-        frameRate: 10,
+    const interval = setInterval(() => {
+      setGlyphs((current) => {
+        const next = [...current];
+        const index = Math.floor(Math.random() * CELL_COUNT);
+        const currentIndex = CHARS.indexOf(current[index]);
+        const offset = 1 + Math.floor(Math.random() * (CHARS.length - 1));
+        next[index] = CHARS[(currentIndex + offset) % CHARS.length];
+        return next;
       });
+    }, 700);
 
-      if (destroyed) {
-        tm.destroy?.();
-        return;
-      }
-
-      const canvas = tm.canvas;
-      if (canvas && canvas.parentNode !== container) {
-        canvas.style.cssText =
-          "position:absolute;inset:0;width:100%;height:100%;pointer-events:none;";
-        container.appendChild(canvas);
-      }
-
-      const glyphs = new Map();
-
-      tm.draw(() => {
-        tm.background(10, 10, 10, 255);
-
-        const cols = tm.grid.cols;
-        const rows = tm.grid.rows;
-        const t = tm.frameCount * 0.12;
-
-        for (let y = 0; y < rows; y++) {
-          for (let x = 0; x < cols; x++) {
-            const pulse = (Math.sin(t - x * 0.65 - y * 0.5) + 1) * 0.5;
-            const tone = Math.floor(62 + pulse * 76);
-            const key = `${x}:${y}`;
-            let glyph = glyphs.get(key) ?? CHARS[(x + y) % CHARS.length];
-
-            if (Math.random() < 0.008) {
-              const currentIndex = CHARS.indexOf(glyph);
-              const offset = 1 + Math.floor(Math.random() * (CHARS.length - 1));
-              glyph = CHARS[(currentIndex + offset) % CHARS.length];
-              glyphs.set(key, glyph);
-            }
-
-            tm.push();
-            tm.translate(x - cols / 2, y - rows / 2, 0);
-            tm.char(glyph);
-            tm.charColor(tone, tone, tone);
-            tm.point();
-            tm.pop();
-          }
-        }
-      });
-    })();
-
-    return () => {
-      destroyed = true;
-      if (tm) {
-        try {
-          tm.destroy?.() ?? tm.remove?.();
-        } catch (_) {
-          /* noop */
-        }
-      }
-    };
-  }, []);
+    return () => clearInterval(interval);
+  }, [isVisible]);
 
   return (
     <span
       ref={containerRef}
       className={cn(
-        "relative size-7 shrink-0 overflow-hidden rounded border border-white/10 bg-neutral-950",
+        "grid size-7 shrink-0 grid-cols-4 grid-rows-4 overflow-hidden rounded border border-white/10 bg-neutral-950 p-[3px]",
+        className,
       )}
       aria-hidden="true"
-    />
+    >
+      {glyphs.map((glyph, index) => (
+        <span
+          key={index}
+          className="flex items-center justify-center font-mono text-[5px] leading-none text-neutral-300"
+          style={{ opacity: 0.3 + ((index * 3) % 5) * 0.1 }}
+        >
+          {glyph}
+        </span>
+      ))}
+    </span>
   );
 }
