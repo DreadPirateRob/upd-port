@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { DotmSquare11 } from "@/components/ui/dotm-square-11";
+import MiniTextmodeIcon from "@/components/ui/mini-textmode-icon";
 import { ScrambleText } from "@/components/ui/scramble-text";
 
 const SCRAMBLE_CONFIG = {
@@ -14,11 +14,7 @@ const SCRAMBLE_CONFIG = {
 };
 
 function GridIcon() {
-  return (
-    <div className="bg-foreground/90 size-7 rounded flex items-center justify-center flex-shrink-0">
-      <DotmSquare11 dotSize={2} cellPadding={1} className="text-background" boxSize={21} minSize={16} />
-    </div>
-  );
+  return <MiniTextmodeIcon />;
 }
 
 export default function GridButton({ children, className, ...props }) {
