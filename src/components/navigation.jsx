@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 
 export default function Navigation() {
   return (
@@ -21,19 +21,33 @@ export default function Navigation() {
             </Link>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link href="/#skills-section">
-              <Button variant="ghost">Skills</Button>
-            </Link>
-
-            <Link href="/#about-section">
-              <Button variant="ghost">Experience</Button>
+              <ClickPowerUp
+                variant="secondary"
+                className="px-3 py-2 text-[0.65rem] sm:px-5 sm:text-xs"
+              >
+                Skills
+              </ClickPowerUp>
             </Link>
 
             <Link href="/#projects-section">
-              <Button variant="ghost">Projects</Button>
+              <ClickPowerUp
+                variant="secondary"
+                className="px-3 py-2 text-[0.65rem] sm:px-5 sm:text-xs"
+              >
+                Projects
+              </ClickPowerUp>
             </Link>
-            {/* <Badge variant="secondary">Demo</Badge> */}
+
+            <Link href="/#experience-section">
+              <ClickPowerUp
+                variant="secondary"
+                className="px-3 py-2 text-[0.65rem] sm:px-5 sm:text-xs"
+              >
+                Experience
+              </ClickPowerUp>
+            </Link>
           </div>
         </div>
       </div>

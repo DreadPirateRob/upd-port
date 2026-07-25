@@ -304,7 +304,7 @@ export default function HomeContent({ projects }) {
           <Separator />
 
           {/* Experience Section */}
-          <section>
+          <section id="experience-section" className="scroll-mt-24">
             <div className="container mx-auto max-w-5xl px-4 py-24">
               <div className="mx-4 grid gap-4 sm:grid-cols-12">
                 <div className="relative col-span-12 space-y-6">
