@@ -15,10 +15,11 @@ const DEFAULTS = {
   ambientMaxChars: 3,
   ambientFlickerMs: 100,
   ambientFlickerRounds: 3,
+  chars: GLITCH_CHARS,
 };
 
-function getRandomChar() {
-  return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+function getRandomChar(chars) {
+  return chars[Math.floor(Math.random() * chars.length)];
 }
 
 function renderLines(str) {
@@ -65,7 +66,7 @@ export function ScrambleText({ text, trigger, config, layout = "inline", content
         const timer = setTimeout(() => {
           setDisplay((prev) => {
             const arr = prev.split("");
-            arr[i] = getRandomChar();
+            arr[i] = getRandomChar(cfg.chars);
             return arr.join("");
           });
         }, charDelay + r * cfg.tickMs);
@@ -116,7 +117,7 @@ export function ScrambleText({ text, trigger, config, layout = "inline", content
             setTimeout(() => {
               setDisplay((prev) => {
                 const arr = prev.split("");
-                arr[idx] = getRandomChar();
+                arr[idx] = getRandomChar(cfg.chars);
                 return arr.join("");
               });
             }, r * cfg.ambientFlickerMs);

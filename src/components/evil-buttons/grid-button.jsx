@@ -11,6 +11,7 @@ const SCRAMBLE_CONFIG = {
   scrambleRounds: 3,
   ambientMaxInterval: 7000,
   ambientMaxChars: 2,
+  chars: "[]{}|_-·<>/\\!@#$%^&*",
 };
 
 function GridIcon() {
