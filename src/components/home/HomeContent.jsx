@@ -200,11 +200,11 @@ export default function HomeContent({ projects }) {
               <FadeIn direction="up" delay={0.6}>
                 <div className="flex gap-4 justify-center flex-wrap">
                   <Link href="#projects-section">
-                    <ClickPowerUp>View Projects</ClickPowerUp>
+                    <ClickPowerUp as="span">View Projects</ClickPowerUp>
                   </Link>
                   <HoverEffect effect="scale">
                     <a href="mailto:adriangarcia9916@gmail.com">
-                      <ClickPowerUp variant="secondary">Contact Me</ClickPowerUp>
+                      <ClickPowerUp as="span" variant="secondary">Contact Me</ClickPowerUp>
                     </a>
                   </HoverEffect>
                 </div>

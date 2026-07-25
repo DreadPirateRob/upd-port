@@ -8,8 +8,16 @@ import { getCaseStudyVisual } from "@/components/home/case-study-visuals";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ScrambleText } from "@/components/ui/scramble-text";
+import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 
 const INTERVAL_MS = 10000;
+
+const PANEL_CORNERS = [
+  { id: "top-right", className: "absolute top-0 right-0 size-3 border-t border-r z-30" },
+  { id: "top-left", className: "absolute top-0 left-0 size-3 border-t border-l z-30" },
+  { id: "bottom-left", className: "absolute bottom-0 left-0 size-3 border-b border-l z-30" },
+  { id: "bottom-right", className: "absolute right-0 bottom-0 size-3 border-r border-b z-30" },
+];
 
 export default function CaseStudyAccordion({ projects }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -49,11 +57,39 @@ export default function CaseStudyAccordion({ projects }) {
         return (
           <motion.div
             key={project.slug}
-            animate={{ flexGrow: isActive ? 4 : 1 }}
+            variants={{
+              rest: { flexGrow: isActive ? 4 : 1 },
+              hover: { flexGrow: isActive ? 4 : 1 },
+            }}
+            initial="rest"
+            animate="rest"
+            whileHover="hover"
             transition={{ type: "spring", stiffness: 220, damping: 32 }}
-            className="relative flex-1 min-w-0 min-h-0 overflow-hidden rounded-xl border border-white/10 bg-[#171717] cursor-pointer"
+            className="relative flex-1 min-w-0 min-h-0 cursor-pointer"
             onClick={() => handleSelect(index)}
           >
+            {PANEL_CORNERS.map(({ id, className }) => (
+              <motion.div
+                key={id}
+                custom={id}
+                variants={{
+                  rest: () => ({
+                    x: 0,
+                    y: 0,
+                    borderColor: "rgba(255,255,255,0.4)",
+                  }),
+                  hover: (corner) => ({
+                    x: corner.includes("right") ? 4 : -4,
+                    y: corner.includes("bottom") ? 4 : -4,
+                    borderColor: "rgba(255,255,255,0.7)",
+                  }),
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className={className}
+              />
+            ))}
+
+            <div className="absolute inset-0 overflow-hidden border border-white/10 bg-black">
             {/* Abstract per-project animation (replaces cover image) */}
             <ProjectTextmode
               variant={getCaseStudyVisual(project.slug, index)}
@@ -133,10 +169,17 @@ export default function CaseStudyAccordion({ projects }) {
                     ) : (
                       <Link
                         href={`/projects/${project.slug}`}
-                        onClick={(e) => e.stopPropagation()}
-                        className="shrink-0 h-10 w-10 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 flex items-center justify-center text-white/80 hover:text-white transition-colors"
+                        onClick={(event) => event.stopPropagation()}
+                        className="shrink-0"
+                        aria-label={`View ${project.title} case study`}
                       >
-                        <ArrowUpRight className="h-4 w-4" />
+                        <ClickPowerUp
+                          as="span"
+                          variant="secondary"
+                          className="size-10 p-0"
+                        >
+                          <ArrowUpRight className="size-4" />
+                        </ClickPowerUp>
                       </Link>
                     )}
                   </div>
@@ -154,6 +197,7 @@ export default function CaseStudyAccordion({ projects }) {
                 }}
               />
             )}
+            </div>
           </motion.div>
         );
       })}

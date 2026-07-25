@@ -25,6 +25,7 @@ export default function Navigation() {
             <Link href="/#skills-section">
               <ClickPowerUp
                 variant="secondary"
+                as="span"
                 className="px-3 py-2 text-[0.65rem] sm:px-5 sm:text-xs"
               >
                 Skills
@@ -34,6 +35,7 @@ export default function Navigation() {
             <Link href="/#projects-section">
               <ClickPowerUp
                 variant="secondary"
+                as="span"
                 className="px-3 py-2 text-[0.65rem] sm:px-5 sm:text-xs"
               >
                 Projects
@@ -43,6 +45,7 @@ export default function Navigation() {
             <Link href="/#experience-section">
               <ClickPowerUp
                 variant="secondary"
+                as="span"
                 className="px-3 py-2 text-[0.65rem] sm:px-5 sm:text-xs"
               >
                 Experience

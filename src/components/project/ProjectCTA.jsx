@@ -21,12 +21,12 @@ export default function ProjectCTA() {
           <div className="flex gap-4 justify-center">
             <HoverEffect effect="scale">
               <a href="mailto:adriangarcia9916@gmail.com">
-                <ClickPowerUp>Get In Touch</ClickPowerUp>
+                <ClickPowerUp as="span">Get In Touch</ClickPowerUp>
               </a>
             </HoverEffect>
             <Link href="/#projects-section">
               <HoverEffect effect="scale">
-                <ClickPowerUp variant="secondary">View More Projects</ClickPowerUp>
+                <ClickPowerUp as="span" variant="secondary">View More Projects</ClickPowerUp>
               </HoverEffect>
             </Link>
           </div>

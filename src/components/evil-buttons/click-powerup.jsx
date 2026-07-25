@@ -54,6 +54,7 @@ const CORNERS = [
 
 export const ClickPowerUp = ({
   children,
+  as: Element = "button",
   className,
   variant = "primary",
   tapDuration = 500,
@@ -106,9 +107,10 @@ export const ClickPowerUp = ({
         />
       ))}
 
-      <button
+      <Element
+        type={Element === "button" ? "button" : undefined}
         className={cn(
-          "relative overflow-hidden px-10 py-3 font-medium uppercase",
+          "relative inline-flex items-center justify-center overflow-hidden px-10 py-3 font-medium uppercase",
           v.buttonClass,
           className,
         )}
@@ -132,7 +134,7 @@ export const ClickPowerUp = ({
             children
           )}
         </motion.span>
-      </button>
+      </Element>
     </motion.div>
   );
 };
