@@ -2,6 +2,7 @@ import Link from "next/link";
 import CaseStudyAccordion from "@/components/home/CaseStudyAccordion";
 import Footer from "@/components/footer";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
+import MarketDataArchitecture from "@/components/project-v3/MarketDataArchitecture";
 import { getAllProjects } from "@/lib/projects";
 import projectDetails from "@/data/project-v2/distributed-md-platform";
 
@@ -10,6 +11,7 @@ const project = getAllProjects().find(
 );
 
 const challenge = projectDetails.sections[0];
+const architecture = projectDetails.sections[1];
 const challengeConstraints = [
   "150–300ms or more in roundtrip delay before application logic begins.",
   "Multiple WebSocket connections with exchange-specific lifecycle behavior.",
@@ -64,6 +66,15 @@ export default function DistributedMdPlatformV3Page() {
                       >
                         <span className="text-muted-foreground">02</span>
                         Challenge
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#architecture"
+                        className="-ml-px flex items-center gap-3 border-l border-transparent px-3 py-2 font-pixel text-xs uppercase tracking-wide text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                      >
+                        <span className="text-muted-foreground">03</span>
+                        Architecture
                       </a>
                     </li>
                   </ol>
@@ -170,6 +181,11 @@ export default function DistributedMdPlatformV3Page() {
                     </div>
                   </div>
                 </section>
+
+                <MarketDataArchitecture
+                  beforeDescription={challenge.figure.caption}
+                  afterDescription={architecture.figure.caption}
+                />
               </article>
             </div>
           </section>
