@@ -266,6 +266,44 @@ export default function HomeContent({ projects }) {
 
           <Separator />
 
+          {/* Projects — Curated List */}
+
+          <section className="py-16 px-4 scroll-mt-24" id="projects-section">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex items-end justify-between gap-6 mb-10">
+                <div className="max-w-xl text-left">
+                  <FadeIn direction="left">
+                    <GridButton className="mb-4">Projects</GridButton>
+                  </FadeIn>
+                  <FadeIn direction="left" delay={0.2}>
+                    <ScrambleHeading
+                      className="text-4xl sm:text-5xl font-bold tracking-tight mb-0"
+                      text={"Crafted with strategy, \nengineered with precision"}
+                      config={HEADING_SCRAMBLE}
+                    />
+                  </FadeIn>
+                </div>
+                <p className="hidden sm:block text-sm italic text-muted-foreground/60 whitespace-nowrap">
+                  {String(projects.length).padStart(2, "0")} entries
+                </p>
+              </div>
+              <div className="space-y-10">
+                <CaseStudyAccordion projects={projects} />
+
+                <StaggerContainer className="border-t border-border pt-10" staggerDelay={0.2}>
+                  {projects.map((project, index) => (
+                    <StaggerItem key={project.slug}>
+                      <ProjectListRow project={project} index={index} />
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
+              </div>
+            </div>
+          </section>
+
+          <Separator />
+
+          {/* Experience Section */}
           <section>
             <div className="container mx-auto max-w-5xl px-4 py-24">
               <div className="mx-4 grid gap-4 sm:grid-cols-12">
@@ -329,42 +367,6 @@ export default function HomeContent({ projects }) {
                     </div>
                   )}
                 </div>
-              </div>
-            </div>
-          </section>
-
-          <Separator />
-
-          {/* Projects — Curated List */}
-          <section className="py-16 px-4 scroll-mt-24" id="projects-section">
-            <div className="max-w-5xl mx-auto">
-              <div className="flex items-end justify-between gap-6 mb-10">
-                <div className="max-w-xl text-left">
-                  <FadeIn direction="left">
-                    <GridButton className="mb-4">Projects</GridButton>
-                  </FadeIn>
-                  <FadeIn direction="left" delay={0.2}>
-                    <ScrambleHeading
-                      className="text-4xl sm:text-5xl font-bold tracking-tight mb-0"
-                      text={"Crafted with strategy, \nengineered with precision"}
-                      config={HEADING_SCRAMBLE}
-                    />
-                  </FadeIn>
-                </div>
-                <p className="hidden sm:block text-sm italic text-muted-foreground/60 whitespace-nowrap">
-                  {String(projects.length).padStart(2, "0")} entries
-                </p>
-              </div>
-              <div className="space-y-10">
-                <CaseStudyAccordion projects={projects} />
-
-                <StaggerContainer className="border-t border-border pt-10" staggerDelay={0.2}>
-                  {projects.map((project, index) => (
-                    <StaggerItem key={project.slug}>
-                      <ProjectListRow project={project} index={index} />
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
               </div>
             </div>
           </section>
