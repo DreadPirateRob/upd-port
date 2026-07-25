@@ -41,7 +41,7 @@ export default function ProjectListRow({ project, index }) {
   );
 
   const content = (
-    <div className="relative isolate grid grid-cols-[auto_1fr_auto] items-start gap-4 overflow-hidden border-b border-border py-8 md:gap-8">
+    <div className="relative isolate grid grid-cols-[auto_1fr_auto] items-start gap-4 overflow-hidden border-b border-border px-4 py-8 sm:px-6 md:gap-8 lg:px-8">
       <ProjectTextmode
         variant={textmodeHoverVisual}
         active={isHovered}
