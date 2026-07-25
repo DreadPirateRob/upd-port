@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
+import { ArrowUpRight, Coffee, Github, Mail, Youtube } from "lucide-react";
 import { FadeIn } from "@/components/animations/AnimationWrapper";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import { ScrambleHeading } from "@/components/ui/scramble-text";
@@ -29,6 +30,32 @@ const FOCUS_AREAS = [
   "Financial infrastructure",
 ];
 
+const SOCIAL_ACTIONS = [
+  {
+    label: "GitHub",
+    detail: "Open source and experiments",
+    href: "https://github.com/DreadPirateRob",
+    icon: Github,
+    external: true,
+  },
+  {
+    label: "Email",
+    detail: "Start a conversation",
+    href: `mailto:${EMAIL}`,
+    icon: Mail,
+  },
+  {
+    label: "Buy Me a Coffee",
+    detail: "Link coming soon",
+    icon: Coffee,
+  },
+  {
+    label: "YouTube",
+    detail: "Coming soon",
+    icon: Youtube,
+  },
+];
+
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-neutral-950 px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
@@ -37,7 +64,7 @@ export default function Footer() {
         initial="rest"
         animate="rest"
         whileHover="hover"
-        className="relative mx-auto max-w-6xl"
+        className="relative mx-auto max-w-7xl"
       >
         {FOOTER_CORNERS.map(({ id, className }) => (
           <motion.div
@@ -69,9 +96,10 @@ export default function Footer() {
 
           <div className="relative z-10 grid gap-8 px-6 py-10 sm:px-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:px-12 lg:py-12">
             <FadeIn direction="up">
-              <p className="mb-3 text-sm text-muted-foreground">
-                Open to building high-performance systems.
-              </p>
+              <div className="flex items-center gap-2 text-sm text-white/80">
+                <span className="size-1.5 bg-emerald-300/80 shadow-[0_0_12px_rgba(110,231,183,0.55)]" />
+                Available for work
+              </div>
               <a
                 href={`mailto:${EMAIL}`}
                 className="font-pixel text-xl tracking-tight text-white transition-colors hover:text-white/70 sm:text-3xl lg:text-4xl"
@@ -152,12 +180,52 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="relative z-10 mx-6 flex flex-col gap-3 border-t border-white/10 py-5 text-xs text-muted-foreground sm:mx-8 sm:flex-row sm:items-center sm:justify-between lg:mx-12">
-            <p>© {new Date().getFullYear()} Adrian Garcia</p>
-            <p>Designed and built with Next.js</p>
+          {/* <div className="relative z-10 mx-6 flex flex-col gap-3 border-t border-white/10 py-5 text-xs text-muted-foreground sm:mx-8 sm:flex-row sm:items-center sm:justify-between lg:mx-12"> */}
+          {/*   <p>© {new Date().getFullYear()} Adrian Garcia</p> */}
+          {/*   <p>Designed and built with Next.js</p> */}
+          {/* </div> */}
+
+          <div className="relative z-10 grid grid-cols-2 gap-px border-y border-white/10 bg-white/10 lg:grid-cols-4">
+            {SOCIAL_ACTIONS.map((action) => {
+              const Icon = action.icon;
+              const Element = action.href ? "a" : "div";
+
+              return (
+                <Element
+                  key={action.label}
+                  href={action.href}
+                  target={action.external ? "_blank" : undefined}
+                  rel={action.external ? "noreferrer" : undefined}
+                  aria-disabled={action.href ? undefined : true}
+                  className={`relative isolate flex min-h-36 flex-col justify-between overflow-hidden bg-black px-5 py-5 transition-colors sm:px-6 sm:py-6 ${
+                    action.href
+                      ? "group cursor-pointer hover:bg-neutral-950"
+                      : "cursor-default text-white/45"
+                  }`}
+                >
+                  <span className="pointer-events-none absolute inset-0 -z-10 bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.045)_0,rgba(255,255,255,0.045)_1px,transparent_0,transparent_6px)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                  <span className="flex items-start justify-between gap-3">
+                    <span className="flex items-center gap-2.5">
+                      <Icon className="size-4 shrink-0" />
+                      <span className="font-pixel text-xs uppercase tracking-wide sm:text-sm">
+                        {action.label}
+                      </span>
+                    </span>
+                    {action.href && (
+                      <ArrowUpRight className="size-4 shrink-0 text-white/40 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+                    )}
+                  </span>
+
+                  <span className="text-xs leading-5 text-muted-foreground">
+                    {action.detail}
+                  </span>
+                </Element>
+              );
+            })}
           </div>
 
-          <div className="relative z-10 flex h-28 items-end justify-center border-t border-white/5 px-4 pt-8 sm:h-40 lg:h-48">
+          <div className="relative z-10 flex h-28 items-end justify-center border-t border-white/5 px-4 pt-8 pb-4 sm:h-40 lg:h-48">
             <ScrambleHeading
               as="p"
               className="w-max whitespace-nowrap font-pixel text-[clamp(2.5rem,11.5vw,9.5rem)] font-bold leading-none"
