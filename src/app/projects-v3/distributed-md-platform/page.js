@@ -1,5 +1,7 @@
+import Link from "next/link";
 import CaseStudyAccordion from "@/components/home/CaseStudyAccordion";
 import Footer from "@/components/footer";
+import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import { getAllProjects } from "@/lib/projects";
 import projectDetails from "@/data/project-v2/distributed-md-platform";
 
@@ -21,6 +23,13 @@ export default function DistributedMdPlatformV3Page() {
 
         <div className="col-start-3 row-start-1 min-h-screen max-sm:col-span-full max-sm:col-start-1">
           <section className="px-4 pb-16 pt-28 sm:px-6 lg:px-10 lg:pt-32">
+            <div className="mx-auto mb-6 max-w-7xl">
+              <Link href="/" aria-label="Back to home">
+                <ClickPowerUp as="span" variant="secondary">
+                  ← Back to home
+                </ClickPowerUp>
+              </Link>
+            </div>
             <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-8">
               <aside className="lg:sticky lg:top-28 lg:self-start">
                 <nav
