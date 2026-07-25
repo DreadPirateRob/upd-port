@@ -1,7 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { GeistPixelCircle } from "geist/font/pixel";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 import Navigation from "@/components/navigation";
+import SmoothScroll from "@/components/smooth-scroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`dark ${geistSans.variable} ${geistMono.variable} ${GeistPixelCircle.variable}`}>
       <body className="antialiased overflow-x-hidden">
+        <SmoothScroll />
         <Navigation />
         <main>{children}</main>
       </body>
