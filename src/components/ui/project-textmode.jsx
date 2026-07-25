@@ -20,6 +20,7 @@ export default function ProjectTextmode({ variant, active = true, className }) {
 
     let frameId;
     let lastFrame = 0;
+    let startedAt;
 
     function resize() {
       const width = Math.max(1, Math.round(canvas.clientWidth));
@@ -66,9 +67,10 @@ export default function ProjectTextmode({ variant, active = true, className }) {
     }
 
     function animate(time) {
+      if (startedAt === undefined) startedAt = time;
       if (time - lastFrame >= FRAME_INTERVAL) {
         lastFrame = time;
-        draw(time);
+        draw(time - startedAt);
       }
       frameId = requestAnimationFrame(animate);
     }

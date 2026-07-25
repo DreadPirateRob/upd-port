@@ -19,22 +19,22 @@ const PANEL_CORNERS = [
   { id: "bottom-right", className: "absolute right-0 bottom-0 size-3 border-r border-b z-30" },
 ];
 
-export default function CaseStudyAccordion({ projects }) {
+export default function CaseStudyAccordion({ projects, articleMode = false }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [resumeCount, setResumeCount] = useState(0);
 
   useEffect(() => {
-    if (isHovered) return;
+    if (articleMode || isHovered || projects.length < 2) return undefined;
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % projects.length);
     }, INTERVAL_MS);
     return () => clearInterval(timer);
-  }, [isHovered, projects.length]);
+  }, [articleMode, isHovered, projects.length]);
 
   useEffect(() => {
-    if (!isHovered) setResumeCount((c) => c + 1);
-  }, [isHovered]);
+    if (!articleMode && !isHovered) setResumeCount((count) => count + 1);
+  }, [articleMode, isHovered]);
 
   const handleSelect = useCallback((index) => {
     setActiveIndex(index);
@@ -43,8 +43,8 @@ export default function CaseStudyAccordion({ projects }) {
   return (
     <div
       className="flex flex-col sm:flex-row gap-2 h-[720px] sm:h-[520px]"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={articleMode ? undefined : () => setIsHovered(true)}
+      onMouseLeave={articleMode ? undefined : () => setIsHovered(false)}
     >
       {projects.map((project, index) => {
         const isActive = index === activeIndex;
@@ -65,8 +65,10 @@ export default function CaseStudyAccordion({ projects }) {
             animate="rest"
             whileHover="hover"
             transition={{ type: "spring", stiffness: 220, damping: 32 }}
-            className="relative flex-1 min-w-0 min-h-0 cursor-pointer"
-            onClick={() => handleSelect(index)}
+            className={`relative min-h-0 min-w-0 flex-1 ${
+              articleMode ? "cursor-default" : "cursor-pointer"
+            }`}
+            onClick={articleMode ? undefined : () => handleSelect(index)}
           >
             {PANEL_CORNERS.map(({ id, className }) => (
               <motion.div
@@ -154,7 +156,7 @@ export default function CaseStudyAccordion({ projects }) {
 
 
                     <div className="mt-auto flex items-end justify-between gap-4 pt-6">
-                      <div className="flex flex-wrap gap-2 max-w-[70%]">
+                      <div className={`flex flex-wrap gap-2 ${articleMode ? "max-w-full" : "max-w-[70%]"}`}>
                         {chips.map((chip) => (
                           <TechTag key={chip} className="bg-black [--pattern:var(--color-neutral-900)]">
                             {chip}
@@ -162,32 +164,34 @@ export default function CaseStudyAccordion({ projects }) {
                         ))}
                       </div>
 
-                      {project.disabled ? (
-                        <span className="text-xs uppercase tracking-[0.18em] text-white/40 shrink-0">
-                          Coming soon
-                        </span>
-                      ) : (
-                        <Link
-                          href={`/projects/${project.slug}`}
-                          onClick={(event) => event.stopPropagation()}
-                          className="shrink-0"
-                          aria-label={`View ${project.title} case study`}
-                        >
-                          <ClickPowerUp
-                            as="span"
-                            variant="secondary"
-                            className="size-10 p-0"
+                      {!articleMode && (
+                        project.disabled ? (
+                          <span className="text-xs uppercase tracking-[0.18em] text-white/40 shrink-0">
+                            Coming soon
+                          </span>
+                        ) : (
+                          <Link
+                            href={`/projects/${project.slug}`}
+                            onClick={(event) => event.stopPropagation()}
+                            className="shrink-0"
+                            aria-label={`View ${project.title} case study`}
                           >
-                            <ArrowUpRight className="size-4" />
-                          </ClickPowerUp>
-                        </Link>
+                            <ClickPowerUp
+                              as="span"
+                              variant="secondary"
+                              className="size-10 p-0"
+                            >
+                              <ArrowUpRight className="size-4" />
+                            </ClickPowerUp>
+                          </Link>
+                        )
                       )}
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {isActive && (
+              {isActive && !articleMode && (
                 <div
                   key={`${activeIndex}-${resumeCount}`}
                   className="absolute bottom-0 left-0 w-full h-[3px] bg-white/60 origin-left"
