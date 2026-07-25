@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 
 import Link from "next/link";
 import { motion } from "motion/react";
@@ -6,6 +7,7 @@ import { ArrowUpRight, Coffee, Github, Mail, Youtube } from "lucide-react";
 import { FadeIn } from "@/components/animations/AnimationWrapper";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import { ScrambleHeading } from "@/components/ui/scramble-text";
+import ProjectTextmode from "@/components/ui/project-textmode";
 
 const EMAIL = "adriangarcia9916@gmail.com";
 
@@ -55,6 +57,72 @@ const SOCIAL_ACTIONS = [
     icon: Youtube,
   },
 ];
+
+const FOOTER_TEXTMODE_VISUAL = {
+  chars: ["·", ":", "/", "+", "×"],
+  field(x, y, time) {
+    const diagonal = Math.sin(x * 0.62 - y * 0.48 - time * 5);
+    const interference = Math.sin((x + y) * 0.24 + time * 3) * 0.35;
+    return Math.max(0, Math.min(1, (diagonal + interference + 1.35) / 2.7));
+  },
+  color(value) {
+    const tone = Math.floor(12 + value * 52);
+    return [tone, tone, tone];
+  },
+};
+
+function FooterSocialAction({ action }) {
+  const [active, setActive] = useState(false);
+  const Icon = action.icon;
+  const Element = action.href ? "a" : "div";
+
+  return (
+    <Element
+      href={action.href}
+      target={action.external ? "_blank" : undefined}
+      rel={action.external ? "noreferrer" : undefined}
+      aria-disabled={action.href ? undefined : true}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      onFocus={() => setActive(true)}
+      onBlur={() => setActive(false)}
+      className={`group relative isolate flex min-h-36 flex-col justify-between overflow-hidden bg-black px-5 py-5 transition-colors sm:px-6 sm:py-6 ${
+        action.href
+          ? "cursor-pointer hover:bg-neutral-950"
+          : "cursor-default text-white/45"
+      }`}
+    >
+      <ProjectTextmode
+        variant={FOOTER_TEXTMODE_VISUAL}
+        active={active}
+        className={`z-0 transition-opacity duration-300 ${
+          active ? "opacity-80" : "opacity-0"
+        }`}
+      />
+      <span
+        className={`pointer-events-none absolute inset-0 z-[1] bg-black/35 transition-opacity duration-300 ${
+          active ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
+      <span className="relative z-10 flex items-start justify-between gap-3">
+        <span className="flex items-center gap-2.5">
+          <Icon className="size-4 shrink-0" />
+          <span className="font-pixel text-xs uppercase tracking-wide sm:text-sm">
+            {action.label}
+          </span>
+        </span>
+        {action.href && (
+          <ArrowUpRight className="size-4 shrink-0 text-white/40 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+        )}
+      </span>
+
+      <span className="relative z-10 text-xs leading-5 text-muted-foreground">
+        {action.detail}
+      </span>
+    </Element>
+  );
+}
 
 export default function Footer() {
   return (
@@ -186,43 +254,9 @@ export default function Footer() {
           {/* </div> */}
 
           <div className="relative z-10 grid grid-cols-2 gap-px border-y border-white/10 bg-white/10 lg:grid-cols-4">
-            {SOCIAL_ACTIONS.map((action) => {
-              const Icon = action.icon;
-              const Element = action.href ? "a" : "div";
-
-              return (
-                <Element
-                  key={action.label}
-                  href={action.href}
-                  target={action.external ? "_blank" : undefined}
-                  rel={action.external ? "noreferrer" : undefined}
-                  aria-disabled={action.href ? undefined : true}
-                  className={`relative isolate flex min-h-36 flex-col justify-between overflow-hidden bg-black px-5 py-5 transition-colors sm:px-6 sm:py-6 ${
-                    action.href
-                      ? "group cursor-pointer hover:bg-neutral-950"
-                      : "cursor-default text-white/45"
-                  }`}
-                >
-                  <span className="pointer-events-none absolute inset-0 -z-10 bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.045)_0,rgba(255,255,255,0.045)_1px,transparent_0,transparent_6px)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                  <span className="flex items-start justify-between gap-3">
-                    <span className="flex items-center gap-2.5">
-                      <Icon className="size-4 shrink-0" />
-                      <span className="font-pixel text-xs uppercase tracking-wide sm:text-sm">
-                        {action.label}
-                      </span>
-                    </span>
-                    {action.href && (
-                      <ArrowUpRight className="size-4 shrink-0 text-white/40 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
-                    )}
-                  </span>
-
-                  <span className="text-xs leading-5 text-muted-foreground">
-                    {action.detail}
-                  </span>
-                </Element>
-              );
-            })}
+            {SOCIAL_ACTIONS.map((action) => (
+              <FooterSocialAction key={action.label} action={action} />
+            ))}
           </div>
 
           <div className="relative z-10 flex h-28 items-end justify-center border-t border-white/5 px-4 pt-8 pb-4 sm:h-40 lg:h-48">
