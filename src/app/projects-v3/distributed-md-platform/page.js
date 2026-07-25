@@ -51,13 +51,16 @@ export default function DistributedMdPlatformV3Page() {
 
                 <section
                   id="overview"
-                  className="mt-12 grid scroll-mt-28 gap-px border border-border bg-border lg:grid-cols-[minmax(0,1.2fr)_minmax(20rem,0.8fr)]"
+                  className="mt-12 grid scroll-mt-28 gap-px border border-border bg-border lg:grid-cols-[12rem_minmax(0,1fr)]"
                 >
-                  <div className="bg-background px-6 py-8 sm:px-8 sm:py-10">
+                  <div className="bg-background px-6 py-8 sm:px-8 sm:py-10 lg:px-6">
                     <p className="font-pixel text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground">
                       Project overview
                     </p>
-                    <h2 className="mt-5 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl">
+                  </div>
+
+                  <div className="bg-background px-6 py-8 sm:px-8 sm:py-10">
+                    <h2 className="max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl">
                       {projectDetails.heroSummary}
                     </h2>
                     <p className="mt-6 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base sm:leading-8">
@@ -65,9 +68,12 @@ export default function DistributedMdPlatformV3Page() {
                     </p>
                   </div>
 
-                  <dl className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                  <dl className="grid gap-px bg-border sm:grid-cols-2 lg:col-span-2 xl:grid-cols-4">
                     {projectDetails.metrics.slice(0, 4).map((metric) => (
-                      <div key={metric.label} className="bg-background p-5 sm:p-6">
+                      <div
+                        key={metric.label}
+                        className="min-h-44 bg-background p-5 sm:p-6"
+                      >
                         <dt className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-muted-foreground">
                           {metric.label}
                         </dt>
