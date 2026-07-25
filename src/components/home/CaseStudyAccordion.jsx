@@ -6,7 +6,7 @@ import Link from "next/link";
 import ProjectTextmode from "@/components/ui/project-textmode";
 import { getCaseStudyVisual } from "@/components/home/case-study-visuals";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import TechTag from "@/components/ui/tech-tag";
 import { ScrambleText } from "@/components/ui/scramble-text";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 
@@ -156,13 +156,9 @@ export default function CaseStudyAccordion({ projects }) {
                     <div className="mt-auto flex items-end justify-between gap-4 pt-6">
                       <div className="flex flex-wrap gap-2 max-w-[70%]">
                         {chips.map((chip) => (
-                          <Badge
-                            key={chip}
-                            variant="outline"
-                            className="border-white/15 text-white/75 bg-black/10"
-                          >
+                          <TechTag key={chip} className="bg-black [--pattern:var(--color-neutral-900)]">
                             {chip}
-                          </Badge>
+                          </TechTag>
                         ))}
                       </div>
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
+import TechTag from "@/components/ui/tech-tag";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations/AnimationWrapper";
 
 export default function ProjectHero({ title, description, areas, technologies, bigImage }) {
@@ -18,7 +18,7 @@ export default function ProjectHero({ title, description, areas, technologies, b
           <div className="flex-1">
             <StaggerContainer className="flex flex-wrap gap-2 mb-4" staggerDelay={0.05}>
               {areas.map((area) => (
-                <StaggerItem key={area}><Badge>{area}</Badge></StaggerItem>
+                <StaggerItem key={area}><TechTag>{area}</TechTag></StaggerItem>
               ))}
             </StaggerContainer>
             <FadeIn direction="up" delay={0.3}>
@@ -29,7 +29,7 @@ export default function ProjectHero({ title, description, areas, technologies, b
             </FadeIn>
             <StaggerContainer className="flex flex-wrap gap-2" staggerDelay={0.05}>
               {technologies.map((tech) => (
-                <StaggerItem key={tech}><Badge variant="secondary">{tech}</Badge></StaggerItem>
+                <StaggerItem key={tech}><TechTag>{tech}</TechTag></StaggerItem>
               ))}
             </StaggerContainer>
           </div>

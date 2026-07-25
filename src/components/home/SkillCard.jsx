@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
+import TechTag from "@/components/ui/tech-tag";
 import { ScrambleText } from "@/components/ui/scramble-text";
 
 const CORNERS = [
@@ -65,13 +65,7 @@ export default function SkillCard({ skill, dimmed = false, onHover }) {
           </p>
           <div className="mt-auto flex flex-wrap gap-2 pt-6">
             {skill.tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="secondary"
-                className="rounded-none font-pixel text-xs uppercase"
-              >
-                {tag}
-              </Badge>
+              <TechTag key={tag}>{tag}</TechTag>
             ))}
           </div>
         </div>

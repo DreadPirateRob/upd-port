@@ -8,6 +8,7 @@ import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import { ScrambleText } from "@/components/ui/scramble-text";
 import ProjectTextmode from "@/components/ui/project-textmode";
 import { textmodeHoverVisual } from "@/components/ui/textmode-hover-visual";
+import TechTag from "@/components/ui/tech-tag";
 
 export default function ProjectListRow({ project, index }) {
   const [hoverCount, setHoverCount] = useState(0);
@@ -67,9 +68,7 @@ export default function ProjectListRow({ project, index }) {
         </p>
         <div className="flex flex-wrap gap-2">
           {chips.map((chip) => (
-            <Badge key={chip} variant="outline" className="transition-colors group-hover:border-white/20 group-hover:text-white/70">
-              {chip}
-            </Badge>
+            <TechTag key={chip}>{chip}</TechTag>
           ))}
         </div>
       </div>

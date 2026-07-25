@@ -45,11 +45,26 @@ const VARIANTS = {
   },
 };
 
+const SIZES = {
+  default: {
+    buttonClass: "px-10 py-3",
+    cornerClass: "size-2",
+    hoverOffset: 3,
+    tapOffset: 2,
+  },
+  chip: {
+    buttonClass: "h-6 px-2 text-[0.65rem] leading-none",
+    cornerClass: "size-1.5",
+    hoverOffset: 2,
+    tapOffset: 1,
+  },
+};
+
 const CORNERS = [
-  { id: "top-right", cls: "absolute top-0 right-0 size-2 border-t border-r z-20" },
-  { id: "top-left", cls: "absolute top-0 left-0 size-2 border-t border-l z-20" },
-  { id: "bottom-left", cls: "absolute bottom-0 left-0 size-2 border-b border-l z-20" },
-  { id: "bottom-right", cls: "absolute right-0 bottom-0 size-2 border-r border-b z-20" },
+  { id: "top-right", cls: "absolute top-0 right-0 border-t border-r z-20" },
+  { id: "top-left", cls: "absolute top-0 left-0 border-t border-l z-20" },
+  { id: "bottom-left", cls: "absolute bottom-0 left-0 border-b border-l z-20" },
+  { id: "bottom-right", cls: "absolute right-0 bottom-0 border-r border-b z-20" },
 ];
 
 export const ClickPowerUp = ({
@@ -57,11 +72,13 @@ export const ClickPowerUp = ({
   as: Element = "button",
   className,
   variant = "primary",
+  size = "default",
   tapDuration = 500,
 }) => {
   const [isTapped, setIsTapped] = useState(false);
   const [hoverCount, setHoverCount] = useState(0);
   const v = VARIANTS[variant] ?? VARIANTS.primary;
+  const s = SIZES[size] ?? SIZES.default;
 
   const handleTap = () => {
     if (isTapped) return;
@@ -92,25 +109,26 @@ export const ClickPowerUp = ({
           variants={{
             rest: () => ({ x: 0, y: 0, ...v.bracket.rest }),
             hover: (c) => ({
-              x: c.includes("right") ? 3 : -3,
-              y: c.includes("bottom") ? 3 : -3,
+              x: c.includes("right") ? s.hoverOffset : -s.hoverOffset,
+              y: c.includes("bottom") ? s.hoverOffset : -s.hoverOffset,
               ...v.bracket.hover,
             }),
             tap: (c) => ({
-              x: c.includes("right") ? -2 : 2,
-              y: c.includes("bottom") ? -2 : 2,
+              x: c.includes("right") ? -s.tapOffset : s.tapOffset,
+              y: c.includes("bottom") ? -s.tapOffset : s.tapOffset,
               ...v.bracket.tap,
             }),
           }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className={cls}
+          className={cn(cls, s.cornerClass)}
         />
       ))}
 
       <Element
         type={Element === "button" ? "button" : undefined}
         className={cn(
-          "relative inline-flex items-center justify-center overflow-hidden px-10 py-3 font-medium uppercase",
+          "relative inline-flex items-center justify-center overflow-hidden font-medium uppercase",
+          s.buttonClass,
           v.buttonClass,
           className,
         )}
