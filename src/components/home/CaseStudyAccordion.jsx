@@ -94,113 +94,113 @@ export default function CaseStudyAccordion({ projects }) {
             ))}
 
             <div className="absolute inset-0 overflow-hidden border border-white/10 bg-black">
-            {/* Abstract per-project animation (replaces cover image) */}
-            <ProjectTextmode
-              variant={getCaseStudyVisual(project.slug, index)}
-              active={isActive}
-              className="opacity-75"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70" />
-            {!isActive && (
-              <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between pointer-events-none">
-                <div>
-                  <div className="flex items-center gap-2 text-white/65">
-                    <ArrowDown className="h-4 w-4 shrink-0" />
-                    <span className="font-mono tracking-tight text-2xl sm:text-3xl">
-                      {number}
-                    </span>
-                  </div>
-                  <div className="mt-3 h-px w-10 bg-white/10" />
-                </div>
-              </div>
-            )}
-
-            <AnimatePresence>
-              {isActive && (
-                <motion.div
-                  key="content"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.22, delay: 0.18 }}
-                  className="absolute inset-0 p-5 sm:p-7 flex flex-col"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-start gap-3">
-                      <ArrowUpRight className="h-5 w-5 text-white/75 mt-1" />
-                      <span className="font-mono text-5xl sm:text-6xl leading-none text-white/70">
+              {/* Abstract per-project animation (replaces cover image) */}
+              <ProjectTextmode
+                variant={getCaseStudyVisual(project.slug, index)}
+                active={isActive}
+                className="opacity-75"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70" />
+              {!isActive && (
+                <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between pointer-events-none">
+                  <div>
+                    <div className="flex items-center gap-2 text-white/65">
+                      <ArrowDown className="h-4 w-4 shrink-0" />
+                      <span className="font-pixel tracking-tight text-2xl sm:text-3xl">
                         {number}
                       </span>
                     </div>
-
-                    <div className="text-right shrink-0 pt-1">
-                      <p className="text-xs uppercase tracking-[0.18em] text-white/65">
-                        {primaryLabel}
-                      </p>
-                      <p className="text-xs text-white/35 mt-1">
-                        {index + 1}/{projects.length}
-                      </p>
-                    </div>
+                    <div className="mt-3 h-px w-10 bg-white/10" />
                   </div>
-
-                  <div className="mt-6 max-w-sm sm:max-w-md">
-                    <h3 className="font-pixel text-3xl sm:text-5xl font-light tracking-tight leading-[0.95] text-white mb-4">
-                      <ScrambleText text={project.title} trigger={index + 1} />
-                    </h3>
-                    <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-md line-clamp-3">
-                      {project.description}
-                    </p>
-                  </div>
-
-
-                  <div className="mt-auto flex items-end justify-between gap-4 pt-6">
-                    <div className="flex flex-wrap gap-2 max-w-[70%]">
-                      {chips.map((chip) => (
-                        <Badge
-                          key={chip}
-                          variant="outline"
-                          className="border-white/15 text-white/75 bg-black/10"
-                        >
-                          {chip}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {project.disabled ? (
-                      <span className="text-xs uppercase tracking-[0.18em] text-white/40 shrink-0">
-                        Coming soon
-                      </span>
-                    ) : (
-                      <Link
-                        href={`/projects/${project.slug}`}
-                        onClick={(event) => event.stopPropagation()}
-                        className="shrink-0"
-                        aria-label={`View ${project.title} case study`}
-                      >
-                        <ClickPowerUp
-                          as="span"
-                          variant="secondary"
-                          className="size-10 p-0"
-                        >
-                          <ArrowUpRight className="size-4" />
-                        </ClickPowerUp>
-                      </Link>
-                    )}
-                  </div>
-                </motion.div>
+                </div>
               )}
-            </AnimatePresence>
 
-            {isActive && (
-              <div
-                key={`${activeIndex}-${resumeCount}`}
-                className="absolute bottom-0 left-0 w-full h-[3px] bg-white/60 origin-left"
-                style={{
-                  animation: `progress-fill ${INTERVAL_MS}ms ease-out forwards`,
-                  animationPlayState: isHovered ? "paused" : "running",
-                }}
-              />
-            )}
+              <AnimatePresence>
+                {isActive && (
+                  <motion.div
+                    key="content"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.22, delay: 0.18 }}
+                    className="absolute inset-0 p-5 sm:p-7 flex flex-col"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-start gap-3">
+                        <ArrowUpRight className="h-5 w-5 text-white/75 mt-1" />
+                        <span className="font-pixel text-5xl sm:text-6xl leading-none text-white/70">
+                          {number}
+                        </span>
+                      </div>
+
+                      {/* <div className="text-right shrink-0 pt-1"> */}
+                      {/*   <p className="text-xs uppercase tracking-[0.18em] text-white/65"> */}
+                      {/*     {primaryLabel} */}
+                      {/*   </p> */}
+                      {/*   <p className="text-xs text-white/35 mt-1"> */}
+                      {/*     {index + 1}/{projects.length} */}
+                      {/*   </p> */}
+                      {/* </div> */}
+                    </div>
+
+                    <div className="mt-6 max-w-sm sm:max-w-md">
+                      <h3 className="font-pixel text-3xl sm:text-5xl font-light tracking-tight leading-[0.95] text-white mb-4">
+                        <ScrambleText text={project.title} trigger={index + 1} />
+                      </h3>
+                      <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-md line-clamp-3">
+                        {project.description}
+                      </p>
+                    </div>
+
+
+                    <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+                      <div className="flex flex-wrap gap-2 max-w-[70%]">
+                        {chips.map((chip) => (
+                          <Badge
+                            key={chip}
+                            variant="outline"
+                            className="border-white/15 text-white/75 bg-black/10"
+                          >
+                            {chip}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      {project.disabled ? (
+                        <span className="text-xs uppercase tracking-[0.18em] text-white/40 shrink-0">
+                          Coming soon
+                        </span>
+                      ) : (
+                        <Link
+                          href={`/projects/${project.slug}`}
+                          onClick={(event) => event.stopPropagation()}
+                          className="shrink-0"
+                          aria-label={`View ${project.title} case study`}
+                        >
+                          <ClickPowerUp
+                            as="span"
+                            variant="secondary"
+                            className="size-10 p-0"
+                          >
+                            <ArrowUpRight className="size-4" />
+                          </ClickPowerUp>
+                        </Link>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {isActive && (
+                <div
+                  key={`${activeIndex}-${resumeCount}`}
+                  className="absolute bottom-0 left-0 w-full h-[3px] bg-white/60 origin-left"
+                  style={{
+                    animation: `progress-fill ${INTERVAL_MS}ms ease-out forwards`,
+                    animationPlayState: isHovered ? "paused" : "running",
+                  }}
+                />
+              )}
             </div>
           </motion.div>
         );
