@@ -9,6 +9,14 @@ const project = getAllProjects().find(
   ({ slug }) => slug === "distributed-md-platform",
 );
 
+const challenge = projectDetails.sections[0];
+const challengeConstraints = [
+  "150–300ms or more in roundtrip delay before application logic begins.",
+  "Multiple WebSocket connections with exchange-specific lifecycle behavior.",
+  "Incompatible payload formats that require reconciliation and normalization.",
+  "Reliable delivery to consumers while every source stream remains live.",
+];
+
 export const metadata = {
   title: `${project.title} | Projects V3`,
   description: project.description,
@@ -43,11 +51,19 @@ export default function DistributedMdPlatformV3Page() {
                     <li>
                       <a
                         href="#overview"
-                        aria-current="location"
-                        className="-ml-px flex items-center gap-3 border-l border-primary px-3 py-2 font-pixel text-xs uppercase tracking-wide text-foreground transition-colors hover:text-primary"
+                        className="-ml-px flex items-center gap-3 border-l border-transparent px-3 py-2 font-pixel text-xs uppercase tracking-wide text-muted-foreground transition-colors hover:border-primary hover:text-primary"
                       >
                         <span className="text-muted-foreground">01</span>
                         Overview
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#challenge"
+                        className="-ml-px flex items-center gap-3 border-l border-transparent px-3 py-2 font-pixel text-xs uppercase tracking-wide text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                      >
+                        <span className="text-muted-foreground">02</span>
+                        Challenge
                       </a>
                     </li>
                   </ol>
@@ -95,6 +111,64 @@ export default function DistributedMdPlatformV3Page() {
                       </div>
                     ))}
                   </dl>
+                </section>
+
+                <section
+                  id="challenge"
+                  className="mt-12 scroll-mt-28 border border-border"
+                >
+                  <header className="grid gap-px bg-border sm:grid-cols-2">
+                    <div className="bg-foreground px-6 py-8 text-background sm:px-8">
+                      <h2 className="font-pixel text-xl uppercase tracking-tight sm:text-2xl">
+                        The challenge
+                      </h2>
+                    </div>
+                    <div
+                      aria-hidden="true"
+                      className="min-h-20 bg-background bg-size-[10px_10px] bg-[repeating-linear-gradient(315deg,var(--border)_0,var(--border)_1px,transparent_0,transparent_50%)]"
+                    />
+                  </header>
+
+                  <div className="grid gap-px bg-border lg:grid-cols-5">
+                    <div className="bg-background px-6 py-10 sm:px-8 lg:col-span-3 lg:py-12">
+                      <p className="font-pixel text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground">
+                        {challenge.eyebrow}
+                      </p>
+                      <h3 className="mt-5 max-w-2xl font-pixel text-2xl leading-tight tracking-tight text-foreground sm:text-3xl">
+                        {challenge.title}
+                      </h3>
+                      <div className="mt-7 max-w-2xl space-y-5">
+                        {challenge.body.map((paragraph) => (
+                          <p
+                            key={paragraph}
+                            className="text-sm leading-7 text-muted-foreground sm:text-base sm:leading-8"
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="bg-background px-6 py-10 sm:px-8 lg:col-span-2 lg:py-12">
+                      <p className="font-pixel text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground">
+                        Pressure points
+                      </p>
+                      <ul className="mt-6 divide-y divide-border border-y border-border">
+                        {challengeConstraints.map((constraint) => (
+                          <li
+                            key={constraint}
+                            className="grid grid-cols-[auto_1fr] gap-4 py-4 text-sm leading-6 text-foreground"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="mt-2 size-1.5 bg-primary"
+                            />
+                            {constraint}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </section>
               </article>
             </div>
