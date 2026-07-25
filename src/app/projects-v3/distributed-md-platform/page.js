@@ -51,7 +51,7 @@ export default function DistributedMdPlatformV3Page() {
 
                 <section
                   id="overview"
-                  className="mt-12 grid scroll-mt-28 gap-px border border-border bg-border lg:grid-cols-[12rem_minmax(0,1fr)]"
+                  className="mt-12 grid scroll-mt-28 gap-px border border-border bg-border lg:grid-cols-4"
                 >
                   <div className="bg-background px-6 py-8 sm:px-8 sm:py-10 lg:px-6">
                     <p className="font-pixel text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground">
@@ -59,7 +59,7 @@ export default function DistributedMdPlatformV3Page() {
                     </p>
                   </div>
 
-                  <div className="bg-background px-6 py-8 sm:px-8 sm:py-10">
+                  <div className="bg-background px-6 py-8 sm:px-8 sm:py-10 lg:col-span-3">
                     <h2 className="max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl">
                       {projectDetails.heroSummary}
                     </h2>
@@ -68,7 +68,7 @@ export default function DistributedMdPlatformV3Page() {
                     </p>
                   </div>
 
-                  <dl className="grid gap-px bg-border sm:grid-cols-2 lg:col-span-2 xl:grid-cols-4">
+                  <dl className="grid gap-px bg-border sm:grid-cols-2 lg:col-span-4 xl:grid-cols-4">
                     {projectDetails.metrics.slice(0, 4).map((metric) => (
                       <div
                         key={metric.label}
