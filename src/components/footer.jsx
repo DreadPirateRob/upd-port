@@ -181,7 +181,7 @@ export default function Footer() {
           {/*   <div> */}
           {/*     <p className="font-pixel text-lg text-white">Adrian Garcia</p> */}
           {/*     <p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground"> */}
-          {/*       Distributed systems engineer and architect focused on high-performance interfaces, real-time data pipelines and low-latency financial infrastructure. */}
+          {/*       Full stack engineer and architect focused on building high-performance interfaces, real-time data pipelines and low-latency infrastructure for digital financial operations. */}
           {/*     </p> */}
           {/*   </div> */}
           {/**/}

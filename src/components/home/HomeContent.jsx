@@ -194,7 +194,7 @@ export default function HomeContent({ projects }) {
               </div>
               <FadeIn direction="up" delay={0.4}>
                 <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  Distributed systems engineer and architect focused on building high-performance interfaces, real-time data pipelines and low-latency infrastructure for digital financial operations.
+                  Full stack engineer and architect focused on building high-performance interfaces, real-time data pipelines and low-latency infrastructure for digital financial operations.
                 </p>
               </FadeIn>
               <FadeIn direction="up" delay={0.6}>
@@ -215,54 +215,54 @@ export default function HomeContent({ projects }) {
           <Separator />
 
           {/* Skills Section */}
-          <section id="skills-section" className="py-16 px-4 scroll-mt-24">
-            <div className="max-w-4xl mx-auto">
-              <div className="max-w-xl text-left mb-16">
-                <FadeIn direction="left">
-                  <GridButton className="mb-4">Skills</GridButton>
-                </FadeIn>
-                <FadeIn direction="left" delay={0.2}>
-                  <ScrambleHeading
-                    className="text-4xl sm:text-5xl font-bold tracking-tight mb-6"
-                    text={"Languages, \nLibraries and Frameworks"}
-                    config={HEADING_SCRAMBLE}
-                  />
-                </FadeIn>
-              </div>
-              <StaggerContainer
-                className="grid grid-cols-1 md:grid-cols-24 gap-6"
-                staggerDelay={0.2}
-              >
-                {skills.map((skill) => (
-                  <StaggerItem key={skill.slug} className={skill.colSpan}>
-                    <SkillCard
-                      skill={skill}
-                      dimmed={hoveredSkill !== null && hoveredSkill !== skill.slug}
-                      onHover={setHoveredSkill}
-                    />
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
-          </section>
-
-          <Separator />
-
+          {/* <section id="skills-section" className="py-16 px-4 scroll-mt-24"> */}
+          {/*   <div className="max-w-4xl mx-auto"> */}
+          {/*     <div className="max-w-xl text-left mb-16"> */}
+          {/*       <FadeIn direction="left"> */}
+          {/*         <GridButton className="mb-4">Skills</GridButton> */}
+          {/*       </FadeIn> */}
+          {/*       <FadeIn direction="left" delay={0.2}> */}
+          {/*         <ScrambleHeading */}
+          {/*           className="text-4xl sm:text-5xl font-bold tracking-tight mb-6" */}
+          {/*           text={"Languages, \nLibraries and Frameworks"} */}
+          {/*           config={HEADING_SCRAMBLE} */}
+          {/*         /> */}
+          {/*       </FadeIn> */}
+          {/*     </div> */}
+          {/*     <StaggerContainer */}
+          {/*       className="grid grid-cols-1 md:grid-cols-24 gap-6" */}
+          {/*       staggerDelay={0.2} */}
+          {/*     > */}
+          {/*       {skills.map((skill) => ( */}
+          {/*         <StaggerItem key={skill.slug} className={skill.colSpan}> */}
+          {/*           <SkillCard */}
+          {/*             skill={skill} */}
+          {/*             dimmed={hoveredSkill !== null && hoveredSkill !== skill.slug} */}
+          {/*             onHover={setHoveredSkill} */}
+          {/*           /> */}
+          {/*         </StaggerItem> */}
+          {/*       ))} */}
+          {/*     </StaggerContainer> */}
+          {/*   </div> */}
+          {/* </section> */}
+          {/**/}
+          {/* <Separator /> */}
+          {/**/}
           {/* About Section */}
-          <section id="about-section" className="py-16 px-4 bg-muted/50 scroll-mt-24">
-            <div className="max-w-4xl mx-auto text-right">
-              <FadeIn direction="right">
-                <GridButton className="mb-6">About Me</GridButton>
-              </FadeIn>
-              <FadeIn direction="right" delay={0.2}>
-                <ScrambleHeading
-                  className="text-4xl sm:text-5xl font-bold tracking-tight mb-6"
-                  text={"Distributed systems engineer building high-performance, low-latency financial infrastructure."}
-                  config={HEADING_SCRAMBLE}
-                />
-              </FadeIn>
-            </div>
-          </section>
+          {/* <section id="about-section" className="py-16 px-4 bg-muted/50 scroll-mt-24"> */}
+          {/*   <div className="max-w-4xl mx-auto text-right"> */}
+          {/*     <FadeIn direction="right"> */}
+          {/*       <GridButton className="mb-6">About Me</GridButton> */}
+          {/*     </FadeIn> */}
+          {/*     <FadeIn direction="right" delay={0.2}> */}
+          {/*       <ScrambleHeading */}
+          {/*         className="text-4xl sm:text-5xl font-bold tracking-tight mb-6" */}
+          {/*         text={"Full stack engineer and architect focused on building high-performance interfaces, real-time data pipelines and low-latency infrastructure for digital financial operations."} */}
+          {/*         config={HEADING_SCRAMBLE} */}
+          {/*       /> */}
+          {/*     </FadeIn> */}
+          {/*   </div> */}
+          {/* </section> */}
 
           <Separator />
 
@@ -283,14 +283,11 @@ export default function HomeContent({ projects }) {
                     />
                   </FadeIn>
                 </div>
-                <p className="hidden sm:block text-sm italic text-muted-foreground/60 whitespace-nowrap">
-                  {String(projects.length).padStart(2, "0")} entries
-                </p>
               </div>
               <div className="space-y-10">
                 <CaseStudyAccordion projects={projects} />
 
-                <StaggerContainer className="border-t border-border pt-10" staggerDelay={0.2}>
+                <StaggerContainer className="border-t border-border" staggerDelay={0.2}>
                   {projects.map((project, index) => (
                     <StaggerItem key={project.slug}>
                       <ProjectListRow project={project} index={index} />
