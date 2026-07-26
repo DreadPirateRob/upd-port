@@ -1,17 +1,11 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
-import { SiBinance, SiCoinbase, SiOkx } from "@icons-pack/react-simple-icons";
 import { Server } from "lucide-react";
 
 import WorldMap from "@/components/ui/world-map";
 import { cn } from "@/lib/utils";
 
-const VENUE_ICONS = {
-  Binance: SiBinance,
-  Coinbase: SiCoinbase,
-  OKX: SiOkx,
-};
 
 function getPlacementClasses(placement, xPercent, label) {
   if (label === "Frankfurt") {
@@ -29,26 +23,8 @@ function getPlacementClasses(placement, xPercent, label) {
   return "left-1/2 top-3 -translate-x-1/2 origin-top";
 }
 
-function VenueGlyph({ venue }) {
-  const Icon = VENUE_ICONS[venue];
-
-  return (
-    <span
-      title={venue}
-      aria-label={venue}
-      className="flex size-5 items-center justify-center border border-border bg-muted text-[0.5rem] font-semibold uppercase text-foreground"
-    >
-      {Icon ? <Icon aria-hidden="true" size={11} /> : venue.slice(0, 1)}
-    </span>
-  );
-}
 
 function RegionMarker({ marker, position }) {
-  const venues = marker.meta
-    .split("/")
-    .map((venue) => venue.trim())
-    .filter(Boolean)
-    .slice(0, 3);
 
   return (
     <div
@@ -68,11 +44,6 @@ function RegionMarker({ marker, position }) {
             {marker.label}
           </span>
         </div>
-        <div className="mt-1.5 hidden -space-x-1 sm:flex" aria-label={`Major exchange connections near ${marker.label}`}>
-          {venues.map((venue) => (
-            <VenueGlyph key={venue} venue={venue} />
-          ))}
-        </div>
       </div>
     </div>
   );
@@ -84,7 +55,6 @@ export default function RegionalServerMap({ markers = [] }) {
       markers.map((marker) => ({
         ...marker,
         id: marker.id ?? marker.label,
-        meta: marker.meta ?? "",
       })),
     [markers],
   );
