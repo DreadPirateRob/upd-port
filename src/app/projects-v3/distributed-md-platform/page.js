@@ -35,15 +35,21 @@ export default function DistributedMdPlatformV3Page() {
 
         <div className="col-start-3 row-start-1 min-h-screen max-sm:col-span-full max-sm:col-start-1">
           <section className="px-4 pb-16 pt-28 sm:px-6 lg:px-10 lg:pt-32">
-            <div className="mx-auto mb-6 max-w-7xl">
-              <Link href="/" aria-label="Back to home">
-                <ClickPowerUp as="span" variant="secondary">
-                  ← Back to home
-                </ClickPowerUp>
-              </Link>
-            </div>
             <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-8">
-              <aside className="lg:sticky lg:top-28 lg:self-start">
+              <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+                <Link
+                  href="/"
+                  aria-label="Back to home"
+                  className="block [&>div]:block [&>div>span]:w-full"
+                >
+                  <ClickPowerUp
+                    as="span"
+                    variant="secondary"
+                    className="w-full px-3 py-3 text-xs"
+                  >
+                    ← Back to home
+                  </ClickPowerUp>
+                </Link>
                 <nav
                   aria-label="Table of contents"
                   className="border border-border bg-background/90 p-4 backdrop-blur-sm"
