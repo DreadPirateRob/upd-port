@@ -109,6 +109,7 @@ export default function RegionalServerMap({ markers = [] }) {
         markers={normalizedMarkers}
         onRenderMarkerPositions={handleMarkerPositions}
         className="rounded-none border-0 shadow-none"
+        mapClassName="p-0 sm:p-0"
       />
       <div className="pointer-events-none absolute inset-0" aria-label="Regional server locations">
         {positions.map((position) => {

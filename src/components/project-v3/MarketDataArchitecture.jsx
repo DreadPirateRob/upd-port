@@ -197,7 +197,7 @@ function MobileFlow({ mode }) {
   );
 }
 
-function DiagramPanel({ index, title, description, children }) {
+function DiagramPanel({ index, title, description, children, flush = false }) {
   return (
     <div className="bg-background">
       <div className="grid gap-px border-b border-border bg-border sm:grid-cols-[9rem_minmax(0,1fr)]">
@@ -209,7 +209,9 @@ function DiagramPanel({ index, title, description, children }) {
           <p className="mt-2 max-w-3xl text-xs leading-5 text-muted-foreground sm:text-sm sm:leading-6">{description}</p>
         </div>
       </div>
-      <div className="overflow-hidden px-4 py-6 sm:px-6 sm:py-8">{children}</div>
+      <div className={flush ? "overflow-hidden" : "overflow-hidden px-4 py-6 sm:px-6 sm:py-8"}>
+        {children}
+      </div>
     </div>
   );
 }
@@ -242,6 +244,7 @@ export default function MarketDataArchitecture({
           index="03 / Regions"
           title="Regional server footprint"
           description={regionDescription}
+          flush
         >
           <RegionalServerMap markers={regionMarkers} />
         </DiagramPanel>

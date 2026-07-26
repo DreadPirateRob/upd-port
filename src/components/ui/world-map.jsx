@@ -95,6 +95,7 @@ function getRenderedMapRect(containerWidth, containerHeight, mapWidth, mapHeight
 export default function WorldMap({
   markers = [],
   className,
+  mapClassName,
   onRenderMarkerPositions,
   projection = DEFAULT_PROJECTION,
 }) {
@@ -212,7 +213,7 @@ export default function WorldMap({
       )}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(255,255,255,0.06),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.04)_0%,rgba(255,255,255,0)_30%,rgba(3,7,18,0.22)_100%)]" />
-      <div className="absolute inset-0 p-[7%] sm:p-[8%]">
+      <div className={cn("absolute inset-0 p-[7%] sm:p-[8%]", mapClassName)}>
         <div
           aria-hidden="true"
           className="flex h-full w-full items-center justify-center [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible"
