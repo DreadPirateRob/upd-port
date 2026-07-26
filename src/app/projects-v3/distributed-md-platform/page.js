@@ -195,6 +195,8 @@ export default function DistributedMdPlatformV3Page() {
                 <MarketDataArchitecture
                   beforeDescription={challenge.figure.caption}
                   afterDescription={architecture.figure.caption}
+                  regionDescription={projectDetails.geoPanel.intro}
+                  regionMarkers={projectDetails.geoPanel.globe.markers}
                 />
 
                 <MarketDataImpact

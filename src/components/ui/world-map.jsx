@@ -24,8 +24,6 @@ const DEFAULT_MAP_GRID = "diagonal";
 const DEFAULT_MAP_DOT_COLOR = "#27272a";
 const DEFAULT_MAP_BACKGROUND = "#05070b";
 const DEFAULT_MAP_DOT_RADIUS = 0.48;
-const DEFAULT_MARKER_DOT_COLOR = "#f4f4f5";
-const DEFAULT_MARKER_DOT_RADIUS = 0.92;
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
@@ -115,13 +113,9 @@ export default function WorldMap({
 
     const nextProjectedMarkers = normalizedMarkers
       .map((marker) => {
-        const point = map.addPin({
+        const point = map.getPin({
           lat: marker.lat,
           lng: marker.lng,
-          svgOptions: {
-            color: DEFAULT_MARKER_DOT_COLOR,
-            radius: DEFAULT_MARKER_DOT_RADIUS,
-          },
         });
 
         if (!point) {

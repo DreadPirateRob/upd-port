@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import RegionalServerMap from "@/components/project-v3/RegionalServerMap";
 
 const BEFORE_EXCHANGES = [
   { label: "Frankfurt", x: 722, y: 38 },
@@ -213,7 +214,12 @@ function DiagramPanel({ index, title, description, children }) {
   );
 }
 
-export default function MarketDataArchitecture({ beforeDescription, afterDescription }) {
+export default function MarketDataArchitecture({
+  beforeDescription,
+  afterDescription,
+  regionDescription,
+  regionMarkers,
+}) {
   return (
     <section id="architecture" className="mt-12 scroll-mt-28 border border-border">
       <header className="grid gap-px bg-border sm:grid-cols-2">
@@ -231,6 +237,13 @@ export default function MarketDataArchitecture({ beforeDescription, afterDescrip
         <DiagramPanel index="02 / After" title="Regional edge delivery" description={afterDescription}>
           <AfterDesktop />
           <MobileFlow mode="after" />
+        </DiagramPanel>
+        <DiagramPanel
+          index="03 / Regions"
+          title="Regional server footprint"
+          description={regionDescription}
+        >
+          <RegionalServerMap markers={regionMarkers} />
         </DiagramPanel>
       </div>
     </section>
