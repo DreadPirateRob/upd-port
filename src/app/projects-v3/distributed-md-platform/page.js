@@ -1,10 +1,9 @@
-import Link from "next/link";
 import CaseStudyAccordion from "@/components/home/CaseStudyAccordion";
 import Footer from "@/components/footer";
-import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import MarketDataArchitecture from "@/components/project-v3/MarketDataArchitecture";
 import MarketDataImpact from "@/components/project-v3/MarketDataImpact";
 import MarketDataLearnings from "@/components/project-v3/MarketDataLearnings";
+import ProjectContentsRail from "@/components/project-v3/ProjectContentsRail";
 import { getAllProjects } from "@/lib/projects";
 import projectDetails from "@/data/project-v2/distributed-md-platform";
 
@@ -36,76 +35,7 @@ export default function DistributedMdPlatformV3Page() {
         <div className="col-start-3 row-start-1 min-h-screen max-sm:col-span-full max-sm:col-start-1">
           <section className="px-4 pb-16 pt-28 sm:px-6 lg:px-10 lg:pt-32">
             <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-8">
-              <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
-                <Link
-                  href="/"
-                  aria-label="Back to home"
-                  className="block [&>div]:block [&>div>span]:w-full"
-                >
-                  <ClickPowerUp
-                    as="span"
-                    variant="secondary"
-                    className="w-full px-3 py-3 text-xs"
-                  >
-                    ← Back to home
-                  </ClickPowerUp>
-                </Link>
-                <nav
-                  aria-label="Table of contents"
-                  className="border border-border bg-background/90 p-4 backdrop-blur-sm"
-                >
-                  <p className="font-pixel text-[0.65rem] uppercase tracking-[0.2em] text-muted-foreground">
-                    Contents
-                  </p>
-                  <ol className="mt-3 border-l border-border">
-                    <li>
-                      <a
-                        href="#overview"
-                        className="-ml-px flex items-center gap-3 border-l border-transparent px-3 py-2 font-pixel text-xs uppercase tracking-wide text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-                      >
-                        <span className="text-muted-foreground">01</span>
-                        Overview
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#challenge"
-                        className="-ml-px flex items-center gap-3 border-l border-transparent px-3 py-2 font-pixel text-xs uppercase tracking-wide text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-                      >
-                        <span className="text-muted-foreground">02</span>
-                        Challenge
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#architecture"
-                        className="-ml-px flex items-center gap-3 border-l border-transparent px-3 py-2 font-pixel text-xs uppercase tracking-wide text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-                      >
-                        <span className="text-muted-foreground">03</span>
-                        Architecture
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#impact"
-                        className="-ml-px flex items-center gap-3 border-l border-transparent px-3 py-2 font-pixel text-xs uppercase tracking-wide text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-                      >
-                        <span className="text-muted-foreground">04</span>
-                        Impact
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#learnings"
-                        className="-ml-px flex items-center gap-3 border-l border-transparent px-3 py-2 font-pixel text-xs uppercase tracking-wide text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-                      >
-                        <span className="text-muted-foreground">06</span>
-                        Learnings
-                      </a>
-                    </li>
-                  </ol>
-                </nav>
-              </aside>
+              <ProjectContentsRail />
 
               <article className="min-w-0">
                 <h1 className="sr-only">{project.title}</h1>
