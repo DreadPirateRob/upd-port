@@ -1,7 +1,7 @@
 ---
 order: 2
-title: "Multi-Exchange Cryptocurrency Watchlist"
-description: "Real-time price monitoring application providing aggregated market data across exchanges with granular exchange-level breakdown for comprehensive price discovery."
+title: "Multi-Exchange OEMS & Risk Compliance"
+description: "Order and execution management across multiple venues, with pre-trade risk checks and compliance controls enforced inline on every order."
 challenges: "This project reinforced the importance of performance budgets in real-time applications. Early iterations suffered from excessive re-renders when processing high-frequency ticker updates. Profiling revealed that naive state updates were triggering full component tree re-renders. Implementing multiple strategies for controlled updates improved render performance by 10x."
 technologies: [React, Websocket, Express, AgGrid]
 bigImage: /streaming-watchlist.png
