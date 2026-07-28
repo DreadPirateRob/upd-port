@@ -127,17 +127,11 @@ export default function HomeContent({ projects }) {
       description: "Continuing at CoinRoutes, now focused on expanding the platform's exchange connectivity and custom liquidity provider support. Responsible for building out the integrations layer that powers execution across venues, while driving architecture and infrastructure improvements in direct response to evolving business and product requirements. Alongside core product work, building internal developer tooling designed to enhance team workflows and accelerate delivery in an era where AI-assisted development is becoming central to how modern engineering teams operate. Emphasis on scalability, reliability, and long-term maintainability across the full stack.",
     },
     {
-      year: "Feb 2025 - Jan 2026",
+      year: "Apr 2023 - Jan 2026",
       company: "CoinRoutes",
-      title: "Trading Platform — Front-End Engineering Lead",
-      description: "Led front-end architecture and development for a high-performance trading platform, managing a team of five engineers. Steered the team's technical direction while continuing as a hands-on IC — spearheading performance optimization, maintaining design system integrity, and driving collaboration across design, product, and backend engineering to deliver scalable, real-time interfaces for professional traders and institutions.",
-    },
-    {
-      year: "Apr 2023 - Feb 2025",
-      company: "CoinRoutes",
-      title: "OEMS — Product Lead & UX Architect",
+      title: "OEMS & Trading Platform — Product & Engineering Lead",
       description:
-        "As a cross-functional leader at CoinRoutes, I operated at the intersection of product, design, and engineering, leading initiatives across the full product lifecycle of our OEMS (Order and Execution Management System) for crypto trading. I drove product strategy from ideation to deployment, collaborated closely with institutional clients, and translated complex trading workflows into performant, intuitive interfaces — directing UX/UI initiatives that improved trader efficiency across multi-venue execution environments, building reusable UI systems that cut feature delivery time by 40%, and serving as the primary bridge between engineering and executive stakeholders to keep technical execution aligned with product vision.",
+        "Stepped from individual contribution into cross-functional leadership, operating at the intersection of product, design, and engineering. Led the full product lifecycle of our OEMS (Order and Execution Management System) for crypto trading — driving strategy from ideation to deployment, collaborating directly with institutional clients, and translating complex trading workflows into performant, intuitive interfaces. Directed UX/UI initiatives that improved trader efficiency across multi-venue execution environments, built reusable UI systems that cut feature delivery time by 40%, and served as the primary bridge between engineering and executive stakeholders. Took on front-end engineering leadership for the trading platform, managing a team of five engineers and steering technical direction while remaining a hands-on IC — spearheading performance optimization, maintaining design system integrity, and driving collaboration across design, product, and backend to deliver scalable, real-time interfaces for professional traders and institutions.",
     },
     {
       year: "Jan 2022 - Apr 2023",
