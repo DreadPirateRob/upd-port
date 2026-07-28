@@ -20,6 +20,7 @@
   },
   "registries": {
     "@evilbuttons": "https://evilbuttons.radiumcoders.com/r/{name}.json",
-    "@dotmatrix": "https://dotmatrix.radiumcoders.com/r/{name}.json"
+    "@dotmatrix": "https://dotmatrix.radiumcoders.com/r/{name}.json",
+    "@mapcn": "https://mapcn.dev/r/{name}.json"
   }
 }
