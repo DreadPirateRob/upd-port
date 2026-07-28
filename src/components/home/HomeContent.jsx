@@ -123,8 +123,9 @@ export default function HomeContent({ projects }) {
     {
       year: "Jan 2026 - Present",
       company: "CoinRoutes",
-      title: "OEMS & AI Tooling — Full Stack Engineer",
-      description: "Continuing at CoinRoutes, now focused on expanding the platform's exchange connectivity and custom liquidity provider support. Responsible for building out the integrations layer that powers execution across venues, while driving architecture and infrastructure improvements in direct response to evolving business and product requirements. Alongside core product work, building internal developer tooling designed to enhance team workflows and accelerate delivery in an era where AI-assisted development is becoming central to how modern engineering teams operate. Emphasis on scalability, reliability, and long-term maintainability across the full stack.",
+      title: "OEMS, Platform & AI Tooling — Full Stack Engineering Lead",
+      description:
+        "Widened the same leadership remit from front-end into full stack, carrying forward architecture ownership and technical direction while taking on hands-on backend and infrastructure work. Building out the integrations layer that powers execution across venues — expanding exchange connectivity and custom liquidity provider support — and driving architecture and infrastructure improvements in direct response to evolving business and product requirements. Alongside core product work, building internal developer tooling designed to enhance team workflows and accelerate delivery in an era where AI-assisted development is becoming central to how modern engineering teams operate. Emphasis on scalability, reliability, and long-term maintainability across the full stack.",
     },
     {
       year: "Apr 2023 - Jan 2026",
