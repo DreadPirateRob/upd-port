@@ -23,8 +23,6 @@
     "@xyflow/react": "^12.11.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "d3": "^7.9.0",
-    "dotted-map": "^3.1.0",
     "framer-motion": "^12.23.12",
     "geist": "^1.7.2",
     "gray-matter": "^4.0.3",
