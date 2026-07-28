@@ -22,6 +22,7 @@ import GridButton from "@/components/evil-buttons/grid-button";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import CaseStudyAccordion from "@/components/home/CaseStudyAccordion";
 import SkillCard from "@/components/home/SkillCard";
+import { sideProjects } from "@/data/side-projects";
 import { ScrambleHeading } from "@/components/ui/scramble-text";
 
 const HEADING_SCRAMBLE = { staggerMs: 11, tickMs: 22, scrambleRounds: 3 };
@@ -288,8 +289,8 @@ export default function HomeContent({ projects }) {
                 <CaseStudyAccordion projects={projects} />
 
                 <StaggerContainer className="border-t border-border" staggerDelay={0.2}>
-                  {projects.map((project, index) => (
-                    <StaggerItem key={project.slug}>
+                  {sideProjects.map((project, index) => (
+                    <StaggerItem key={project.id}>
                       <ProjectListRow project={project} index={index} />
                     </StaggerItem>
                   ))}

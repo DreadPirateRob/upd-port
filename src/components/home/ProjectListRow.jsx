@@ -10,6 +10,16 @@ import ProjectTextmode from "@/components/ui/project-textmode";
 import { textmodeHoverVisual } from "@/components/ui/textmode-hover-visual";
 import TechTag from "@/components/ui/tech-tag";
 
+const LINK_LABEL = {
+  live: "Live",
+  source: "Source",
+  "case-study": "Case study",
+};
+
+// Rows render entries from `@/data/side-projects`:
+//   { id, title, description, tags, year, linkType, href }
+// `href: null` means the destination is not published yet, so the row renders
+// as a non-interactive tile rather than linking somewhere broken.
 export default function ProjectListRow({ project, index }) {
   const [hoverCount, setHoverCount] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -21,24 +31,21 @@ export default function ProjectListRow({ project, index }) {
 
   const handleMouseLeave = () => setIsHovered(false);
 
-  const chips = [project.areas?.[0], ...project.technologies.slice(0, 2)]
-    .filter(Boolean)
-    .slice(0, 3);
+  const chips = (project.tags ?? []).slice(0, 3);
+  const isPublished = Boolean(project.href);
+  const isExternal = isPublished && /^https?:/.test(project.href);
+  const linkLabel = LINK_LABEL[project.linkType] ?? LINK_LABEL["case-study"];
 
-  const cta = project.disabled ? (
-    <Badge variant="outline" className="text-muted-foreground/60">
-      Soon
-    </Badge>
-  ) : (
+  const cta = isPublished ? (
     <span aria-hidden="true">
-      <ClickPowerUp
-        as="span"
-        variant="secondary"
-        className="size-10 p-0"
-      >
+      <ClickPowerUp as="span" variant="secondary" className="size-10 p-0">
         <ArrowUpRight className="size-4" />
       </ClickPowerUp>
     </span>
+  ) : (
+    <Badge variant="outline" className="text-muted-foreground/60">
+      Soon
+    </Badge>
   );
 
   const content = (
@@ -60,6 +67,10 @@ export default function ProjectListRow({ project, index }) {
       </p>
 
       <div className="relative z-10">
+        <p className="mb-2 font-pixel text-[0.55rem] uppercase tracking-[0.18em] text-muted-foreground/70 transition-colors group-hover:text-white/50">
+          {linkLabel}
+          {project.year ? ` · ${project.year}` : ""}
+        </p>
         <h3 className="font-pixel text-3xl sm:text-4xl font-light tracking-tight mb-3 group-hover:text-primary transition-colors">
           <ScrambleText text={project.title} trigger={hoverCount} />
         </h3>
@@ -77,7 +88,7 @@ export default function ProjectListRow({ project, index }) {
     </div>
   );
 
-  if (project.disabled) {
+  if (!isPublished) {
     return (
       <div
         className="group block opacity-70"
@@ -89,9 +100,26 @@ export default function ProjectListRow({ project, index }) {
     );
   }
 
+  if (isExternal) {
+    return (
+      <a
+        href={project.href}
+        target="_blank"
+        rel="noreferrer noopener"
+        className="group block"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={() => setIsHovered(true)}
+        onBlur={() => setIsHovered(false)}
+      >
+        {content}
+      </a>
+    );
+  }
+
   return (
     <Link
-      href={`/projects/${project.slug}`}
+      href={project.href}
       className="group block"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
