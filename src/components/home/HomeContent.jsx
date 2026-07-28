@@ -123,9 +123,9 @@ export default function HomeContent({ projects }) {
     {
       year: "Jan 2026 - Present",
       company: "CoinRoutes",
-      title: "OEMS, Platform & AI Tooling — Full Stack Engineering Lead",
+      title: "PMS, OEMS & Brokerage Platform — Full Stack Engineering Lead",
       description:
-        "Widened the same leadership remit from front-end into full stack, carrying forward architecture ownership and technical direction while taking on hands-on backend and infrastructure work. Building out the integrations layer that powers execution across venues — expanding exchange connectivity and custom liquidity provider support — and driving architecture and infrastructure improvements in direct response to evolving business and product requirements. Alongside core product work, building internal developer tooling designed to enhance team workflows and accelerate delivery in an era where AI-assisted development is becoming central to how modern engineering teams operate. Emphasis on scalability, reliability, and long-term maintainability across the full stack.",
+        "Widened the same leadership remit from front-end into full stack, carrying forward architecture ownership and technical direction while taking on hands-on backend and infrastructure work. Work now spans three products: the portfolio management system, the order and execution management system, and a new brokerage platform powered by both. The execution and portfolio infrastructure built under that earlier leadership is now the backbone of the brokerage offering — a new line of business standing on foundations that already existed rather than being rebuilt from scratch. Deeply involved in that effort, building out the integrations layer that powers execution across venues, expanding exchange connectivity and custom liquidity provider support, and driving architecture and infrastructure improvements in direct response to evolving business and product requirements. The brokerage push also takes the platform beyond crypto for the first time, extending coverage into traditional markets — equities, ETFs, and forex — alongside digital assets, with emphasis on scalability, reliability, and long-term maintainability across the full stack.",
     },
     {
       year: "Apr 2023 - Jan 2026",
