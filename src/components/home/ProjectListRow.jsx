@@ -62,19 +62,19 @@ export default function ProjectListRow({ project, index }) {
           isHovered ? "opacity-100" : "opacity-0"
         }`}
       />
-      <p className="relative z-10 pt-2 text-sm tabular-nums text-muted-foreground/60 transition-colors group-hover:text-white/60">
+      <p className="relative z-10 pt-2 text-sm tabular-nums text-muted-foreground">
         {String(index + 1).padStart(2, "0")}
       </p>
 
       <div className="relative z-10">
-        <p className="mb-2 font-pixel text-[0.55rem] uppercase tracking-[0.18em] text-muted-foreground/70 transition-colors group-hover:text-white/50">
+        <p className="mb-2 font-pixel text-[0.55rem] uppercase tracking-[0.18em] text-muted-foreground">
           {linkLabel}
           {project.year ? ` · ${project.year}` : ""}
         </p>
-        <h3 className="font-pixel text-3xl sm:text-4xl font-light tracking-tight mb-3 group-hover:text-primary transition-colors">
+        <h3 className="font-pixel text-3xl sm:text-4xl font-light tracking-tight mb-3 text-foreground transition-colors group-hover:text-primary">
           <ScrambleText text={project.title} trigger={hoverCount} />
         </h3>
-        <p className="mb-4 max-w-2xl text-pretty text-sm text-muted-foreground transition-colors group-hover:text-white/70">
+        <p className="mb-4 max-w-2xl text-pretty text-sm text-muted-foreground">
           {project.description}
         </p>
         <div className="flex flex-wrap gap-2">

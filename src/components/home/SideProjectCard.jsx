@@ -30,7 +30,7 @@ export default function SideProjectCard({ project }) {
           <Icon aria-hidden="true" className="size-3" />
           {meta.label}
         </span>
-        <span className="font-pixel text-[0.55rem] uppercase tracking-[0.18em] text-muted-foreground/60 tabular-nums">
+        <span className="font-pixel text-[0.55rem] uppercase tracking-[0.18em] text-muted-foreground tabular-nums">
           {project.year}
         </span>
       </div>
