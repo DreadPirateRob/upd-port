@@ -11,9 +11,9 @@
 // filling in the href.
 //
 // ─────────────────────────────────────────────────────────────────────────────
-// Titles are real. Only the LazyPR entry is fully written; the remaining three
-// still carry placeholder descriptions, tags and years. Every field marked TODO
-// needs filling, and no href is set yet, so all four render as "Soon".
+// Titles are real. All four items are intended to link to source repositories,
+// but no repo URLs have been provided yet, so every href stays null and each row
+// still renders as "Soon" until the real GitHub links are pasted in.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const sideProjects = [
@@ -30,50 +30,46 @@ export const sideProjects = [
     href: null,
   },
   {
-    id: "side-project-02",
-    // TODO: real project name.
+    id: "aster-dex-tui",
     title: "Aster Dex TUI",
-    // TODO: one or two sentences — what it does and why it exists.
+    // TODO: one or two real sentences — what it does and why it exists.
     description:
-      "Placeholder description. This entry demonstrates the repository variant, where the card links straight out to source instead of a write-up.",
-    // TODO: real stack, max 3 tags (they render as chips).
-    tags: ["Tag One", "Tag Two", "Tag Three"],
+      "Placeholder description. This entry will link to its GitHub repository once the repo URL is available.",
+    tags: ["DEX", "TUI", "Trading"],
     // TODO: year shipped.
     year: "20XX",
     linkType: "source",
-    // TODO: paste the repository URL. Do not guess the repo name — copy it from
-    // GitHub so the link cannot 404 under a real account handle.
+    // TODO: paste the repository URL once it is public. Do not guess the repo
+    // name — copy it from GitHub so the link cannot 404 under a real handle.
     href: null,
   },
   {
-    id: "side-project-03",
-    // TODO: real project name.
+    id: "cli-trading-bot",
     title: "CLI Trading Bot",
-    // TODO: one or two sentences — what it does and why it exists.
+    // TODO: one or two real sentences — what it does and why it exists.
     description:
-      "Placeholder description. This entry demonstrates the internal variant, for a project that earns its own page on this site rather than an outbound link.",
-    // TODO: real stack, max 3 tags (they render as chips).
-    tags: ["Tag One", "Tag Two", "Tag Three"],
+      "Placeholder description. This entry will link to its GitHub repository once the repo URL is available.",
+    tags: ["CLI", "Trading", "Automation"],
     // TODO: year shipped.
     year: "20XX",
-    linkType: "case-study",
-    // TODO: internal path once the page exists, e.g. "/projects/<slug>". Leave
-    // null until that route actually renders.
+    linkType: "source",
+    // TODO: paste the repository URL once it is public. Do not guess the repo
+    // name — copy it from GitHub so the link cannot 404 under a real handle.
     href: null,
   },
   {
-    id: "side-project-04",
+    id: "backtesting-grounds",
     title: "Backtesting Grounds",
     // TODO: expand into one or two full sentences — what it does and why it
     // exists. Current text is your own note, kept verbatim.
     description:
       "Collection of strategies for backtesting",
-    // TODO: real stack, max 3 tags (they render as chips).
-    tags: ["Tag One", "Tag Two", "Tag Three"],
+    tags: ["Backtesting", "Strategies", "Research"],
     // TODO: year shipped.
     year: "20XX",
-    linkType: "case-study",
-    // TODO: internal path once the page exists, e.g. "/projects/<slug>".
+    linkType: "source",
+    // TODO: paste the repository URL once it is public. Do not guess the repo
+    // name — copy it from GitHub so the link cannot 404 under a real handle.
     href: null,
   },
 ];
