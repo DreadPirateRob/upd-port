@@ -11,31 +11,28 @@
 // filling in the href.
 //
 // ─────────────────────────────────────────────────────────────────────────────
-// ALL FOUR ENTRIES BELOW ARE PLACEHOLDERS. No real project, URL, or repository
-// is referenced. Replace every field marked TODO before this section ships.
+// Titles are real. Only the LazyPR entry is fully written; the remaining three
+// still carry placeholder descriptions, tags and years. Every field marked TODO
+// needs filling, and no href is set yet, so all four render as "Soon".
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const sideProjects = [
   {
-    id: "side-project-01",
-    // TODO: real project name.
-    title: "Side Project 01",
-    // TODO: one or two sentences — what it does and why it exists.
+    id: "lazypr",
+    title: "LazyPR — Terminal Pull Request Reviews",
     description:
-      "Placeholder description. Two sentences of copy sit here so the card height and text wrapping match the real content once it lands.",
-    // TODO: real stack, max 3 tags (they render as chips).
-    tags: ["Tag One", "Tag Two", "Tag Three"],
-    // TODO: year shipped.
-    year: "20XX",
-    linkType: "live",
-    // TODO: paste the deployed URL, e.g. "https://example.com". Until then this
-    // card stays non-clickable and shows a "Soon" badge.
+      "A keyboard-driven terminal UI for reviewing pull requests, built in the spirit of lazygit. Navigate diffs, leave line-level comments, and approve or request changes without leaving the terminal or losing review context to a browser tab.",
+    tags: ["Git", "GitHub API", "TUI"],
+    year: "2026",
+    linkType: "source",
+    // TODO: paste the repository URL once it is public. Do not guess the repo
+    // name — copy it from GitHub so the link cannot 404.
     href: null,
   },
   {
     id: "side-project-02",
     // TODO: real project name.
-    title: "Side Project 02",
+    title: "Aster Dex TUI",
     // TODO: one or two sentences — what it does and why it exists.
     description:
       "Placeholder description. This entry demonstrates the repository variant, where the card links straight out to source instead of a write-up.",
@@ -51,7 +48,7 @@ export const sideProjects = [
   {
     id: "side-project-03",
     // TODO: real project name.
-    title: "Side Project 03",
+    title: "CLI Trading Bot",
     // TODO: one or two sentences — what it does and why it exists.
     description:
       "Placeholder description. This entry demonstrates the internal variant, for a project that earns its own page on this site rather than an outbound link.",
@@ -66,11 +63,11 @@ export const sideProjects = [
   },
   {
     id: "side-project-04",
-    // TODO: real project name.
-    title: "Side Project 04",
-    // TODO: one or two sentences — what it does and why it exists.
+    title: "Backtesting Grounds",
+    // TODO: expand into one or two full sentences — what it does and why it
+    // exists. Current text is your own note, kept verbatim.
     description:
-      "Placeholder description. Four entries fill the two-column grid evenly; add or remove entries freely, the layout reflows.",
+      "Collection of strategies for backtesting",
     // TODO: real stack, max 3 tags (they render as chips).
     tags: ["Tag One", "Tag Two", "Tag Three"],
     // TODO: year shipped.
