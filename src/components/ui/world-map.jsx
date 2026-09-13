@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 
-import { useTheme } from "@/components/theme-provider";
+import useIsDarkMode from "@/hooks/useIsDarkMode";
 import {
   Map,
   MapControls,
@@ -46,32 +46,6 @@ function normalizeMarkers(markers = []) {
       ...marker,
       id: marker.id ?? marker.label,
     }));
-}
-
-function useIsDarkMode() {
-  const { theme } = useTheme();
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    const syncTheme = () => {
-      setIsDark(root.classList.contains("dark"));
-    };
-
-    syncTheme();
-
-    const observer = new MutationObserver(syncTheme);
-    observer.observe(root, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [theme]);
-
-  return isDark;
 }
 
 function MarkerChip({ label, side = "right" }) {

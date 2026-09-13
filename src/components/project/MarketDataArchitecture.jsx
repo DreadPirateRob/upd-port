@@ -1,7 +1,7 @@
 "use client";
 
-import ArchitectureFlow from "@/components/project-v3/ArchitectureFlow";
-import RegionalServerMap from "@/components/project-v3/RegionalServerMap";
+import ArchitectureFlow from "@/components/project/ArchitectureFlow";
+import RegionalServerMap from "@/components/project/RegionalServerMap";
 
 function DiagramPanel({ index, title, description, children, flush = false }) {
   return (

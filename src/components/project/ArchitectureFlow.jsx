@@ -11,7 +11,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { useReducedMotion } from "motion/react";
-import { useTheme } from "@/components/theme-provider";
+import useIsDarkMode from "@/hooks/useIsDarkMode";
 import { cn } from "@/lib/utils";
 
 const GRAPH_BY_MODE = {
@@ -369,7 +369,7 @@ const NODE_TYPES = { architecture: ArchitectureNode };
 
 export default function ArchitectureFlow({ mode }) {
   const graph = GRAPH_BY_MODE[mode] || GRAPH_BY_MODE.before;
-  const { theme } = useTheme();
+  const isDark = useIsDarkMode();
   const reduceMotion = useReducedMotion();
   const [isDesktop, setIsDesktop] = useState(false);
   const [pinnedNodeId, setPinnedNodeId] = useState(null);
@@ -410,7 +410,7 @@ export default function ArchitectureFlow({ mode }) {
           nodes={nodes}
           edges={edges}
           nodeTypes={NODE_TYPES}
-          colorMode={theme === "dark" ? "dark" : "light"}
+          colorMode={isDark ? "dark" : "light"}
           fitView
           fitViewOptions={{ padding: 0.15 }}
           nodesDraggable={false}

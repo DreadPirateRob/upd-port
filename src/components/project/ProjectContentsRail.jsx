@@ -6,63 +6,51 @@ import Link from "next/link";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import { cn } from "@/lib/utils";
 
-const CONTENT_ITEMS = [
-  { id: "overview", number: "01", label: "Overview" },
-  { id: "challenge", number: "02", label: "Challenge" },
-  { id: "architecture", number: "03", label: "Architecture" },
-  { id: "impact", number: "04", label: "Impact" },
-  { id: "learnings", number: "06", label: "Learnings" },
-];
-
+// Distance from the top of the viewport that counts as "what you are reading".
 const READING_LINE = 140;
 
-function getActiveSection() {
-  let activeId = CONTENT_ITEMS[0].id;
-
-  for (const item of CONTENT_ITEMS) {
-    const section = document.getElementById(item.id);
-    if (!section) continue;
-
-    if (section.getBoundingClientRect().top <= READING_LINE) {
-      activeId = item.id;
-      continue;
-    }
-
-    break;
-  }
-
-  return activeId;
-}
-
-export default function ProjectContentsRail() {
-  const [activeId, setActiveId] = useState(CONTENT_ITEMS[0].id);
+// Tracked with IntersectionObserver rather than a scroll handler: Lenis smooth
+// scrolling drives a scroll event every frame, and measuring each section with
+// getBoundingClientRect() on every one of those forces a layout read on the
+// main thread. The observer reports the same crossings without that cost.
+export default function ProjectContentsRail({ items }) {
+  const [activeId, setActiveId] = useState(items[0].id);
 
   useEffect(() => {
-    let frameId = null;
+    const sections = items
+      .map((item) => document.getElementById(item.id))
+      .filter(Boolean);
 
-    const updateActiveSection = () => {
-      frameId = null;
-      const nextActiveId = getActiveSection();
-      setActiveId((currentId) =>
-        currentId === nextActiveId ? currentId : nextActiveId,
+    if (sections.length === 0) return undefined;
+
+    let observer;
+
+    // A 1px band pinned at the reading line: a section is active while it
+    // straddles that line. Gaps between sections leave the last one active.
+    const observe = () => {
+      observer?.disconnect();
+
+      const below = Math.max(window.innerHeight - READING_LINE - 1, 0);
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) setActiveId(entry.target.id);
+          }
+        },
+        { rootMargin: `-${READING_LINE}px 0px -${below}px 0px` },
       );
+
+      sections.forEach((section) => observer.observe(section));
     };
 
-    const scheduleUpdate = () => {
-      if (frameId !== null) return;
-      frameId = window.requestAnimationFrame(updateActiveSection);
-    };
-
-    scheduleUpdate();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
+    observe();
+    window.addEventListener("resize", observe);
 
     return () => {
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-      if (frameId !== null) window.cancelAnimationFrame(frameId);
+      window.removeEventListener("resize", observe);
+      observer?.disconnect();
     };
-  }, []);
+  }, [items]);
 
   return (
     <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
@@ -88,8 +76,9 @@ export default function ProjectContentsRail() {
           Contents
         </p>
         <ol className="mt-3 border-l border-border">
-          {CONTENT_ITEMS.map((item) => {
+          {items.map((item, index) => {
             const isActive = item.id === activeId;
+            const number = String(index + 1).padStart(2, "0");
 
             return (
               <li key={item.id}>
@@ -110,7 +99,7 @@ export default function ProjectContentsRail() {
                       isActive ? "text-primary" : "text-muted-foreground",
                     )}
                   >
-                    {item.number}
+                    {number}
                   </span>
                   {item.label}
                 </a>
