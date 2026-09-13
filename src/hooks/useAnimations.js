@@ -1,6 +1,6 @@
 "use client";
 
-import { useInView } from "framer-motion";
+import { useInView } from "motion/react";
 import { useRef } from "react";
 
 // Hook for detecting when an element is in view

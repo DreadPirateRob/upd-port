@@ -22,16 +22,6 @@ export default function Navigation() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <Link href="/#skills-section">
-              <ClickPowerUp
-                variant="secondary"
-                as="span"
-                className="px-3 py-2 text-[0.65rem] sm:px-5 sm:text-xs"
-              >
-                Skills
-              </ClickPowerUp>
-            </Link>
-
             <Link href="/#projects-section">
               <ClickPowerUp
                 variant="secondary"

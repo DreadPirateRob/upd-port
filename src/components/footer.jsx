@@ -20,8 +20,6 @@ const FOOTER_CORNERS = [
 ];
 
 const NAVIGATION = [
-  { label: "Skills", href: "/#skills-section" },
-  { label: "About", href: "/#about-section" },
   { label: "Projects", href: "/#projects-section" },
   { label: "Experience", href: "/#experience-section" },
 ];

@@ -10,18 +10,14 @@ import {
   StaggerContainer,
   StaggerItem,
   HoverEffect,
-  TextReveal,
-  AnimatedCounter,
 } from "@/components/animations/AnimationWrapper";
 import Footer from "@/components/footer";
 import TextmodeBg from "@/components/ui/textmode-bg";
 import AsciiTextReveal from "@/components/ui/ascii-text-reveal";
-import { AnimatePresence, motion } from "motion/react";
 import ProjectListRow from "@/components/home/ProjectListRow";
 import GridButton from "@/components/evil-buttons/grid-button";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import CaseStudyAccordion from "@/components/home/CaseStudyAccordion";
-import SkillCard from "@/components/home/SkillCard";
 import { sideProjects } from "@/data/side-projects";
 import { ScrambleHeading } from "@/components/ui/scramble-text";
 
@@ -29,96 +25,6 @@ const HEADING_SCRAMBLE = { staggerMs: 11, tickMs: 22, scrambleRounds: 3 };
 
 export default function HomeContent({ projects }) {
   const [showAllExperience, setShowAllExperience] = useState(false);
-  const [hoveredSkill, setHoveredSkill] = useState(null);
-
-  const skills = [
-    {
-      slug: "high-performance-interfaces",
-      title: "High-Performance Interfaces",
-      description:
-        "Building responsive, data-intensive interfaces for real-time financial applications, with a focus on performance, usability and maintainable architecture.",
-      tags: ["React", "Next.js", "TypeScript", "Redux", "Tailwind CSS", "AG Grid"],
-      colSpan: "col-span-16 lg:col-span-14",
-    },
-    {
-      slug: "real-time-applications",
-      title: "Real-Time Applications",
-      description:
-        "Creating end-to-end applications that stream, process and present continuously changing data with minimal delay.",
-      tags: ["WebSockets", "Server-Sent Events", "Web Workers", "NATS", "JetStream", "Redis"],
-      colSpan: "col-span-16 lg:col-span-10",
-    },
-    {
-      slug: "distributed-systems",
-      title: "Distributed Systems",
-      description:
-        "Designing scalable and fault-tolerant services with clear communication patterns, consistency guarantees and failure boundaries.",
-      tags: [
-        "Rust",
-        "Node.js",
-        "gRPC",
-        "Protobuf",
-        "Event-Driven Architecture",
-        "Distributed Messaging",
-      ],
-      colSpan: "col-span-16 lg:col-span-12",
-    },
-    {
-      slug: "trading-infrastructure",
-      title: "Trading Infrastructure",
-      description:
-        "Building systems that support market-data distribution, order management, execution, risk controls and real-time portfolio monitoring.",
-      tags: [
-        "Market Data",
-        "OMS/EMS",
-        "Smart Order Routing",
-        "FIX",
-        "Risk Controls",
-        "Reconciliation",
-      ],
-      colSpan: "col-span-16 lg:col-span-12",
-    },
-    {
-      slug: "data-pipelines-and-storage",
-      title: "Data Pipelines and Storage",
-      description:
-        "Developing high-throughput pipelines for ingesting, normalizing, distributing and storing financial and operational data.",
-      tags: ["Kafka", "NATS", "ClickHouse", "PostgreSQL", "Redis", "Stream Processing"],
-      colSpan: "col-span-16 lg:col-span-14",
-    },
-    {
-      slug: "backend-and-api-engineering",
-      title: "Backend and API Engineering",
-      description:
-        "Developing secure and performant APIs that connect interfaces, internal services and external financial infrastructure.",
-      tags: ["REST", "GraphQL", "gRPC", "Express", "Authentication", "Authorization"],
-      colSpan: "col-span-16 lg:col-span-10",
-    },
-    {
-      slug: "reliability-and-observability",
-      title: "Reliability and Observability",
-      description:
-        "Ensuring distributed applications remain measurable, recoverable and reliable during failures and periods of elevated activity.",
-      tags: [
-        "OpenTelemetry",
-        "Prometheus",
-        "Grafana",
-        "Distributed Tracing",
-        "SLOs",
-        "Alerting",
-      ],
-      colSpan: "col-span-16 lg:col-span-12",
-    },
-    {
-      slug: "infrastructure-and-delivery",
-      title: "Infrastructure and Delivery",
-      description:
-        "Deploying and operating applications through reproducible environments, automated pipelines and production-grade infrastructure.",
-      tags: ["Docker", "Kubernetes", "Terraform", "GitHub Actions", "AWS", "systemd"],
-      colSpan: "col-span-16 lg:col-span-12",
-    },
-  ];
-
   const events = [
     {
       year: "Jan 2026 - Present",
@@ -207,58 +113,6 @@ export default function HomeContent({ projects }) {
               </FadeIn>
             </div>
           </section>
-
-          <Separator />
-
-          {/* Skills Section */}
-          {/* <section id="skills-section" className="py-16 px-4 scroll-mt-24"> */}
-          {/*   <div className="max-w-4xl mx-auto"> */}
-          {/*     <div className="max-w-xl text-left mb-16"> */}
-          {/*       <FadeIn direction="left"> */}
-          {/*         <GridButton className="mb-4">Skills</GridButton> */}
-          {/*       </FadeIn> */}
-          {/*       <FadeIn direction="left" delay={0.2}> */}
-          {/*         <ScrambleHeading */}
-          {/*           className="text-4xl sm:text-5xl font-bold tracking-tight mb-6" */}
-          {/*           text={"Languages, \nLibraries and Frameworks"} */}
-          {/*           config={HEADING_SCRAMBLE} */}
-          {/*         /> */}
-          {/*       </FadeIn> */}
-          {/*     </div> */}
-          {/*     <StaggerContainer */}
-          {/*       className="grid grid-cols-1 md:grid-cols-24 gap-6" */}
-          {/*       staggerDelay={0.2} */}
-          {/*     > */}
-          {/*       {skills.map((skill) => ( */}
-          {/*         <StaggerItem key={skill.slug} className={skill.colSpan}> */}
-          {/*           <SkillCard */}
-          {/*             skill={skill} */}
-          {/*             dimmed={hoveredSkill !== null && hoveredSkill !== skill.slug} */}
-          {/*             onHover={setHoveredSkill} */}
-          {/*           /> */}
-          {/*         </StaggerItem> */}
-          {/*       ))} */}
-          {/*     </StaggerContainer> */}
-          {/*   </div> */}
-          {/* </section> */}
-          {/**/}
-          {/* <Separator /> */}
-          {/**/}
-          {/* About Section */}
-          {/* <section id="about-section" className="py-16 px-4 bg-muted/50 scroll-mt-24"> */}
-          {/*   <div className="max-w-4xl mx-auto text-right"> */}
-          {/*     <FadeIn direction="right"> */}
-          {/*       <GridButton className="mb-6">About Me</GridButton> */}
-          {/*     </FadeIn> */}
-          {/*     <FadeIn direction="right" delay={0.2}> */}
-          {/*       <ScrambleHeading */}
-          {/*         className="text-4xl sm:text-5xl font-bold tracking-tight mb-6" */}
-          {/*         text={"Full stack engineer and architect focused on building high-performance interfaces, real-time data pipelines and low-latency infrastructure for digital financial operations."} */}
-          {/*         config={HEADING_SCRAMBLE} */}
-          {/*       /> */}
-          {/*     </FadeIn> */}
-          {/*   </div> */}
-          {/* </section> */}
 
           <Separator />
 
