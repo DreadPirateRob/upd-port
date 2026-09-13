@@ -1,146 +1,81 @@
-# Next.js Portfolio App
+# Portfolio — Adrian Garcia
 
-A modern, responsive portfolio website built with Next.js, Tailwind CSS, and shadcn/ui components.
+Personal portfolio site. Static, client-rendered, deployed on Vercel.
 
-## Features
+## Stack
 
-- **Landing Page (/)**: Beautiful homepage with hero section, featured projects, and about section
-- **Dynamic Project Routes (/project/[slug])**: Individual project pages with detailed information
-- **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
-- **Modern UI Components**: Built with shadcn/ui component library
-- **Smooth Animations**: Professional animations powered by Framer Motion
-- **Dark/Light Mode Toggle**: Theme switching with persistent storage
-- **SEO Optimized**: Dynamic metadata generation for each page
-- **Static Site Generation**: Pre-rendered pages for optimal performance
+- **Next.js 15** (App Router) with Turbopack
+- **JavaScript only** — no TypeScript
+- **Tailwind CSS v4** (no `tailwind.config.js`; theme lives in `src/app/globals.css`)
+- **motion** (Framer Motion v12) for animation
+- **@xyflow/react** for architecture diagrams, **maplibre-gl** for the regional map
+- **Geist** Sans / Mono / Pixel Circle
 
-## Tech Stack
+## Commands
 
-- **Framework**: Next.js 15 (App Router)
-- **Language**: JavaScript (Regular JavaScript, not TypeScript)
-- **Styling**: Tailwind CSS
-- **UI Components**: shadcn/ui
-- **Animations**: Framer Motion
-- **Font**: Geist Sans & Geist Mono
-
-## Project Structure
-
-```
-src/
-├── app/
-│   ├── layout.js                 # Root layout with navigation
-│   ├── page.js                   # Landing page
-│   └── project/
-│       └── [slug]/
-│           └── page.js           # Dynamic project pages
-├── components/
-│   ├── navigation.jsx            # Navigation component
-│   ├── theme-toggle.jsx          # Dark/light mode toggle
-│   ├── theme-provider.jsx        # Theme context provider
-│   ├── animations/               # Animation components
-│   │   └── AnimationWrapper.jsx  # Framer Motion wrappers
-│   └── ui/                       # shadcn/ui components
-│       ├── avatar.jsx
-│       ├── badge.jsx
-│       ├── button.jsx
-│       ├── card.jsx
-│       ├── navigation-menu.jsx
-│       └── separator.jsx
-├── hooks/
-│   └── useAnimations.js          # Animation utility hooks
-└── lib/
-    └── utils.js                  # Utility functions
-```
-
-## Available Routes
-
-- `/` - Landing page with portfolio overview
-- `/project/web-app` - Modern Web Application project
-- `/project/mobile-app` - Cross-Platform Mobile Application project
-- `/project/api-service` - RESTful API Service project
-
-## Getting Started
-
-1. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-2. **Run the development server**:
-   ```bash
-   npm run dev
-   ```
-
-3. **Open your browser**:
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## Available Scripts
-
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server
-- `npm run lint` - Run ESLint for code quality checks
-
-## shadcn/ui Components
-
-The project includes the following shadcn/ui components:
-- Button - Interactive buttons with multiple variants
-- Card - Content containers with header, content, and description
-- Badge - Small status indicators
-- Avatar - User profile pictures with fallbacks
-- Separator - Visual dividers between content sections
-- Navigation Menu - Accessible navigation components
-
-## Theme System
-
-The portfolio includes a comprehensive dark/light mode system:
-
-- **Theme Toggle**: Located in the navigation bar with sun/moon icons
-- **Persistent Storage**: Theme preference is saved in localStorage
-- **No Flash**: Prevents flash of unstyled content (FOUC) on page load
-- **Context Provider**: Manages theme state across the entire application
-- **CSS Variables**: Uses CSS custom properties for seamless theme switching
-
-## Animations
-
-The portfolio features smooth, professional animations powered by Framer Motion:
-
-- **Fade Animations**: Elements fade in from various directions (up, down, left, right)
-- **Scale Animations**: Components scale in smoothly on scroll
-- **Stagger Effects**: Multiple items animate with sequential delays
-- **Hover Interactions**: Buttons and cards have engaging hover effects
-- **Page Transitions**: Smooth transitions between pages
-- **Scroll-Triggered**: Animations activate when elements enter the viewport
-
-For detailed animation documentation, see [ANIMATIONS.md](ANIMATIONS.md).
-
-## Customization
-
-### Adding New Projects
-
-To add a new project, update the `projectData` object in `/src/app/project/[slug]/page.js` and add the corresponding slug to the `generateStaticParams` function.
-
-### Modifying Styles
-
-The project uses Tailwind CSS for styling. You can customize the design by modifying the classes in the components or updating the global CSS in `/src/app/globals.css`.
-
-### Adding Components
-
-To add more shadcn/ui components:
 ```bash
-npx shadcn@latest add [component-name]
+npm run dev      # dev server (Turbopack)
+npm run build    # production build
+npm run start    # serve the production build
+npm run lint     # ESLint
 ```
+
+There is no test framework. QA is manual: build, then click through `/` and
+`/projects/distributed-md-platform`.
+
+## Routes
+
+| Route | Rendering | Source |
+|---|---|---|
+| `/` | static | `src/app/page.js` → `src/components/home/HomeContent.jsx` |
+| `/projects/[slug]` | SSG | `src/app/projects/[slug]/page.js` |
+| `/sitemap.xml`, `/robots.txt` | static | `src/app/sitemap.js`, `src/app/robots.js` |
+| 404 | static | `src/app/not-found.jsx` |
+
+## How a project page is assembled
+
+`content/projects/*.md` is the project **registry** — only the YAML frontmatter
+is read (`src/lib/projects.js`). Case-study bodies are bespoke React, not
+markdown.
+
+```
+content/projects/<slug>.md          frontmatter: title, description, technologies,
+                                    areas, bigImage, order, disabled
+        │
+        ▼
+src/lib/projects.js                 getAllProjects() / getProject(slug)
+        │
+        ├──────────────► src/app/page.js            (homepage cards)
+        │
+        ▼
+src/app/projects/[slug]/page.js     grid shell + contents rail + footer
+        │
+        ▼
+src/components/project/case-studies/index.js        slug → { Article, contents }
+        │
+        ▼
+src/components/project/case-studies/<Name>.jsx      the article itself
+```
+
+A slug renders only if it is **both** non-`disabled` in its frontmatter **and**
+present in the case-study registry. Anything else 404s, so an unfinished
+project can never ship as an empty page.
+
+### Adding a project
+
+1. Add `content/projects/<slug>.md` with frontmatter (omit `disabled`, or set it
+   to `true` while the write-up is in progress).
+2. Add `src/components/project/case-studies/<Name>.jsx`. Default-export the
+   article and named-export a `contents` array of `{ id, label }` — the ids must
+   match the `id` attributes of the article's `<section>` elements, and the
+   contents rail numbers them in order.
+3. Register the slug in `src/components/project/case-studies/index.js`.
+
+`generateStaticParams` and the sitemap pick it up automatically.
 
 ## Deployment
 
-This project is ready for deployment on platforms like:
-- Vercel (recommended for Next.js apps)
-- Netlify
-- Any other platform that supports Node.js
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## License
-
-This project is open source and available under the MIT License.
+Vercel, zero config. Set `NEXT_PUBLIC_SITE_URL` once a custom domain is
+attached — canonical URLs, Open Graph tags and the sitemap read it via
+`src/lib/site.js`. Without it, the Vercel production URL is used, falling back
+to `http://localhost:3000` locally.
