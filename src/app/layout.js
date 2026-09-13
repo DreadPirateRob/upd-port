@@ -4,6 +4,7 @@ import "lenis/dist/lenis.css";
 import "./globals.css";
 import Navigation from "@/components/navigation";
 import SmoothScroll from "@/components/smooth-scroll";
+import { siteDescription, siteName, siteUrl } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,9 +17,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Adrian Garcia - Developer",
-  description:
-    "Full stack engineer and architect focused on building high-performance interfaces, real-time data pipelines and low-latency infrastructure for digital financial operations.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${siteName} - Developer`,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName,
+    url: "/",
+    title: `${siteName} - Developer`,
+    description: siteDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteName} - Developer`,
+    description: siteDescription,
+  },
   icons: {
     icon: "/hacker-cat.png",
     shortcut: "/hacker-cat.png",
