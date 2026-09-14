@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowUpRight, Coffee, Github, Mail, Youtube } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Youtube } from "lucide-react";
 import { FadeIn } from "@/components/animations/AnimationWrapper";
 import { ClickPowerUp } from "@/components/evil-buttons/click-powerup";
 import { ScrambleHeading } from "@/components/ui/scramble-text";
@@ -46,9 +46,11 @@ const SOCIAL_ACTIONS = [
     icon: Mail,
   },
   {
-    label: "Buy Me a Coffee",
-    detail: "Link coming soon",
-    icon: Coffee,
+    label: "LinkedIn",
+    detail: "Experience and background",
+    href: "https://www.linkedin.com/in/agarciadev99/",
+    icon: Linkedin,
+    external: true,
   },
   {
     label: "YouTube",
