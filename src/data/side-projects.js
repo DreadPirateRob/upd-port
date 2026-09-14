@@ -11,9 +11,9 @@
 // filling in the href.
 //
 // ─────────────────────────────────────────────────────────────────────────────
-// Titles are real. All four items are intended to link to source repositories,
-// but no repo URLs have been provided yet, so every href stays null and each row
-// still renders as "Soon" until the real GitHub links are pasted in.
+// Repository URLs below were supplied directly by the owner. All four were
+// private (HTTP 404 anonymously) when they were wired up, so the cards link
+// correctly only once each repo is made public.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const sideProjects = [
@@ -25,13 +25,11 @@ export const sideProjects = [
     tags: ["Git", "GitHub API", "TUI"],
     year: "2026",
     linkType: "source",
-    // TODO: paste the repository URL once it is public. Do not guess the repo
-    // name — copy it from GitHub so the link cannot 404.
-    href: null,
+    href: "https://github.com/DreadPirateRob/LazyPrReview",
   },
   {
     id: "aster-dex-tui",
-    title: "Aster Dex TUI",
+    title: "Terminal Trading Interface",
     // TODO: one or two real sentences — what it does and why it exists.
     description:
       "Placeholder description. This entry will link to its GitHub repository once the repo URL is available.",
@@ -39,13 +37,11 @@ export const sideProjects = [
     // TODO: year shipped.
     year: "20XX",
     linkType: "source",
-    // TODO: paste the repository URL once it is public. Do not guess the repo
-    // name — copy it from GitHub so the link cannot 404 under a real handle.
-    href: null,
+    href: "https://github.com/DreadPirateRob/aster-dex-tui",
   },
   {
     id: "cli-trading-bot",
-    title: "CLI Trading Bot",
+    title: "Terminal Trading Bot",
     // TODO: one or two real sentences — what it does and why it exists.
     description:
       "Placeholder description. This entry will link to its GitHub repository once the repo URL is available.",
@@ -53,9 +49,7 @@ export const sideProjects = [
     // TODO: year shipped.
     year: "20XX",
     linkType: "source",
-    // TODO: paste the repository URL once it is public. Do not guess the repo
-    // name — copy it from GitHub so the link cannot 404 under a real handle.
-    href: null,
+    href: "https://github.com/DreadPirateRob/cli-trading-bot",
   },
   {
     id: "backtesting-grounds",
@@ -68,8 +62,6 @@ export const sideProjects = [
     // TODO: year shipped.
     year: "20XX",
     linkType: "source",
-    // TODO: paste the repository URL once it is public. Do not guess the repo
-    // name — copy it from GitHub so the link cannot 404 under a real handle.
-    href: null,
+    href: "https://github.com/DreadPirateRob/backtesting-grounds",
   },
 ];
