@@ -11,9 +11,9 @@
 // filling in the href.
 //
 // ─────────────────────────────────────────────────────────────────────────────
-// Repository URLs below were supplied directly by the owner. All four were
-// private (HTTP 404 anonymously) when they were wired up, so the cards link
-// correctly only once each repo is made public.
+// Copy below is drawn from each repository's own README. The repos are private
+// at the time of writing, so the links resolve only once they are made public.
+// Years are the year of first commit.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const sideProjects = [
@@ -21,8 +21,8 @@ export const sideProjects = [
     id: "lazypr",
     title: "LazyPR — Terminal Pull Request Reviews",
     description:
-      "A keyboard-driven terminal UI for reviewing pull requests, built in the spirit of lazygit. Navigate diffs, leave line-level comments, and approve or request changes without leaving the terminal or losing review context to a browser tab.",
-    tags: ["Git", "GitHub API", "TUI"],
+      "A keyboard-driven terminal UI for reviewing GitHub pull requests, built as the reviewer-side complement to lazygit. Navigate diffs and threads, leave inline, multi-line and file-level comments against a pending review, resolve conversations and submit — all over the gh CLI without losing review context to a browser tab.",
+    tags: ["Go", "TUI", "GitHub API"],
     year: "2026",
     linkType: "source",
     href: "https://github.com/DreadPirateRob/LazyPrReview",
@@ -30,37 +30,30 @@ export const sideProjects = [
   {
     id: "aster-dex-tui",
     title: "Terminal Trading Interface",
-    // TODO: one or two real sentences — what it does and why it exists.
     description:
-      "Placeholder description. This entry will link to its GitHub repository once the repo URL is available.",
-    tags: ["DEX", "TUI", "Trading"],
-    // TODO: year shipped.
-    year: "20XX",
+      "A full trading terminal for AsterDEX perpetual futures that runs in the shell: trade-count and time-based candles, volume and cumulative volume delta, order entry down to trailing stops, live position and PnL tracking, and account exposure. Written to replace a TradingView subscription for pattern recognition and active trading.",
+    tags: ["Rust", "TUI", "Perpetuals"],
+    year: "2026",
     linkType: "source",
     href: "https://github.com/DreadPirateRob/aster-dex-tui",
   },
   {
     id: "cli-trading-bot",
     title: "Terminal Trading Bot",
-    // TODO: one or two real sentences — what it does and why it exists.
     description:
-      "Placeholder description. This entry will link to its GitHub repository once the repo URL is available.",
-    tags: ["CLI", "Trading", "Automation"],
-    // TODO: year shipped.
-    year: "20XX",
+      "An automated trading bot for Binance.US spot markets with a pluggable strategy layer, currently RSI-standard-deviation and grid. Risk controls — position limits, stop-loss, daily loss caps and circuit breakers — are enforced in the engine, and every strategy can be run against historical replay or in paper mode before it touches real money.",
+    tags: ["Rust", "PostgreSQL", "Backtesting"],
+    year: "2026",
     linkType: "source",
     href: "https://github.com/DreadPirateRob/cli-trading-bot",
   },
   {
     id: "backtesting-grounds",
     title: "Backtesting Grounds",
-    // TODO: expand into one or two full sentences — what it does and why it
-    // exists. Current text is your own note, kept verbatim.
     description:
-      "Collection of strategies for backtesting",
-    tags: ["Backtesting", "Strategies", "Research"],
-    // TODO: year shipped.
-    year: "20XX",
+      "A vectorized backtesting framework for systematic crypto strategies, run over years of one-minute Binance klines. Ships a library of strategies alongside the engine that grades them: walk-forward validation, regime detection and parameter sweeps, plus PineScript ports of the ones worth watching on a chart.",
+    tags: ["Python", "Walk-Forward", "Research"],
+    year: "2026",
     linkType: "source",
     href: "https://github.com/DreadPirateRob/backtesting-grounds",
   },
