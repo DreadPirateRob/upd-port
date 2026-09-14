@@ -29,21 +29,21 @@ export default function HomeContent({ projects }) {
     {
       year: "Jan 2026 - Present",
       company: "CoinRoutes",
-      title: "PMS, OEMS & Brokerage Platform — Full Stack Engineering Lead",
+      title: "PMS, OEMS & Brokerage Platform — Full Stack Engineer",
       description:
         "Widened the same leadership remit from front-end into full stack, carrying forward architecture ownership and technical direction while taking on hands-on backend and infrastructure work. Work now spans three products: the portfolio management system, the order and execution management system, and a new brokerage platform powered by both. The execution and portfolio infrastructure built under that earlier leadership is now the backbone of the brokerage offering — a new line of business standing on foundations that already existed rather than being rebuilt from scratch. Deeply involved in that effort, building out the integrations layer that powers execution across venues, expanding exchange connectivity and custom liquidity provider support, and driving architecture and infrastructure improvements in direct response to evolving business and product requirements. The brokerage push also takes the platform beyond crypto for the first time, extending coverage into traditional markets — equities, ETFs, and forex — alongside digital assets, with emphasis on scalability, reliability, and long-term maintainability across the full stack.",
     },
     {
       year: "Apr 2023 - Jan 2026",
       company: "CoinRoutes",
-      title: "OEMS & Trading Platform — Product & Engineering Lead",
+      title: "OEMS & Trading Platform — Product & Frontend Engineer",
       description:
         "Stepped from individual contribution into cross-functional leadership, operating at the intersection of product, design, and engineering. Led the full product lifecycle of our OEMS (Order and Execution Management System) for crypto trading — driving strategy from ideation to deployment, collaborating directly with institutional clients, and translating complex trading workflows into performant, intuitive interfaces. Directed UX/UI initiatives that improved trader efficiency across multi-venue execution environments, built reusable UI systems that cut feature delivery time by 40%, and served as the primary bridge between engineering and executive stakeholders. Took on front-end engineering leadership for the trading platform, managing a team of five engineers and steering technical direction while remaining a hands-on IC — spearheading performance optimization, maintaining design system integrity, and driving collaboration across design, product, and backend to deliver scalable, real-time interfaces for professional traders and institutions.",
     },
     {
       year: "Jan 2022 - Apr 2023",
       company: "CoinRoutes",
-      title: "Trading Platform — Front-End Engineer",
+      title: "Trading Platform — Frontend Developer",
       description:
         "Contributed to the design and development of CoinRoutes' enterprise-grade crypto trading platform, handling real-time data visualization, state management, and cross-browser performance optimization for professional trading clients. Led major UI refactors for responsiveness and modularity, integrated WebSockets and streaming APIs for live execution and market data, contributed to a shared component library used across internal and client-facing tools, and worked closely with backend engineers to optimize data flow for low-latency environments.",
     },
